@@ -1,5 +1,12 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Takwim 2027 Malaysia</title>
+<meta name="description" content="Takwim 2027 / 1448–1449H: cuti umum setiap negeri, cuti sekolah, tarikh Islam dan acara peribadi.">
+<meta name="theme-color" content="#1F4E3D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F4E3D'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='26' fill='%23C9A44C' text-anchor='middle'%3E27%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@600;700&family=Roboto+Condensed:wght@500;700;800&display=swap">
@@ -38,8 +45,9 @@
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html, body { background: var(--bg); color: var(--ink); }
-body { font-family: var(--f-body); font-size: 14px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
+body { margin: 0; font-family: var(--f-body); font-size: 14px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
@@ -211,6 +219,11 @@ form.f label.chk input { width: auto; }
 .tools .opts label { display: inline-flex; gap: 5px; align-items: center; }
 .out { width: 100%; min-height: 120px; font-family: ui-monospace, monospace; font-size: 11.5px; border: 1px solid var(--line); border-radius: 9px; padding: 8px; background: var(--surface-2); }
 .tbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.gbox { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); }
+.gst { display: flex; gap: 8px; align-items: center; font-size: 13px; min-width: 0; overflow-wrap: anywhere; }
+.gst small { color: var(--muted); }
+.gbtn { display: inline-flex; gap: 10px; align-items: center; justify-content: center; background: var(--surface); }
+.glogo { width: 20px; height: 20px; border-radius: 50%; display: inline-grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; background: conic-gradient(#EA4335 0 25%, #FBBC05 0 50%, #34A853 0 75%, #4285F4 0); }
 .gcal { display: grid; gap: 8px; border-top: 1px dashed var(--line); padding-top: 10px; }
 .gl { display: grid; gap: 4px; max-height: 260px; overflow-y: auto; }
 .gl a { display: flex; gap: 8px; align-items: baseline; text-decoration: none; color: var(--ink); padding: 6px 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-2); font-size: 13px; }
@@ -225,7 +238,8 @@ form.f label.chk input { width: auto; }
 .vis-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 @media (prefers-reduced-motion: no-preference) { .d, .cell, .chip, .btn { transition: background-color .12s ease, border-color .12s ease; } }
 </style>
-
+</head>
+<body>
 <header class="top">
   <div class="top-in">
     <div class="brand">
@@ -273,6 +287,7 @@ form.f label.chk input { width: auto; }
       <div class="panel tools">
         <h3 style="font-size:15px">Simpan &amp; kongsi</h3>
         <div class="sub" id="savenote"></div>
+        <div id="gbox" class="gbox" hidden></div>
         <div class="tbtns">
           <button class="btn pri" id="b-gcal" aria-expanded="false" aria-controls="gcal">Eksport ke Google Calendar</button>
           <button class="btn" id="b-pdf">Cetak PDF</button>
@@ -318,6 +333,12 @@ const COLOR_NAME = { c6: 'Merah', c3: 'Oren', c8: 'Kuning', c7: 'Hijau', c1: 'Bi
 const isHex = c => /^#[0-9a-f]{6}$/i.test(c || '');
 const fills = e => e.fill !== false;
 const LS = 'takwim2027.v1';
+// ====== TETAPAN ======
+// Isi Client ID OAuth Google untuk aktifkan "Log masuk dengan Google" (lihat README.md).
+// Biarkan kosong untuk simpan acara dalam pelayar sahaja.
+const GOOGLE_CLIENT_ID = '';
+const DRIVE_FILE = 'takwim-2027.json';
+// =====================
 
 // ---------- tarikh ----------
 const pad = n => String(n).padStart(2, '0');
@@ -352,59 +373,114 @@ const S = {
 function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ state: S.state, view: S.view, month: S.month, layers: S.layers, theme: S.theme })); } catch {} }
 
 // ---------- simpanan acara peribadi ----------
+// Tanpa log masuk: acara disimpan dalam pelayar (localStorage) peranti ini.
+// Dengan log masuk Google: acara juga disimpan dalam Google Drive pengguna (folder data aplikasi yang tersembunyi),
+// jadi ia ikut pengguna di semua peranti. Setiap pengguna hanya nampak acara sendiri.
 const Store = {
-  mode: 'local', items: [], col: null,
+  all: [], token: null, tokenExp: 0, email: '', fileId: null, syncing: false, dirty: false, timer: null, lastSync: 0, err: '',
+  get items() { return this.all.filter(e => e && !e.deleted); },
+  get mode() { return this.token ? 'google' : 'local'; },
   readLocal() { try { const v = JSON.parse(localStorage.getItem(LS + '.events') || '[]'); return Array.isArray(v) ? v : []; } catch { return []; } },
-  writeLocal() { try { localStorage.setItem(LS + '.events', JSON.stringify(this.items)); return true; } catch { return false; } },
-  init() { this.items = this.readLocal(); },
-  async connect() {
-    const c = window.claude; if (!c || typeof c.use !== 'function') return;
-    try {
-      const [db, user] = await Promise.all([c.use('db'), c.use('user')]);
-      if (!db || !user) return;
-      let can = null; try { can = await user.can('data.write'); } catch {}
-      if (can === false) return;
-      const id = await user.id(); if (!id) return;
-      this.col = db.collection('data/users/' + id + '/events');
-      let first = true;
-      this.col.onSnapshot(snap => {
-        const arr = snap.docs.map(d => d.data()).filter(e => e && e.id && e.title && e.start);
-        if (first) {
-          first = false; this.mode = 'db';
-          const local = this.readLocal();
-          if (!arr.length && local.length) { local.forEach(e => this.col.doc(e.id).set(e).catch(() => {})); this.items = local; render(); return; }
-        }
-        this.items = arr; render();
-      }, () => { this.mode = 'local'; this.col = null; this.items = this.readLocal(); render(); });
-    } catch {}
-  },
+  writeLocal() { try { localStorage.setItem(LS + '.events', JSON.stringify(this.all)); return true; } catch { return false; } },
+  init() { this.all = this.readLocal(); },
+  touch() { const ok = this.writeLocal(); this.dirty = true; this.schedule(); return ok || !!this.token; },
   async upsert(ev) {
-    const i = this.items.findIndex(x => x.id === ev.id);
-    if (i >= 0) this.items[i] = ev; else this.items.push(ev);
-    if (this.mode === 'db' && this.col) {
-      try { await this.col.doc(ev.id).set(ev); return true; }
-      catch { this.mode = 'local'; this.col = null; }
-    }
-    return this.writeLocal();
-  },
-  async clearAll() {
-    const ids = this.items.map(x => x.id);
-    this.items = [];
-    if (this.mode === 'db' && this.col) {
-      try { await Promise.all(ids.map(id => this.col.doc(id).delete())); return true; }
-      catch { this.mode = 'local'; this.col = null; }
-    }
-    return this.writeLocal();
+    ev.updated = Date.now();
+    const i = this.all.findIndex(x => x.id === ev.id);
+    if (i >= 0) this.all[i] = ev; else this.all.push(ev);
+    return this.touch();
   },
   async remove(id) {
-    this.items = this.items.filter(x => x.id !== id);
-    if (this.mode === 'db' && this.col) {
-      try { await this.col.doc(id).delete(); return true; }
-      catch { this.mode = 'local'; this.col = null; }
+    const e = this.all.find(x => x.id === id);
+    if (e) { e.deleted = true; e.updated = Date.now(); }
+    return this.touch();
+  },
+  async clearAll() {
+    const now = Date.now();
+    this.all.forEach(e => { if (!e.deleted) { e.deleted = true; e.updated = now; } });
+    return this.touch();
+  },
+  schedule() { if (!this.token) return; clearTimeout(this.timer); this.timer = setTimeout(() => this.sync(), 700); },
+  merge(a, b) {
+    const m = new Map();
+    [...a, ...b].forEach(e => { if (!e || !e.id) return; const o = m.get(e.id); if (!o || (e.updated || 0) > (o.updated || 0)) m.set(e.id, e); });
+    return [...m.values()];
+  },
+  async api(url, opts = {}) {
+    if (!this.token || Date.now() > this.tokenExp) { this.token = null; throw new Error('auth'); }
+    const r = await fetch(url, { ...opts, headers: { Authorization: 'Bearer ' + this.token, ...(opts.headers || {}) } });
+    if (r.status === 401) { this.token = null; throw new Error('auth'); }
+    if (!r.ok) throw new Error('http ' + r.status);
+    return r;
+  },
+  async sync() {
+    if (!this.token || this.syncing) return;
+    this.syncing = true; this.dirty = false; this.err = ''; render();
+    try {
+      if (!this.fileId) {
+        const q = encodeURIComponent("name='" + DRIVE_FILE + "'");
+        const r = await this.api(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=${q}&fields=files(id)`);
+        this.fileId = (await r.json()).files?.[0]?.id || null;
+      }
+      let remote = [];
+      if (this.fileId) {
+        const r = await this.api(`https://www.googleapis.com/drive/v3/files/${this.fileId}?alt=media`);
+        try { const j = await r.json(); remote = Array.isArray(j.events) ? j.events : []; } catch {}
+      }
+      this.all = this.merge(this.all, remote);
+      const body = JSON.stringify({ app: 'takwim-2027', version: 1, events: this.all });
+      if (this.fileId) {
+        await this.api(`https://www.googleapis.com/upload/drive/v3/files/${this.fileId}?uploadType=media`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body });
+      } else {
+        const fd = new FormData();
+        fd.append('metadata', new Blob([JSON.stringify({ name: DRIVE_FILE, parents: ['appDataFolder'], mimeType: 'application/json' })], { type: 'application/json' }));
+        fd.append('file', new Blob([body], { type: 'application/json' }));
+        const r = await this.api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', { method: 'POST', body: fd });
+        this.fileId = (await r.json()).id;
+      }
+      this.writeLocal(); this.lastSync = Date.now();
+    } catch (e) {
+      this.err = e.message === 'auth' ? 'Sesi Google tamat. Tekan "Sambung semula" untuk teruskan penyegerakan.' : 'Tidak dapat menyegerak sekarang. Acara selamat dalam pelayar ini dan akan disegerakkan semula.';
+      this.dirty = true;
+    } finally {
+      this.syncing = false; render();
+      if (this.dirty && this.token) this.schedule();
     }
-    return this.writeLocal();
   },
 };
+
+// ---------- log masuk Google (pilihan) ----------
+let tokenClient = null;
+const googleOn = () => !!GOOGLE_CLIENT_ID;
+function initGoogle() {
+  if (!googleOn() || !window.google?.accounts?.oauth2) return;
+  tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_CLIENT_ID,
+    scope: 'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.email',
+    callback: async resp => {
+      if (resp.error) { Store.err = 'Log masuk Google dibatalkan.'; render(); return; }
+      Store.token = resp.access_token;
+      Store.tokenExp = Date.now() + ((+resp.expires_in || 3600) - 60) * 1000;
+      try { const r = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: 'Bearer ' + Store.token } }); Store.email = (await r.json()).email || ''; } catch {}
+      try { localStorage.setItem(LS + '.google', Store.email || '1'); } catch {}
+      await Store.sync();
+    },
+  });
+  render();
+}
+function signIn() {
+  if (!tokenClient) { Store.err = 'Perkhidmatan Google belum dimuatkan. Semak sambungan internet dan cuba lagi.'; render(); return; }
+  let hint = ''; try { hint = localStorage.getItem(LS + '.google') || ''; } catch {}
+  tokenClient.requestAccessToken(hint ? { prompt: '', login_hint: hint.includes('@') ? hint : undefined } : { prompt: 'select_account' });
+}
+function signOut() {
+  const safe = !Store.dirty && Store.lastSync > 0;
+  try { if (Store.token) google.accounts.oauth2.revoke(Store.token, () => {}); } catch {}
+  Store.token = null; Store.email = ''; Store.fileId = null; Store.lastSync = 0;
+  try { localStorage.removeItem(LS + '.google'); } catch {}
+  if (safe) { Store.all = []; Store.writeLocal(); } // acara selamat dalam Google Drive; kosongkan peranti ini
+  render();
+}
 
 // ---------- indeks hari ----------
 function buildIndex() {
@@ -579,7 +655,7 @@ function renderList(idx) {
 function renderSummary() {
   const n = new Set(DATA.hol.filter(h => h.s.includes(S.state)).map(h => h.d)).size;
   const grp = DATA.groupA.includes(S.state) ? 'A' : 'B';
-  const live = Store.mode === 'db';
+  const live = Store.mode === 'google';
   $('#sum').replaceChildren(
     el('div', {}, [el('span', { class: 'k', text: 'Negeri' }), el('span', { class: 'big', text: stateName(S.state) })]),
     el('div', {}, [el('span', { class: 'k', text: 'Cuti umum 2027' }), el('span', { class: 'v', text: `${n} hari` })]),
@@ -587,7 +663,7 @@ function renderSummary() {
     el('div', {}, [el('span', { class: 'k', text: 'Kalendar sekolah' }), el('span', { class: 'v', text: `Kumpulan ${grp}` })]),
     el('div', {}, [el('span', { class: 'k', text: 'Acara saya' }), el('span', { class: 'v save' }, [
       el('span', { class: 'dotlive' + (live ? ' on' : '') }),
-      `${Store.items.length} · ${live ? 'disimpan dalam akaun anda' : 'disimpan dalam pelayar ini'}`,
+      `${Store.items.length} · ${live ? 'disegerakkan dengan Google' : 'disimpan dalam pelayar ini'}`,
     ])]),
   );
 }
@@ -673,7 +749,6 @@ function renderDay(idx) {
 }
 
 // ---------- eksport / cetak / kosongkan ----------
-let DL = null;
 function csvEsc(s) { s = String(s ?? ''); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
 const usDate = k => { const [y, m, d] = k.split('-'); return `${m}/${d}/${y}`; };
 function to12h(t) { if (!t) return ''; let [h, m] = t.split(':').map(Number); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return `${h}:${pad(m)} ${ap}`; }
@@ -710,17 +785,11 @@ function renderGcal() {
 }
 function tmsg(text, err) { const m = $('#tmsg'); m.className = err ? 'msg err' : 'msg'; m.textContent = text; }
 async function saveFile(filename, data, okMsg) {
-  if (DL) {
-    try { await DL.save({ filename, data }); tmsg(okMsg); return true; }
-    catch (e) {
-      if (e && e.code === 'declined') { tmsg('Muat turun dibatalkan.'); return false; }
-      if (e && e.code === 'rate_limited') { tmsg('Sila tunggu sebentar dan cuba lagi.', true); return false; }
-    }
-  }
-  if (!window.claude) { // dibuka sebagai fail biasa di luar Claude
-    try { const u = URL.createObjectURL(data instanceof Blob ? data : new Blob([data])); const a = el('a', { href: u, download: filename }); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); tmsg(okMsg); return true; } catch {}
-  }
-  return null;
+  try {
+    const u = URL.createObjectURL(data instanceof Blob ? data : new Blob([data], { type: 'text/csv;charset=utf-8' }));
+    const a = el('a', { href: u, download: filename }); document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 4000); tmsg(okMsg); return true;
+  } catch { return null; }
 }
 $('#b-gcal').addEventListener('click', () => {
   const box = $('#gcal'); box.hidden = !box.hidden;
@@ -876,6 +945,26 @@ document.querySelectorAll('.seg button[data-t]').forEach(b => b.addEventListener
 document.querySelectorAll('.seg button[data-v]').forEach(b => b.addEventListener('click', () => { S.view = b.dataset.v; if (S.view === 'month') S.month = +S.sel.slice(5, 7); render(); }));
 document.querySelectorAll('button.chip').forEach(b => b.addEventListener('click', () => { S.layers[b.dataset.l] = !S.layers[b.dataset.l]; render(); }));
 
+function renderGoogle() {
+  const b = $('#gbox');
+  if (!googleOn()) { b.hidden = true; return; }
+  b.hidden = false;
+  const kids = [];
+  if (Store.token) {
+    const when = Store.syncing ? 'Menyegerak…' : Store.lastSync ? 'Disegerakkan ' + new Date(Store.lastSync).toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' }) : '';
+    kids.push(el('div', { class: 'gst' }, [el('span', { class: 'dotlive on' }), el('span', {}, [el('b', { text: Store.email || 'Akaun Google' }), when ? el('small', { text: ' · ' + when }) : null])]));
+    kids.push(el('div', { class: 'tbtns' }, [
+      el('button', { class: 'btn sm', disabled: Store.syncing, onclick: () => Store.sync() }, 'Segerak sekarang'),
+      el('button', { class: 'btn sm', onclick: signOut }, 'Log keluar'),
+    ]));
+  } else {
+    let hint = ''; try { hint = localStorage.getItem(LS + '.google') || ''; } catch {}
+    kids.push(el('button', { class: 'btn gbtn', onclick: signIn }, [el('span', { class: 'glogo', 'aria-hidden': 'true', text: 'G' }), hint ? 'Sambung semula akaun Google' : 'Log masuk dengan Google']));
+  }
+  if (Store.err) kids.push(el('div', { class: 'msg err', text: Store.err }));
+  b.replaceChildren(...kids);
+}
+
 function render() {
   const idx = buildIndex();
   document.documentElement.setAttribute('data-theme', S.theme);
@@ -885,17 +974,17 @@ function render() {
   renderSummary();
   $('#view').replaceChildren(S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
   renderDay(idx);
-  $('#savenote').textContent = Store.mode === 'db'
-    ? 'Acara anda disimpan dalam akaun Claude anda secara peribadi. Hanya anda yang nampak, dan ia ikut anda di peranti lain.'
-    : 'Acara anda disimpan dalam pelayar ini sahaja, secara peribadi. Ia tidak muncul di peranti lain dan akan hilang jika data pelayar dipadam.';
+  $('#savenote').textContent = Store.mode === 'google'
+    ? 'Acara anda disimpan dalam Google Drive akaun anda (ruang tersembunyi untuk aplikasi ini). Hanya anda yang nampak, dan ia ikut anda di semua peranti.'
+    : 'Acara anda disimpan dalam pelayar ini sahaja, secara peribadi. Ia tidak muncul di peranti lain dan akan hilang jika data pelayar dipadam.' + (googleOn() ? ' Log masuk dengan Google untuk simpan dalam akaun anda.' : '');
+  renderGoogle();
   if (!$('#gcal').hidden) renderGcal();
   savePrefs();
 }
 
 Store.init();
 render();
-Store.connect();
-(async () => { try { DL = await window.claude?.use?.('downloads'); } catch { DL = null; } })();
+if (googleOn()) { const s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true; s.onload = initGoogle; document.head.append(s); }
 </script>
-
-</body></html>
+</body>
+</html>
