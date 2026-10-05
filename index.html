@@ -1,0 +1,722 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Takwim 2027 Malaysia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@600;700&family=Roboto+Condensed:wght@500;700;800&display=swap">
+<style>
+/* Layout: sticky bar (negeri + paparan + lapisan), kemudian kalendar; panel hari di kanan (desktop) / bawah (telefon). */
+:root {
+  --bg: #EEF3F0; --surface: #FFFFFF; --surface-2: #F6F9F7; --ink: #15221C; --muted: #5B6B63; --line: #D3DDD7;
+  --brand: #1F4E3D; --brand-ink: #FFFFFF; --gold: #B8902F; --gold-soft: #F3E6C2;
+  --hol: #D3202B; --hol-soft: #FCE5E6; --isl: #00796B; --isl-soft: #DDF1EE;
+  --sch: #F7D94C; --sch-soft: #FFF6C7; --prog: #2E7D32; --prog-soft: #DDEFD6;
+  --mine: #2F62D0; --mine-soft: #E1E9FB; --weekend: #E7EDEA; --out: transparent;
+  --shadow: 0 1px 2px rgba(20,40,30,.06), 0 6px 24px rgba(20,40,30,.08);
+  --f-display: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --f-num: 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --f-ar: 'Amiri', 'Traditional Arabic', serif;
+  --c1: #2F62D0; --c2: #7B3FC4; --c3: #D9731A; --c4: #C8377A; --c5: #4F5D57;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
+  --brand: #2F6B54; --brand-ink: #FFFFFF; --gold: #E0BD62; --gold-soft: #3A3220;
+  --hol: #FF6B6F; --hol-soft: #3A1C1F; --isl: #4DD0BC; --isl-soft: #12322D;
+  --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
+  --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
+  --brand: #2F6B54; --brand-ink: #FFFFFF; --gold: #E0BD62; --gold-soft: #3A3220;
+  --hol: #FF6B6F; --hol-soft: #3A1C1F; --isl: #4DD0BC; --isl-soft: #12322D;
+  --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
+  --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--f-body); font-size: 14px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.wrap { max-width: 1320px; margin: 0 auto; }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: -16px; padding: 10px 16px 8px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; min-width: 0; }
+.brand h1 { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 0; letter-spacing: .2px; color: var(--brand); }
+:root[data-theme="dark"] .brand h1 { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brand h1 { color: var(--ink); } }
+.brand h1 b { color: var(--gold); font-weight: 700; }
+.brand .ar { font-family: var(--f-ar); font-size: 18px; color: var(--muted); direction: rtl; }
+.ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+label.lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 600; min-width: 190px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; padding: 8px 14px; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
+.layers { max-width: 1320px; margin: 8px auto 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 11px 5px 8px; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.chip i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; opacity: .35; }
+.chip[aria-pressed="true"] { color: var(--ink); border-color: color-mix(in srgb, var(--ink) 25%, var(--line)); }
+.chip[aria-pressed="true"] i { opacity: 1; }
+.chip.fixed { cursor: default; }
+
+/* Summary strip */
+.sum { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 16px 0 14px; align-items: baseline; }
+.sum .big { font-family: var(--f-display); font-size: 20px; font-weight: 700; }
+.sum .k { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; display: block; }
+.sum .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+.sum .v.save { display: inline-flex; gap: 6px; align-items: center; }
+.dotlive { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; }
+.dotlive.on { background: var(--prog); }
+
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
+@media (max-width: 980px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+/* Year view */
+.year { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+.mcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 12px 10px; min-width: 0; }
+.mhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.mhead h3 { margin: 0; font-family: var(--f-display); font-size: 15px; letter-spacing: .06em; color: var(--brand); cursor: pointer; }
+:root[data-theme="dark"] .mhead h3 { color: var(--gold); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mhead h3 { color: var(--gold); } }
+.mhead .hj { text-align: right; line-height: 1.1; }
+.mhead .hj small { display: block; font-size: 10.5px; color: var(--isl); font-weight: 600; letter-spacing: .02em; }
+.mhead .hj span { font-family: var(--f-ar); font-size: 13px; color: var(--muted); }
+.g7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.wd { font-family: var(--f-num); font-size: 10.5px; font-weight: 700; text-align: center; color: var(--muted); padding: 2px 0 4px; letter-spacing: .04em; }
+.wd.we { color: var(--hol); }
+.d { position: relative; border: 0; background: transparent; padding: 3px 0 7px; border-radius: 7px; text-align: center; line-height: 1.05; min-height: 36px; }
+.d:hover { background: var(--surface-2); }
+.d.we { background: var(--weekend); }
+.d .n { font-family: var(--f-num); font-weight: 700; font-size: 14px; display: block; font-variant-numeric: tabular-nums; }
+.d .h { font-family: var(--f-num); font-size: 9.5px; color: var(--muted); display: block; margin-top: 1px; }
+.d .h.h1 { color: var(--isl); font-weight: 800; }
+.d.hol { background: var(--hol-soft); }
+.d.hol .n { color: var(--hol); }
+.d.sch::after { content: ""; position: absolute; left: 3px; right: 3px; bottom: 2px; height: 3px; border-radius: 2px; background: var(--sch); }
+.d .dots { position: absolute; top: 3px; right: 3px; display: flex; gap: 2px; }
+.d .dots b { width: 5px; height: 5px; border-radius: 50%; display: block; }
+.d.sel { outline: 2px solid var(--gold); outline-offset: -2px; }
+.d.empty { visibility: hidden; }
+
+/* Month view */
+.mview { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; min-width: 0; }
+.mnav { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.mnav h2 { margin: 0; font-family: var(--f-display); font-size: 22px; color: var(--brand); min-width: 0; }
+:root[data-theme="dark"] .mnav h2 { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mnav h2 { color: var(--ink); } }
+.mnav .hj { font-size: 12px; color: var(--isl); font-weight: 600; }
+.mnav .ar { font-family: var(--f-ar); color: var(--muted); font-size: 16px; }
+.mnav .sp { margin-left: auto; display: flex; gap: 6px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 7px 12px; font-weight: 600; }
+.btn:hover { background: var(--surface-2); }
+.btn.pri { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.btn.danger { color: var(--hol); }
+.btn.sm { padding: 4px 9px; font-size: 12.5px; }
+.mgrid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.mgrid .wd .short { display: none; }
+@media (max-width: 640px) { .mgrid .wd .short { display: inline; } }
+.mgrid .wd { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 6px 0; background: var(--surface-2); font-size: 12px; }
+.cell { border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); min-height: 104px; padding: 5px 5px 6px; text-align: left; display: flex; flex-direction: column; gap: 3px; min-width: 0; position: relative; }
+.cell:hover { background: var(--surface-2); }
+.cell.we { background: var(--weekend); }
+.cell.blank { background: var(--surface-2); cursor: default; }
+.cell .top2 { display: flex; justify-content: space-between; align-items: baseline; gap: 4px; }
+.cell .n { font-family: var(--f-num); font-weight: 800; font-size: 18px; line-height: 1; padding: 2px 5px; border-radius: 6px; }
+.cell.sch .n { background: var(--sch); color: #2A2200; }
+.cell.hol .n { color: var(--hol); }
+.cell.hol.sch .n { color: #B1121B; }
+.cell .h { font-family: var(--f-num); font-size: 11px; color: var(--muted); white-space: nowrap; }
+.cell .h.h1 { color: var(--isl); font-weight: 800; }
+.tag { font-size: 11px; line-height: 1.2; padding: 2px 5px; border-radius: 5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-break: break-word; }
+.tag.hol { background: var(--hol-soft); color: var(--hol); }
+.tag.isl { background: var(--isl-soft); color: var(--isl); }
+.tag.prog { background: var(--prog-soft); color: var(--prog); }
+.tag.mine { color: #fff; }
+.cell.sel { box-shadow: inset 0 0 0 2px var(--gold); }
+@media (max-width: 640px) {
+  .top { position: static; }
+  .mgrid .wd .full { display: none; }
+  .cell .h .hm { display: none; }
+  .cell .h.h1 .hm { display: inline; }
+  .cell .h.h1 .hd { display: none; }
+  .cell { min-height: 64px; padding: 3px; }
+  .cell .n { font-size: 15px; padding: 1px 3px; }
+  .cell .h { font-size: 9.5px; }
+  .tag { font-size: 0; padding: 0; height: 5px; border-radius: 3px; -webkit-line-clamp: 1; }
+  .tag.hol { background: var(--hol); } .tag.isl { background: var(--isl); } .tag.prog { background: var(--prog); }
+}
+
+/* List view */
+.list { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px 16px 14px; min-width: 0; }
+.list h4 { font-family: var(--f-display); font-size: 14px; letter-spacing: .08em; color: var(--brand); margin: 16px 0 6px; }
+:root[data-theme="dark"] .list h4 { color: var(--gold); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .list h4 { color: var(--gold); } }
+.row { display: grid; grid-template-columns: 74px 66px minmax(0, 1fr) auto; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.row .dt { font-family: var(--f-num); font-weight: 700; font-variant-numeric: tabular-nums; }
+.row .dy { color: var(--muted); font-size: 12.5px; }
+.row .nm { font-weight: 500; min-width: 0; }
+.row .hj { font-size: 11.5px; color: var(--muted); text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; padding: 1px 7px; border-radius: 999px; margin-right: 6px; vertical-align: 1px; }
+.pill.hol { background: var(--hol-soft); color: var(--hol); }
+.pill.isl { background: var(--isl-soft); color: var(--isl); }
+.pill.sch { background: var(--sch-soft); color: var(--ink); border: 1px solid var(--sch); }
+.pill.prog { background: var(--prog-soft); color: var(--prog); }
+.pill.mine { background: var(--mine-soft); color: var(--mine); }
+@media (max-width: 560px) { .row { grid-template-columns: 62px minmax(0, 1fr); } .row .dy, .row .hj { display: none; } }
+
+/* Side panel */
+.side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 112px); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+@media (max-width: 980px) { .side { position: static; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; min-width: 0; }
+.panel h3 { margin: 0; font-family: var(--f-display); font-size: 18px; }
+.panel .sub { color: var(--muted); font-size: 12.5px; }
+.panel .sub b { color: var(--isl); font-weight: 600; }
+.items { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+.it { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; }
+.it .sw { width: 10px; height: 10px; border-radius: 3px; margin-top: 4px; flex: none; }
+.it .tx { min-width: 0; flex: 1; }
+.it .tx small { display: block; color: var(--muted); font-size: 11.5px; }
+.it .act { display: flex; gap: 4px; }
+.none { color: var(--muted); font-size: 13px; }
+form.f { display: grid; gap: 8px; border-top: 1px dashed var(--line); padding-top: 12px; }
+form.f .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+form.f label { font-size: 11.5px; font-weight: 600; color: var(--muted); display: grid; gap: 3px; }
+form.f input, form.f textarea { border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; background: var(--surface-2); width: 100%; min-width: 0; }
+form.f textarea { min-height: 54px; resize: vertical; }
+.colors { display: flex; gap: 8px; }
+.colors input { position: absolute; opacity: 0; width: 0; height: 0; }
+.colors label { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; display: block; border: 2px solid transparent; }
+.colors input:checked + label { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--surface); }
+.colors input:focus-visible + label { outline: 2px solid var(--gold); outline-offset: 2px; }
+.f .acts { display: flex; gap: 8px; justify-content: flex-end; }
+.conf { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
+.legend { display: grid; gap: 6px; font-size: 12.5px; }
+.legend div { display: flex; gap: 8px; align-items: center; }
+.legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; flex: none; }
+.tools { display: grid; gap: 8px; }
+.tools .opts { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; }
+.tools .opts label { display: inline-flex; gap: 5px; align-items: center; }
+.out { width: 100%; min-height: 120px; font-family: ui-monospace, monospace; font-size: 11.5px; border: 1px solid var(--line); border-radius: 9px; padding: 8px; background: var(--surface-2); }
+.msg { font-size: 12.5px; color: var(--prog); min-height: 1em; }
+.msg.err { color: var(--hol); }
+.foot { margin-top: 22px; color: var(--muted); font-size: 12px; max-width: 900px; }
+.vis-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@media (prefers-reduced-motion: no-preference) { .d, .cell, .chip, .btn { transition: background-color .12s ease, border-color .12s ease; } }
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>Takwim <b>2027</b></h1>
+      <span class="ar" lang="ar">١٤٤٨ – ١٤٤٩ هـ</span>
+    </div>
+    <div class="ctl">
+      <label class="lbl" for="state">Negeri</label>
+      <select id="state"></select>
+    </div>
+    <div class="seg" role="group" aria-label="Tema">
+      <button id="t-light" data-t="light" aria-pressed="true" title="Mod cerah">☀ Cerah</button>
+      <button id="t-dark" data-t="dark" aria-pressed="false" title="Mod gelap">☾ Gelap</button>
+    </div>
+    <div class="seg" role="group" aria-label="Paparan">
+      <button id="v-year" data-v="year" aria-pressed="true">Tahun</button>
+      <button id="v-month" data-v="month" aria-pressed="false">Bulan</button>
+      <button id="v-list" data-v="list" aria-pressed="false">Senarai</button>
+    </div>
+  </div>
+  <div class="layers" role="group" aria-label="Lapisan">
+    <span class="chip fixed" aria-pressed="true"><i style="background:var(--hol)"></i>Cuti umum</span>
+    <button class="chip" id="l-sch" data-l="sch" aria-pressed="true"><i style="background:var(--sch)"></i>Cuti sekolah</button>
+    <button class="chip" id="l-isl" data-l="isl" aria-pressed="true"><i style="background:var(--isl)"></i>Tarikh Islam</button>
+    <button class="chip" id="l-mine" data-l="mine" aria-pressed="true"><i style="background:var(--mine)"></i>Acara saya</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sum" id="sum"></div>
+  <div class="main">
+    <section id="view" aria-live="polite"></section>
+    <aside class="side">
+      <div class="panel" id="day"></div>
+      <div class="panel">
+        <h3 style="font-size:15px">Petunjuk</h3>
+        <div class="legend" style="margin-top:10px">
+          <div><i style="background:var(--hol-soft);border:1.5px solid var(--hol)"></i>Cuti umum negeri dipilih (tarikh merah)</div>
+          <div><i style="background:var(--sch)"></i>Cuti sekolah (garis kuning)</div>
+          <div><i style="background:var(--isl)"></i>Tarikh penting Islam</div>
+          <div><i style="background:var(--mine)"></i>Acara peribadi anda</div>
+          <div><i style="background:var(--weekend);border:1px solid var(--line)"></i>Hujung minggu negeri</div>
+        </div>
+      </div>
+      <div class="panel tools">
+        <h3 style="font-size:15px">Simpan &amp; kongsi</h3>
+        <div class="sub">Eksport ke Google Calendar (CSV) atau buat sandaran acara anda.</div>
+        <div class="opts" role="group" aria-label="Kandungan eksport">
+          <label><input type="checkbox" id="x-mine" checked> Acara saya</label>
+          <label><input type="checkbox" id="x-hol" checked> Cuti umum</label>
+          <label><input type="checkbox" id="x-sch"> Cuti sekolah</label>
+          <label><input type="checkbox" id="x-isl"> Tarikh Islam</label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn pri" id="b-csv">Eksport CSV</button>
+          <button class="btn" id="b-json">Sandaran JSON</button>
+          <button class="btn" id="b-imp">Pulihkan</button>
+          <input type="file" id="f-imp" accept=".json,application/json" hidden>
+        </div>
+        <div class="msg" id="tmsg" role="status"></div>
+        <div id="outbox" hidden>
+          <label class="lbl" for="out">Salin kandungan ini dan simpan sebagai fail</label>
+          <textarea class="out" id="out" readonly></textarea>
+          <button class="btn sm" id="b-copy">Salin</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <p class="foot">Sumber: Jadual Hari Kelepasan Am Persekutuan &amp; Negeri 2027 (Jabatan Perdana Menteri), Tarikh-Tarikh Penting Dalam Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri dikira mengikut kriteria imkanur rukyah MABIMS dan sepadan dengan senarai JAKIM. Aidilfitri, Aidiladha &amp; Deepavali tertakluk kepada perubahan; 1 Ramadan, 1 Syawal &amp; 10 Zulhijjah tertakluk pengisytiharan Penyimpan Mohor Besar Raja-Raja. Cuti ganti (termasuk *8 Jun) tertakluk pengumuman rasmi kerajaan negeri.</p>
+</div>
+
+<script>
+const DATA = {"states":[["JHR","Johor"],["KDH","Kedah"],["KTN","Kelantan"],["MLK","Melaka"],["NSN","Negeri Sembilan"],["PHG","Pahang"],["PRK","Perak"],["PLS","Perlis"],["PNG","Pulau Pinang"],["SBH","Sabah"],["SWK","Sarawak"],["SGR","Selangor"],["TRG","Terengganu"],["KUL","WP Kuala Lumpur"],["LBN","WP Labuan"],["PJY","WP Putrajaya"]],"weekendFriSat":["KDH","KTN","TRG"],"groupA":["KDH","KTN","TRG"],"hol":[{"d":"2027-01-01","n":"Tahun Baharu","t":"N","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PNG","SBH","SWK","SGR"]},{"d":"2027-01-06","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-01-14","n":"Hari Keputeraan YDP Besar Negeri Sembilan","t":"N","s":["NSN"]},{"d":"2027-01-22","n":"Hari Thaipusam","t":"N","s":["KUL","PJY","JHR","NSN","PRK","PNG","SGR"]},{"d":"2027-02-01","n":"Hari Wilayah Persekutuan","t":"N","s":["KUL","LBN","PJY"]},{"d":"2027-02-06","n":"Tahun Baharu Cina","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-07","n":"Tahun Baharu Cina (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-08","n":"Awal Ramadan","t":"N","s":["JHR","KDH"]},{"d":"2027-02-08","n":"Cuti Ganti Tahun Baharu Cina","t":"G","s":["KUL","LBN","PJY","JHR","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-20","n":"Hari Pengisytiharan Tarikh Kemerdekaan","t":"N","s":["MLK"]},{"d":"2027-02-24","n":"Hari Nuzul Al-Quran","t":"N","s":["KUL","LBN","PJY","KTN","PHG","PRK","PLS","PNG","SGR","TRG"]},{"d":"2027-03-04","n":"Ulang Tahun Pertabalan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-03-10","n":"Hari Raya Aidilfitri","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-11","n":"Hari Raya Aidilfitri (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-12","n":"Hari Raya Aidilfitri (Hari Ketiga)","t":"N","s":["MLK"]},{"d":"2027-03-23","n":"Hari Keputeraan Sultan Johor","t":"N","s":["JHR"]},{"d":"2027-03-26","n":"Good Friday","t":"N","s":["SBH","SWK"]},{"d":"2027-03-30","n":"Hari Jadi Yang di-Pertua Negeri Sabah","t":"N","s":["SBH"]},{"d":"2027-04-26","n":"Hari Keputeraan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-05-01","n":"Hari Pekerja","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-02","n":"Cuti Ganti Hari Pekerja","t":"G","s":["KTN","TRG"]},{"d":"2027-05-16","n":"Hari Arafah","t":"N","s":["KTN","TRG"]},{"d":"2027-05-17","n":"Hari Raya Aidiladha","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-17","n":"Ulang Tahun Keputeraan Raja Perlis","t":"N","s":["PLS"]},{"d":"2027-05-18","n":"Hari Raya Aidiladha (Hari Kedua)","t":"N","s":["KDH","KTN","PLS","TRG"]},{"d":"2027-05-20","n":"Hari Wesak","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-22","n":"Hari Hol Almarhum Sultan Ahmad Shah","t":"N","s":["PHG"]},{"d":"2027-05-30","n":"Pesta Kaamatan","t":"N","s":["LBN","SBH"]},{"d":"2027-05-31","n":"Pesta Kaamatan (Hari Kedua)","t":"N","s":["LBN","SBH"]},{"d":"2027-06-01","n":"Hari Gawai Dayak","t":"N","s":["SWK"]},{"d":"2027-06-02","n":"Hari Gawai Dayak (Hari Kedua)","t":"N","s":["SWK"]},{"d":"2027-06-06","n":"Awal Muharram (Maal Hijrah)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-07","n":"Hari Keputeraan YDP Agong","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-08","n":"Cuti Ganti Awal Muharram*","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-06-20","n":"Hari Keputeraan Sultan Kedah","t":"N","s":["KDH"]},{"d":"2027-07-07","n":"Hari Tapak Warisan Dunia George Town","t":"N","s":["PNG"]},{"d":"2027-07-10","n":"Hari Jadi Yang di-Pertua Negeri Pulau Pinang","t":"N","s":["PNG"]},{"d":"2027-07-11","n":"Hari Hol Almarhum Sultan Iskandar","t":"N","s":["JHR"]},{"d":"2027-07-22","n":"Hari Kemerdekaan Sarawak","t":"N","s":["SWK"]},{"d":"2027-07-30","n":"Hari Keputeraan Sultan Pahang","t":"N","s":["PHG"]},{"d":"2027-08-15","n":"Maulidur Rasul","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-08-16","n":"Cuti Ganti Maulidur Rasul","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-08-24","n":"Hari Jadi Yang di-Pertua Negeri Melaka","t":"N","s":["MLK"]},{"d":"2027-08-31","n":"Hari Kebangsaan","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-16","n":"Hari Malaysia","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-29","n":"Hari Keputeraan Sultan Kelantan","t":"N","s":["KTN"]},{"d":"2027-09-30","n":"Hari Keputeraan Sultan Kelantan (Hari Kedua)","t":"N","s":["KTN"]},{"d":"2027-10-09","n":"Hari Jadi Yang di-Pertua Negeri Sarawak","t":"N","s":["SWK"]},{"d":"2027-10-28","n":"Hari Deepavali","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR","TRG"]},{"d":"2027-11-05","n":"Hari Keputeraan Sultan Perak","t":"N","s":["PRK"]},{"d":"2027-12-11","n":"Hari Keputeraan Sultan Selangor","t":"N","s":["SGR"]},{"d":"2027-12-24","n":"Christmas Eve","t":"N","s":["SBH"]},{"d":"2027-12-25","n":"Hari Krismas","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-12-26","n":"Cuti Ganti Hari Krismas","t":"G","s":["KTN","TRG"]},{"d":"2027-12-26","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-12-27","n":"Cuti Ganti Israk dan Mikraj","t":"G","s":["NSN","PLS"]}],"isl":[{"d":"2027-01-06","n":"Israk dan Mikraj"},{"d":"2027-01-23","n":"Nisfu Syaaban"},{"d":"2027-02-08","n":"Awal Ramadan"},{"d":"2027-02-24","n":"Nuzul Al-Quran"},{"d":"2027-03-10","n":"Aidilfitri"},{"d":"2027-05-08","n":"Awal Zulhijjah"},{"d":"2027-05-16","n":"Hari Arafah"},{"d":"2027-05-17","n":"Aidiladha"},{"d":"2027-06-06","n":"Awal Muharram 1449H"},{"d":"2027-06-15","n":"Hari Asyura"},{"d":"2027-08-15","n":"Maulidur Rasul"},{"d":"2027-12-26","n":"Israk dan Mikraj"}],"sch":{"A":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-13","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-05","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-16","b":"2027-06-05","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-27","b":"2027-09-04","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-30","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-03","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"B":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-14","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-06","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-15","b":"2027-06-06","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-28","b":"2027-09-05","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-31","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-04","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"SWK":[{"a":"2027-10-28","b":"2027-10-28","n":"Cuti tambahan KPM (Deepavali)"}]},"hs":[["2026-12-11",6,1448],["2027-01-09",7,1448],["2027-02-08",8,1448],["2027-03-10",9,1448],["2027-04-08",10,1448],["2027-05-08",11,1448],["2027-06-06",0,1449],["2027-07-06",1,1449],["2027-08-04",2,1449],["2027-09-02",3,1449],["2027-10-02",4,1449],["2027-10-31",5,1449],["2027-11-30",6,1449],["2027-12-29",7,1449],["2028-01-28",8,1449],["2028-02-27",9,1449]]};
+const MON = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
+const MON_S = ['Jan','Feb','Mac','Apr','Mei','Jun','Jul','Ogos','Sep','Okt','Nov','Dis'];
+const DAYS = ['Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu','Ahad'];
+const DAYS_S = ['ISN','SEL','RAB','KHA','JUM','SAB','AHD'];
+const HM = ['Muharram','Safar','Rabiulawal','Rabiulakhir','Jamadilawal','Jamadilakhir','Rejab','Syaaban','Ramadan','Syawal','Zulkaedah','Zulhijjah'];
+const HM_S = ['MUH','SAF','RAW','RAK','JAW','JAK','REJ','SYB','RAM','SYW','ZKH','ZHJ'];
+const HM_AR = ['محرم','صفر','ربيع الأول','ربيع الآخر','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
+const AR_DIG = s => String(s).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const COLORS = ['c1','c2','c3','c4','c5'];
+const COLOR_NAME = { c1: 'Biru', c2: 'Ungu', c3: 'Oren', c4: 'Merah jambu', c5: 'Kelabu' };
+const LS = 'takwim2027.v1';
+
+// ---------- tarikh ----------
+const pad = n => String(n).padStart(2, '0');
+const key = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
+const parse = k => { const [y, m, d] = k.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+const fromDate = dt => key(dt.getUTCFullYear(), dt.getUTCMonth() + 1, dt.getUTCDate());
+const addDays = (k, n) => { const t = parse(k); t.setUTCDate(t.getUTCDate() + n); return fromDate(t); };
+const wd = k => (parse(k).getUTCDay() + 6) % 7; // 0 = Isnin
+const dim = (y, m) => new Date(Date.UTC(y, m, 0)).getUTCDate();
+const fmt = k => { const t = parse(k); return `${t.getUTCDate()} ${MON_S[t.getUTCMonth()]}`; };
+const fmtLong = k => { const t = parse(k); return `${DAYS[wd(k)]}, ${t.getUTCDate()} ${MON[t.getUTCMonth()]} ${t.getUTCFullYear()}`; };
+function hijri(k) {
+  const hs = DATA.hs;
+  for (let i = hs.length - 2; i >= 0; i--) {
+    if (k >= hs[i][0]) { const day = Math.round((parse(k) - parse(hs[i][0])) / 864e5) + 1; return { d: day, m: hs[i][1], y: hs[i][2] }; }
+  }
+  return null;
+}
+const hjLong = k => { const h = hijri(k); return h ? `${h.d} ${HM[h.m]} ${h.y}H` : ''; };
+
+// ---------- keadaan ----------
+const prefs = (() => { try { return JSON.parse(localStorage.getItem(LS + '.prefs') || '{}'); } catch { return {}; } })();
+const S = {
+  state: prefs.state || 'KUL',
+  view: prefs.view || (innerWidth < 640 ? 'month' : 'year'),
+  month: prefs.month || 1,
+  sel: '2027-01-01',
+  layers: { sch: true, isl: true, mine: true, ...(prefs.layers || {}) },
+  theme: prefs.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+  editing: null, confirmDel: null,
+};
+function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ state: S.state, view: S.view, month: S.month, layers: S.layers, theme: S.theme })); } catch {} }
+
+// ---------- simpanan acara peribadi ----------
+const Store = {
+  mode: 'local', items: [], col: null,
+  readLocal() { try { const v = JSON.parse(localStorage.getItem(LS + '.events') || '[]'); return Array.isArray(v) ? v : []; } catch { return []; } },
+  writeLocal() { try { localStorage.setItem(LS + '.events', JSON.stringify(this.items)); return true; } catch { return false; } },
+  init() { this.items = this.readLocal(); },
+  async connect() {
+    const c = window.claude; if (!c || typeof c.use !== 'function') return;
+    try {
+      const [db, user] = await Promise.all([c.use('db'), c.use('user')]);
+      if (!db || !user) return;
+      let can = null; try { can = await user.can('data.write'); } catch {}
+      if (can === false) return;
+      const id = await user.id(); if (!id) return;
+      this.col = db.collection('data/users/' + id + '/events');
+      let first = true;
+      this.col.onSnapshot(snap => {
+        const arr = snap.docs.map(d => d.data()).filter(e => e && e.id && e.title && e.start);
+        if (first) {
+          first = false; this.mode = 'db';
+          const local = this.readLocal();
+          if (!arr.length && local.length) { local.forEach(e => this.col.doc(e.id).set(e).catch(() => {})); this.items = local; render(); return; }
+        }
+        this.items = arr; render();
+      }, () => { this.mode = 'local'; this.col = null; this.items = this.readLocal(); render(); });
+    } catch {}
+  },
+  async upsert(ev) {
+    const i = this.items.findIndex(x => x.id === ev.id);
+    if (i >= 0) this.items[i] = ev; else this.items.push(ev);
+    if (this.mode === 'db' && this.col) {
+      try { await this.col.doc(ev.id).set(ev); return true; }
+      catch { this.mode = 'local'; this.col = null; }
+    }
+    return this.writeLocal();
+  },
+  async remove(id) {
+    this.items = this.items.filter(x => x.id !== id);
+    if (this.mode === 'db' && this.col) {
+      try { await this.col.doc(id).delete(); return true; }
+      catch { this.mode = 'local'; this.col = null; }
+    }
+    return this.writeLocal();
+  },
+};
+
+// ---------- indeks hari ----------
+function buildIndex() {
+  const idx = {};
+  const at = k => idx[k] || (idx[k] = { hol: [], isl: [], sch: null, mine: [] });
+  const st = S.state;
+  DATA.hol.forEach(h => { if (h.s.includes(st)) at(h.d).hol.push(h); });
+  const word = n => n.split(/\s+/).sort((a, b) => b.length - a.length)[0].toLowerCase();
+  DATA.isl.forEach(h => { const i = at(h.d); if (!i.hol.some(x => x.n.toLowerCase().includes(word(h.n)))) i.isl.push(h); });
+  const grp = DATA.groupA.includes(st) ? 'A' : 'B';
+  DATA.sch[grp].forEach(r => {
+    if (st === 'SWK' && r.n.startsWith('Cuti Deepavali')) return;
+    for (let k = r.a; k <= r.b; k = addDays(k, 1)) at(k).sch = r.n;
+  });
+  if (st === 'SWK') DATA.sch.SWK.forEach(r => { at(r.a).sch = r.n; });
+  Store.items.forEach(e => {
+    const end = e.end && e.end >= e.start ? e.end : e.start;
+    let n = 0;
+    for (let k = e.start; k <= end && n < 400; k = addDays(k, 1), n++) at(k).mine.push(e);
+  });
+  return idx;
+}
+const isWeekend = k => { const w = wd(k); return DATA.weekendFriSat.includes(S.state) ? (w === 4 || w === 5) : (w >= 5); };
+const weekendLabel = () => DATA.weekendFriSat.includes(S.state) ? 'Jumaat – Sabtu' : 'Sabtu – Ahad';
+const stateName = c => (DATA.states.find(s => s[0] === c) || [c, c])[1];
+
+// ---------- paparan ----------
+const $ = s => document.querySelector(s);
+const el = (tag, attrs = {}, kids = []) => {
+  const n = document.createElement(tag);
+  for (const [a, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (a === 'class') n.className = v; else if (a === 'text') n.textContent = v; else if (a === 'style') n.setAttribute('style', v);
+    else if (a.startsWith('on')) n.addEventListener(a.slice(2), v); else n.setAttribute(a, v === true ? '' : v);
+  }
+  (Array.isArray(kids) ? kids : [kids]).forEach(c => c != null && n.append(c));
+  return n;
+};
+const colorVar = c => `var(--${COLORS.includes(c) ? c : 'c1'})`;
+
+function monthHijri(m) {
+  const a = hijri(key(2027, m, 1)), b = hijri(key(2027, m, dim(2027, m)));
+  const lat = a.y === b.y ? `${HM[a.m]} – ${HM[b.m]} ${a.y}H` : `${HM[a.m]} ${a.y} – ${HM[b.m]} ${b.y}H`;
+  const ar = a.y === b.y ? `${HM_AR[a.m]} – ${HM_AR[b.m]} ${AR_DIG(a.y)}` : `${HM_AR[a.m]} ${AR_DIG(a.y)} – ${HM_AR[b.m]} ${AR_DIG(b.y)}`;
+  return { lat, ar };
+}
+
+function dayDots(info) {
+  const dots = [];
+  if (S.layers.isl && info.isl.length) dots.push('var(--isl)');
+  if (S.layers.mine) info.mine.slice(0, 2).forEach(e => dots.push(colorVar(e.color)));
+  return dots;
+}
+
+function ariaFor(k, info) {
+  const parts = [fmtLong(k), hjLong(k)];
+  info.hol.forEach(h => parts.push(h.n));
+  if (S.layers.sch && info.sch) parts.push('cuti sekolah');
+  if (S.layers.isl) info.isl.forEach(h => parts.push(h.n));
+  if (S.layers.mine) info.mine.forEach(e => parts.push(e.title));
+  return parts.join(', ');
+}
+
+function renderYear(idx) {
+  const wrap = el('div', { class: 'year' });
+  for (let m = 1; m <= 12; m++) {
+    const mh = monthHijri(m);
+    const card = el('article', { class: 'mcard' });
+    card.append(el('div', { class: 'mhead' }, [
+      el('h3', { text: MON[m - 1].toUpperCase(), title: 'Buka paparan bulan', onclick: () => { S.month = m; S.view = 'month'; render(); } }),
+      el('div', { class: 'hj' }, [el('small', { text: mh.lat }), el('span', { lang: 'ar', text: mh.ar })]),
+    ]));
+    const g = el('div', { class: 'g7' });
+    const fs = DATA.weekendFriSat.includes(S.state);
+    DAYS_S.forEach((d, i) => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : ''), text: d.slice(0, 1) })));
+    const off = wd(key(2027, m, 1));
+    for (let i = 0; i < off; i++) g.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
+    for (let d = 1; d <= dim(2027, m); d++) {
+      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+      const cls = ['d'];
+      if (isWeekend(k)) cls.push('we');
+      if (info.hol.length) cls.push('hol');
+      if (S.layers.sch && info.sch) cls.push('sch');
+      if (k === S.sel) cls.push('sel');
+      const dots = dayDots(info);
+      g.append(el('button', { class: cls.join(' '), 'data-k': k, 'aria-label': ariaFor(k, info), onclick: () => select(k) }, [
+        el('span', { class: 'n', text: d }),
+        el('span', { class: 'h' + (h.d === 1 ? ' h1' : ''), text: h.d === 1 ? HM_S[h.m] : h.d }),
+        dots.length ? el('span', { class: 'dots' }, dots.map(c => el('b', { style: `background:${c}` }))) : null,
+      ]));
+    }
+    card.append(g);
+    wrap.append(card);
+  }
+  return wrap;
+}
+
+function renderMonth(idx) {
+  const m = S.month, mh = monthHijri(m);
+  const box = el('div', { class: 'mview' });
+  box.append(el('div', { class: 'mnav' }, [
+    el('div', {}, [el('h2', { text: `${MON[m - 1]} 2027` }), el('div', { class: 'hj', text: mh.lat }), el('div', { class: 'ar', lang: 'ar', text: mh.ar })]),
+    el('div', { class: 'sp' }, [
+      el('button', { class: 'btn', 'aria-label': 'Bulan sebelumnya', disabled: m === 1, onclick: () => { S.month--; render(); } }, '‹'),
+      el('button', { class: 'btn', 'aria-label': 'Bulan berikutnya', disabled: m === 12, onclick: () => { S.month++; render(); } }, '›'),
+    ]),
+  ]));
+  const g = el('div', { class: 'mgrid' });
+  const fs = DATA.weekendFriSat.includes(S.state);
+  DAYS.forEach((d, i) => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : '') }, [el('span', { class: 'full', text: d.toUpperCase() }), el('span', { class: 'short', text: DAYS_S[i] })])));
+  const off = wd(key(2027, m, 1)), n = dim(2027, m);
+  for (let i = 0; i < off; i++) g.append(el('div', { class: 'cell blank', 'aria-hidden': 'true' }));
+  for (let d = 1; d <= n; d++) {
+    const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+    const cls = ['cell'];
+    if (isWeekend(k)) cls.push('we');
+    if (info.hol.length) cls.push('hol');
+    if (S.layers.sch && info.sch) cls.push('sch');
+    if (k === S.sel) cls.push('sel');
+    const tags = [];
+    info.hol.forEach(x => tags.push(el('span', { class: 'tag hol', text: x.n })));
+    if (S.layers.isl) info.isl.forEach(x => tags.push(el('span', { class: 'tag isl', text: x.n })));
+    if (S.layers.mine) info.mine.forEach(e => tags.push(el('span', { class: 'tag mine', style: `background:${colorVar(e.color)}`, text: (e.time ? e.time + ' ' : '') + e.title })));
+    g.append(el('button', { class: cls.join(' '), 'aria-label': ariaFor(k, info), onclick: () => select(k) }, [
+      el('span', { class: 'top2' }, [el('span', { class: 'n', text: d }), el('span', { class: 'h' + (h.d === 1 ? ' h1' : '') }, [el('span', { class: 'hd', text: String(h.d) }), el('span', { class: 'hm', text: ' ' + HM_S[h.m] })])]),
+      ...tags,
+    ]));
+  }
+  const rem = (7 - ((off + n) % 7)) % 7;
+  for (let i = 0; i < rem; i++) g.append(el('div', { class: 'cell blank', 'aria-hidden': 'true' }));
+  box.append(el('div', { style: 'overflow-x:auto' }, g));
+  return box;
+}
+
+function collectRows(idx, opts) {
+  const rows = [];
+  const st = S.state;
+  if (opts.hol) DATA.hol.forEach(h => { if (h.s.includes(st)) rows.push({ k: h.d, end: null, n: h.n, t: 'hol', p: h.t === 'G' ? 'CUTI GANTI' : 'CUTI' }); });
+  if (opts.isl) DATA.isl.forEach(h => rows.push({ k: h.d, end: null, n: h.n, t: 'isl', p: 'ISLAM' }));
+  if (opts.sch) {
+    const grp = DATA.groupA.includes(st) ? 'A' : 'B';
+    DATA.sch[grp].forEach(r => { if (!(st === 'SWK' && r.n.startsWith('Cuti Deepavali'))) rows.push({ k: r.a, end: r.b, n: r.n, t: 'sch', p: 'SEKOLAH' }); });
+    if (st === 'SWK') DATA.sch.SWK.forEach(r => rows.push({ k: r.a, end: r.b, n: r.n, t: 'sch', p: 'SEKOLAH' }));
+  }
+  if (opts.mine) Store.items.forEach(e => rows.push({ k: e.start, end: e.end && e.end > e.start ? e.end : null, n: e.title, t: 'mine', p: 'SAYA', time: e.time, note: e.note }));
+  rows.sort((a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : 0);
+  return rows;
+}
+
+function renderList(idx) {
+  const box = el('div', { class: 'list' });
+  const rows = collectRows(idx, { hol: true, isl: S.layers.isl, sch: S.layers.sch, mine: S.layers.mine });
+  let cur = 0;
+  rows.forEach(r => {
+    const m = +r.k.slice(5, 7);
+    if (m !== cur) { cur = m; box.append(el('h4', { text: MON[m - 1].toUpperCase() })); }
+    box.append(el('div', { class: 'row' }, [
+      el('span', { class: 'dt', text: r.end ? `${fmt(r.k)}–${fmt(r.end)}` : fmt(r.k) }),
+      el('span', { class: 'dy', text: r.end ? `${Math.round((parse(r.end) - parse(r.k)) / 864e5) + 1} hari` : DAYS[wd(r.k)] }),
+      el('span', { class: 'nm' }, [el('span', { class: 'pill ' + r.t, text: r.p }), r.n + (r.time ? ` · ${r.time}` : '')]),
+      el('span', { class: 'hj', text: hjLong(r.k) }),
+    ]));
+  });
+  if (!rows.length) box.append(el('p', { class: 'none', text: 'Tiada tarikh untuk lapisan yang dipilih.' }));
+  return box;
+}
+
+function renderSummary() {
+  const n = new Set(DATA.hol.filter(h => h.s.includes(S.state)).map(h => h.d)).size;
+  const grp = DATA.groupA.includes(S.state) ? 'A' : 'B';
+  const live = Store.mode === 'db';
+  $('#sum').replaceChildren(
+    el('div', {}, [el('span', { class: 'k', text: 'Negeri' }), el('span', { class: 'big', text: stateName(S.state) })]),
+    el('div', {}, [el('span', { class: 'k', text: 'Cuti umum 2027' }), el('span', { class: 'v', text: `${n} hari` })]),
+    el('div', {}, [el('span', { class: 'k', text: 'Hujung minggu' }), el('span', { class: 'v', text: weekendLabel() })]),
+    el('div', {}, [el('span', { class: 'k', text: 'Kalendar sekolah' }), el('span', { class: 'v', text: `Kumpulan ${grp}` })]),
+    el('div', {}, [el('span', { class: 'k', text: 'Acara saya' }), el('span', { class: 'v save' }, [
+      el('span', { class: 'dotlive' + (live ? ' on' : '') }),
+      `${Store.items.length} · ${live ? 'disimpan dalam akaun anda' : 'disimpan dalam pelayar ini'}`,
+    ])]),
+  );
+}
+
+// ---------- panel hari ----------
+function select(k) {
+  S.sel = k; S.editing = null; S.confirmDel = null;
+  const m = +k.slice(5, 7);
+  if (S.view === 'month' && m !== S.month) S.month = m;
+  render();
+  if (innerWidth <= 980) $('#day').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+function renderDay(idx) {
+  const k = S.sel, info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+  const p = $('#day');
+  const items = el('div', { class: 'items' });
+  info.hol.forEach(x => items.append(el('div', { class: 'it' }, [el('span', { class: 'sw', style: 'background:var(--hol)' }), el('div', { class: 'tx' }, [x.n, el('small', { text: x.t === 'G' ? 'Cuti ganti · tertakluk pengumuman' : x.t === 'P' ? 'Cuti umum persekutuan' : 'Cuti umum negeri' })])])));
+  if (S.layers.isl) info.isl.forEach(x => items.append(el('div', { class: 'it' }, [el('span', { class: 'sw', style: 'background:var(--isl)' }), el('div', { class: 'tx' }, [x.n, el('small', { text: 'Tarikh penting Islam' })])])));
+  if (S.layers.sch && info.sch) items.append(el('div', { class: 'it' }, [el('span', { class: 'sw', style: 'background:var(--sch)' }), el('div', { class: 'tx' }, [info.sch, el('small', { text: `Cuti sekolah Kumpulan ${DATA.groupA.includes(S.state) ? 'A' : 'B'}` })])]));
+  info.mine.forEach(e => {
+    const range = e.end && e.end > e.start ? `${fmt(e.start)} – ${fmt(e.end)}` : '';
+    const sub = [e.time, range, e.note].filter(Boolean).join(' · ');
+    const act = S.confirmDel === e.id
+      ? el('div', { class: 'conf' }, ['Padam?', el('button', { class: 'btn sm danger', onclick: async () => { await Store.remove(e.id); S.confirmDel = null; render(); } }, 'Ya'), el('button', { class: 'btn sm', onclick: () => { S.confirmDel = null; render(); } }, 'Batal')])
+      : el('div', { class: 'act' }, [
+        el('button', { class: 'btn sm', 'aria-label': `Ubah ${e.title}`, onclick: () => { S.editing = e.id; render(); $('#ev-title')?.focus(); } }, 'Ubah'),
+        el('button', { class: 'btn sm danger', 'aria-label': `Padam ${e.title}`, onclick: () => { S.confirmDel = e.id; render(); } }, 'Padam'),
+      ]);
+    items.append(el('div', { class: 'it' }, [el('span', { class: 'sw', style: `background:${colorVar(e.color)}` }), el('div', { class: 'tx' }, [e.title, sub ? el('small', { text: sub }) : null]), act]));
+  });
+  if (!items.children.length) items.append(el('p', { class: 'none', text: isWeekend(k) ? 'Hujung minggu. Tiada acara lagi.' : 'Tiada cuti atau acara pada hari ini.' }));
+
+  const ed = S.editing ? Store.items.find(x => x.id === S.editing) : null;
+  const form = el('form', { class: 'f', id: 'ev-form', novalidate: true });
+  const color = ed?.color || 'c1';
+  form.append(
+    el('div', { class: 'lbl', text: ed ? 'Ubah acara' : 'Tambah acara peribadi' }),
+    el('label', { for: 'ev-title' }, ['Tajuk', el('input', { id: 'ev-title', name: 'title', required: true, maxlength: 80, placeholder: 'cth. Balik kampung, Kursus, Hari jadi', value: ed?.title || '' })]),
+    el('div', { class: 'r2' }, [
+      el('label', { for: 'ev-start' }, ['Mula', el('input', { id: 'ev-start', type: 'date', name: 'start', min: '2027-01-01', max: '2027-12-31', value: ed?.start || k, required: true })]),
+      el('label', { for: 'ev-end' }, ['Hingga (pilihan)', el('input', { id: 'ev-end', type: 'date', name: 'end', min: '2027-01-01', max: '2027-12-31', value: ed?.end || '' })]),
+    ]),
+    el('label', { for: 'ev-time' }, ['Masa (pilihan)', el('input', { id: 'ev-time', type: 'time', name: 'time', value: ed?.time || '' })]),
+    el('label', { for: 'ev-note' }, ['Catatan (pilihan)', el('textarea', { id: 'ev-note', name: 'note', maxlength: 300 }, ed?.note || '')]),
+    el('div', {}, [el('div', { class: 'lbl', style: 'margin-bottom:6px', text: 'Warna' }), el('div', { class: 'colors', role: 'radiogroup', 'aria-label': 'Warna' },
+      COLORS.flatMap(c => [el('input', { type: 'radio', name: 'color', id: 'ev-c-' + c, value: c, checked: c === color }), el('label', { for: 'ev-c-' + c, title: COLOR_NAME[c], style: `background:var(--${c})` }, el('span', { class: 'vis-hidden', text: COLOR_NAME[c] }))]))]),
+    el('div', { class: 'msg', id: 'fmsg', role: 'status' }),
+    el('div', { class: 'acts' }, [
+      ed ? el('button', { type: 'button', class: 'btn', onclick: () => { S.editing = null; render(); } }, 'Batal') : null,
+      el('button', { type: 'submit', class: 'btn pri' }, ed ? 'Simpan perubahan' : 'Tambah'),
+    ]),
+  );
+  form.addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const fd = new FormData(form);
+    const title = String(fd.get('title') || '').trim();
+    const start = String(fd.get('start') || '');
+    let end = String(fd.get('end') || '');
+    const msg = form.querySelector('#fmsg');
+    if (!title) { msg.className = 'msg err'; msg.textContent = 'Isi tajuk acara.'; return; }
+    if (!/^2027-\d\d-\d\d$/.test(start)) { msg.className = 'msg err'; msg.textContent = 'Pilih tarikh mula dalam tahun 2027.'; return; }
+    if (end && end < start) { msg.className = 'msg err'; msg.textContent = 'Tarikh akhir mesti selepas tarikh mula.'; return; }
+    if (end === start) end = '';
+    const obj = { id: ed?.id || ('e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)), title, start, end, time: String(fd.get('time') || ''), note: String(fd.get('note') || '').trim(), color: String(fd.get('color') || 'c1'), updated: Date.now() };
+    const ok = await Store.upsert(obj);
+    S.editing = null; S.sel = start;
+    render();
+    const m2 = $('#fmsg');
+    if (m2) { m2.className = ok ? 'msg' : 'msg err'; m2.textContent = ok ? (ed ? 'Perubahan disimpan.' : 'Acara ditambah.') : 'Acara dipaparkan tetapi pelayar ini tidak membenarkan simpanan. Buat sandaran JSON.'; }
+  });
+
+  p.replaceChildren(
+    el('h3', { text: fmtLong(k) }),
+    el('div', { class: 'sub' }, [el('b', { text: hjLong(k) }), ' · ', el('span', { lang: 'ar', style: 'font-family:var(--f-ar);font-size:14px', text: `${AR_DIG(h.d)} ${HM_AR[h.m]} ${AR_DIG(h.y)}` })]),
+    items, form,
+  );
+}
+
+// ---------- eksport / import ----------
+let DL = null;
+function csvEsc(s) { s = String(s ?? ''); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+const usDate = k => { const [y, m, d] = k.split('-'); return `${m}/${d}/${y}`; };
+function to12h(t) { if (!t) return ''; let [h, m] = t.split(':').map(Number); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return `${h}:${pad(m)} ${ap}`; }
+function buildCSV() {
+  const opts = { mine: $('#x-mine').checked, hol: $('#x-hol').checked, sch: $('#x-sch').checked, isl: $('#x-isl').checked };
+  const rows = collectRows(null, opts);
+  const lines = ['Subject,Start Date,Start Time,End Date,End Time,All Day Event,Description'];
+  rows.forEach(r => {
+    const prefix = { hol: 'Cuti: ', isl: '', sch: 'Cuti Sekolah: ', mine: '' }[r.t];
+    const timed = (r.t === 'mine') && r.time && !r.end;
+    const desc = r.t === 'mine' ? (r.note || '') : `${hjLong(r.k)} · Takwim 2027 ${stateName(S.state)}`;
+    lines.push([prefix + r.n, usDate(r.k), timed ? to12h(r.time) : '', usDate(r.end || r.k), timed ? to12h(addMinutes(r.time, 60)) : '', timed ? 'False' : 'True', desc].map(csvEsc).join(','));
+  });
+  return { text: lines.join('\n'), count: rows.length };
+}
+function addMinutes(t, n) { let [h, m] = t.split(':').map(Number); m += n; h = (h + Math.floor(m / 60)) % 24; m = m % 60; return `${pad(h)}:${pad(m)}`; }
+async function offer(filename, text, okMsg) {
+  const msg = $('#tmsg'); msg.className = 'msg';
+  if (DL) {
+    try { await DL.save({ filename, data: text }); msg.textContent = okMsg; $('#outbox').hidden = true; return; }
+    catch (e) { if (e && e.code === 'declined') { msg.textContent = 'Muat turun dibatalkan.'; return; } if (e && e.code === 'rate_limited') { msg.className = 'msg err'; msg.textContent = 'Sila tunggu sebentar dan cuba lagi.'; return; } }
+  }
+  $('#out').value = text; $('#outbox').hidden = false;
+  msg.textContent = `Muat turun tidak tersedia di sini. Salin teks di bawah dan simpan sebagai ${filename}.`;
+}
+$('#b-csv').addEventListener('click', () => {
+  const { text, count } = buildCSV();
+  if (count === 0) { $('#tmsg').className = 'msg err'; $('#tmsg').textContent = 'Tiada tarikh untuk dieksport. Tandakan sekurang-kurangnya satu pilihan.'; return; }
+  offer(`takwim-2027-${S.state.toLowerCase()}.csv`, text, `${count} tarikh dieksport. Import di Google Calendar: Tetapan → Import & eksport.`);
+});
+$('#b-json').addEventListener('click', () => {
+  offer('takwim-2027-acara-saya.json', JSON.stringify({ app: 'takwim-2027', version: 1, state: S.state, events: Store.items }, null, 2), `Sandaran ${Store.items.length} acara disimpan.`);
+});
+$('#b-imp').addEventListener('click', () => $('#f-imp').click());
+$('#f-imp').addEventListener('change', async ev => {
+  const f = ev.target.files?.[0]; if (!f) return;
+  const msg = $('#tmsg');
+  try {
+    const j = JSON.parse(await f.text());
+    const list = Array.isArray(j) ? j : j.events;
+    if (!Array.isArray(list)) throw new Error();
+    let n = 0;
+    for (const e of list) {
+      if (!e || typeof e.title !== 'string' || !/^2027-\d\d-\d\d$/.test(e.start || '')) continue;
+      await Store.upsert({ id: String(e.id || ('e' + Date.now().toString(36) + n)), title: e.title.slice(0, 80), start: e.start, end: /^2027-\d\d-\d\d$/.test(e.end || '') ? e.end : '', time: /^\d\d:\d\d$/.test(e.time || '') ? e.time : '', note: String(e.note || '').slice(0, 300), color: COLORS.includes(e.color) ? e.color : 'c1', updated: Date.now() });
+      n++;
+    }
+    msg.className = 'msg'; msg.textContent = `${n} acara dipulihkan.`;
+    render();
+  } catch { msg.className = 'msg err'; msg.textContent = 'Fail ini bukan sandaran Takwim 2027 yang sah.'; }
+  ev.target.value = '';
+});
+$('#b-copy').addEventListener('click', async () => {
+  const t = $('#out');
+  try { await navigator.clipboard.writeText(t.value); $('#tmsg').textContent = 'Disalin.'; }
+  catch { t.focus(); t.select(); $('#tmsg').textContent = 'Teks dipilih. Tekan Ctrl+C / Cmd+C untuk salin.'; }
+});
+
+// ---------- kawalan ----------
+const sel = $('#state');
+DATA.states.forEach(([c, n]) => sel.append(el('option', { value: c, text: n })));
+sel.value = S.state;
+sel.addEventListener('change', () => { S.state = sel.value; render(); });
+document.querySelectorAll('.seg button[data-t]').forEach(b => b.addEventListener('click', () => { S.theme = b.dataset.t; render(); }));
+document.querySelectorAll('.seg button[data-v]').forEach(b => b.addEventListener('click', () => { S.view = b.dataset.v; if (S.view === 'month') S.month = +S.sel.slice(5, 7); render(); }));
+document.querySelectorAll('button.chip').forEach(b => b.addEventListener('click', () => { S.layers[b.dataset.l] = !S.layers[b.dataset.l]; render(); }));
+
+function render() {
+  const idx = buildIndex();
+  document.documentElement.setAttribute('data-theme', S.theme);
+  document.querySelectorAll('.seg button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === S.view)));
+  document.querySelectorAll('.seg button[data-t]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.t === S.theme)));
+  document.querySelectorAll('button.chip').forEach(b => b.setAttribute('aria-pressed', String(!!S.layers[b.dataset.l])));
+  renderSummary();
+  $('#view').replaceChildren(S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
+  renderDay(idx);
+  savePrefs();
+}
+
+Store.init();
+render();
+Store.connect();
+(async () => { try { DL = await window.claude?.use?.('downloads'); } catch { DL = null; } })();
+</script>
+
+</body></html>
