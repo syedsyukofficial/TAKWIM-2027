@@ -16,7 +16,7 @@
   --f-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
   --f-num: 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
   --f-ar: 'Amiri', 'Traditional Arabic', serif;
-  --c1: #2F62D0; --c2: #7B3FC4; --c3: #D9731A; --c4: #C8377A; --c5: #4F5D57;
+  --c1: #2F62D0; --c2: #7B3FC4; --c3: #D9731A; --c4: #C8377A; --c5: #4F5D57; --c6: #D32F2F; --c7: #2E9D4F; --c8: #D4A106;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
@@ -25,7 +25,7 @@
   --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
   --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
-  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB;
+  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB; --c6: #FF7A7A; --c7: #6FD08C; --c8: #F2C94C;
   color-scheme: dark; } }
 :root[data-theme="dark"] {
   --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
@@ -34,7 +34,7 @@
   --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
   --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
-  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB;
+  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB; --c6: #FF7A7A; --c7: #6FD08C; --c8: #F2C94C;
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
@@ -191,7 +191,12 @@ form.f .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 form.f label { font-size: 11.5px; font-weight: 600; color: var(--muted); display: grid; gap: 3px; }
 form.f input, form.f textarea { border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; background: var(--surface-2); width: 100%; min-width: 0; }
 form.f textarea { min-height: 54px; resize: vertical; }
-.colors { display: flex; gap: 8px; }
+.colors { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.colors label.cust { background: conic-gradient(#D32F2F, #D4A106, #2E9D4F, #0E8C8C, #2F62D0, #7B3FC4, #C8377A, #D32F2F); }
+.colors input[type="color"] { position: static; opacity: 1; width: 34px; height: 26px; padding: 0; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-2); cursor: pointer; }
+form.f label.chk { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink); font-weight: 500; }
+form.f label.chk input { width: auto; }
+.d.filled .n { text-shadow: none; }
 .colors input { position: absolute; opacity: 0; width: 0; height: 0; }
 .colors label { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; display: block; border: 2px solid transparent; }
 .colors input:checked + label { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--surface); }
@@ -205,6 +210,15 @@ form.f textarea { min-height: 54px; resize: vertical; }
 .tools .opts { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; }
 .tools .opts label { display: inline-flex; gap: 5px; align-items: center; }
 .out { width: 100%; min-height: 120px; font-family: ui-monospace, monospace; font-size: 11.5px; border: 1px solid var(--line); border-radius: 9px; padding: 8px; background: var(--surface-2); }
+.tbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.gcal { display: grid; gap: 8px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.gl { display: grid; gap: 4px; max-height: 260px; overflow-y: auto; }
+.gl a { display: flex; gap: 8px; align-items: baseline; text-decoration: none; color: var(--ink); padding: 6px 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-2); font-size: 13px; }
+.gl a:hover { border-color: var(--mine); }
+.gl a .sw { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+.gl a .tx { flex: 1; min-width: 0; }
+.gl a small { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+.gl a .go { color: var(--mine); font-weight: 600; font-size: 12px; white-space: nowrap; }
 .msg { font-size: 12.5px; color: var(--prog); min-height: 1em; }
 .msg.err { color: var(--hol); }
 .foot { margin-top: 22px; color: var(--muted); font-size: 12px; max-width: 900px; }
@@ -258,22 +272,28 @@ form.f textarea { min-height: 54px; resize: vertical; }
       </div>
       <div class="panel tools">
         <h3 style="font-size:15px">Simpan &amp; kongsi</h3>
-        <div class="sub">Eksport ke Google Calendar (CSV) atau buat sandaran acara anda.</div>
-        <div class="opts" role="group" aria-label="Kandungan eksport">
-          <label><input type="checkbox" id="x-mine" checked> Acara saya</label>
-          <label><input type="checkbox" id="x-hol" checked> Cuti umum</label>
-          <label><input type="checkbox" id="x-sch"> Cuti sekolah</label>
-          <label><input type="checkbox" id="x-isl"> Tarikh Islam</label>
+        <div class="sub" id="savenote"></div>
+        <div class="tbtns">
+          <button class="btn pri" id="b-gcal" aria-expanded="false" aria-controls="gcal">Eksport ke Google Calendar</button>
+          <button class="btn" id="b-pdf">Cetak PDF</button>
+          <button class="btn danger" id="b-clear">Kosongkan senarai</button>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn pri" id="b-csv">Eksport CSV</button>
-          <button class="btn" id="b-json">Sandaran JSON</button>
-          <button class="btn" id="b-imp">Pulihkan</button>
-          <input type="file" id="f-imp" accept=".json,application/json" hidden>
-        </div>
+        <div class="conf" id="clearconf" hidden></div>
         <div class="msg" id="tmsg" role="status"></div>
+        <div id="gcal" class="gcal" hidden>
+          <div class="sub">Tekan acara untuk menambahnya terus ke Google Calendar (dibuka di tab baharu):</div>
+          <div id="gcal-list" class="gl"></div>
+          <div class="sub">Atau tambah semua sekali: muat turun fail di bawah, kemudian di Google Calendar pergi ke <b>Tetapan → Import &amp; eksport → Import</b>.</div>
+          <div class="opts" role="group" aria-label="Kandungan fail">
+            <label><input type="checkbox" id="x-mine" checked> Acara saya</label>
+            <label><input type="checkbox" id="x-hol"> Cuti umum</label>
+            <label><input type="checkbox" id="x-sch"> Cuti sekolah</label>
+            <label><input type="checkbox" id="x-isl"> Tarikh Islam</label>
+          </div>
+          <button class="btn" id="b-csv">Muat turun fail Google Calendar</button>
+        </div>
         <div id="outbox" hidden>
-          <label class="lbl" for="out">Salin kandungan ini dan simpan sebagai fail</label>
+          <label class="lbl" for="out">Salin kandungan ini dan simpan sebagai fail .csv</label>
           <textarea class="out" id="out" readonly></textarea>
           <button class="btn sm" id="b-copy">Salin</button>
         </div>
@@ -293,8 +313,10 @@ const HM = ['Muharram','Safar','Rabiulawal','Rabiulakhir','Jamadilawal','Jamadil
 const HM_S = ['MUH','SAF','RAW','RAK','JAW','JAK','REJ','SYB','RAM','SYW','ZKH','ZHJ'];
 const HM_AR = ['محرم','صفر','ربيع الأول','ربيع الآخر','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
 const AR_DIG = s => String(s).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
-const COLORS = ['c1','c2','c3','c4','c5'];
-const COLOR_NAME = { c1: 'Biru', c2: 'Ungu', c3: 'Oren', c4: 'Merah jambu', c5: 'Kelabu' };
+const COLORS = ['c6','c3','c8','c7','c1','c2','c4','c5'];
+const COLOR_NAME = { c6: 'Merah', c3: 'Oren', c8: 'Kuning', c7: 'Hijau', c1: 'Biru', c2: 'Ungu', c4: 'Merah jambu', c5: 'Kelabu' };
+const isHex = c => /^#[0-9a-f]{6}$/i.test(c || '');
+const fills = e => e.fill !== false;
 const LS = 'takwim2027.v1';
 
 // ---------- tarikh ----------
@@ -365,6 +387,15 @@ const Store = {
     }
     return this.writeLocal();
   },
+  async clearAll() {
+    const ids = this.items.map(x => x.id);
+    this.items = [];
+    if (this.mode === 'db' && this.col) {
+      try { await Promise.all(ids.map(id => this.col.doc(id).delete())); return true; }
+      catch { this.mode = 'local'; this.col = null; }
+    }
+    return this.writeLocal();
+  },
   async remove(id) {
     this.items = this.items.filter(x => x.id !== id);
     if (this.mode === 'db' && this.col) {
@@ -412,7 +443,9 @@ const el = (tag, attrs = {}, kids = []) => {
   (Array.isArray(kids) ? kids : [kids]).forEach(c => c != null && n.append(c));
   return n;
 };
-const colorVar = c => `var(--${COLORS.includes(c) ? c : 'c1'})`;
+const colorVar = c => isHex(c) ? c : `var(--${COLORS.includes(c) ? c : 'c1'})`;
+const tint = (c, pct) => `color-mix(in srgb, ${colorVar(c)} ${pct}%, var(--surface))`;
+const fillOf = info => S.layers.mine ? info.mine.find(fills) : null;
 
 function monthHijri(m) {
   const a = hijri(key(2027, m, 1)), b = hijri(key(2027, m, dim(2027, m)));
@@ -424,7 +457,7 @@ function monthHijri(m) {
 function dayDots(info) {
   const dots = [];
   if (S.layers.isl && info.isl.length) dots.push('var(--isl)');
-  if (S.layers.mine) info.mine.slice(0, 2).forEach(e => dots.push(colorVar(e.color)));
+  if (S.layers.mine) info.mine.filter(e => !fills(e)).slice(0, 2).forEach(e => dots.push(colorVar(e.color)));
   return dots;
 }
 
@@ -459,7 +492,8 @@ function renderYear(idx) {
       if (S.layers.sch && info.sch) cls.push('sch');
       if (k === S.sel) cls.push('sel');
       const dots = dayDots(info);
-      g.append(el('button', { class: cls.join(' '), 'data-k': k, 'aria-label': ariaFor(k, info), onclick: () => select(k) }, [
+      const fe = fillOf(info);
+      g.append(el('button', { class: cls.join(' ') + (fe ? ' filled' : ''), 'data-k': k, 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, 38)};box-shadow:inset 0 0 0 1.5px ${colorVar(fe.color)}` : null, onclick: () => select(k) }, [
         el('span', { class: 'n', text: d }),
         el('span', { class: 'h' + (h.d === 1 ? ' h1' : ''), text: h.d === 1 ? HM_S[h.m] : h.d }),
         dots.length ? el('span', { class: 'dots' }, dots.map(c => el('b', { style: `background:${c}` }))) : null,
@@ -497,7 +531,8 @@ function renderMonth(idx) {
     info.hol.forEach(x => tags.push(el('span', { class: 'tag hol', text: x.n })));
     if (S.layers.isl) info.isl.forEach(x => tags.push(el('span', { class: 'tag isl', text: x.n })));
     if (S.layers.mine) info.mine.forEach(e => tags.push(el('span', { class: 'tag mine', style: `background:${colorVar(e.color)}`, text: (e.time ? e.time + ' ' : '') + e.title })));
-    g.append(el('button', { class: cls.join(' '), 'aria-label': ariaFor(k, info), onclick: () => select(k) }, [
+    const fe = fillOf(info);
+    g.append(el('button', { class: cls.join(' '), 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, 26)}` : null, onclick: () => select(k) }, [
       el('span', { class: 'top2' }, [el('span', { class: 'n', text: d }), el('span', { class: 'h' + (h.d === 1 ? ' h1' : '') }, [el('span', { class: 'hd', text: String(h.d) }), el('span', { class: 'hm', text: ' ' + HM_S[h.m] })])]),
       ...tags,
     ]));
@@ -588,7 +623,7 @@ function renderDay(idx) {
 
   const ed = S.editing ? Store.items.find(x => x.id === S.editing) : null;
   const form = el('form', { class: 'f', id: 'ev-form', novalidate: true });
-  const color = ed?.color || 'c1';
+  const color = ed?.color || 'c6';
   form.append(
     el('div', { class: 'lbl', text: ed ? 'Ubah acara' : 'Tambah acara peribadi' }),
     el('label', { for: 'ev-title' }, ['Tajuk', el('input', { id: 'ev-title', name: 'title', required: true, maxlength: 80, placeholder: 'cth. Balik kampung, Kursus, Hari jadi', value: ed?.title || '' })]),
@@ -598,8 +633,13 @@ function renderDay(idx) {
     ]),
     el('label', { for: 'ev-time' }, ['Masa (pilihan)', el('input', { id: 'ev-time', type: 'time', name: 'time', value: ed?.time || '' })]),
     el('label', { for: 'ev-note' }, ['Catatan (pilihan)', el('textarea', { id: 'ev-note', name: 'note', maxlength: 300 }, ed?.note || '')]),
-    el('div', {}, [el('div', { class: 'lbl', style: 'margin-bottom:6px', text: 'Warna' }), el('div', { class: 'colors', role: 'radiogroup', 'aria-label': 'Warna' },
-      COLORS.flatMap(c => [el('input', { type: 'radio', name: 'color', id: 'ev-c-' + c, value: c, checked: c === color }), el('label', { for: 'ev-c-' + c, title: COLOR_NAME[c], style: `background:var(--${c})` }, el('span', { class: 'vis-hidden', text: COLOR_NAME[c] }))]))]),
+    el('div', {}, [el('div', { class: 'lbl', style: 'margin-bottom:6px', text: 'Warna' }), el('div', { class: 'colors', role: 'radiogroup', 'aria-label': 'Warna' }, [
+      ...COLORS.flatMap(c => [el('input', { type: 'radio', name: 'color', id: 'ev-c-' + c, value: c, checked: c === color }), el('label', { for: 'ev-c-' + c, title: COLOR_NAME[c], style: `background:var(--${c})` }, el('span', { class: 'vis-hidden', text: COLOR_NAME[c] }))]),
+      el('input', { type: 'radio', name: 'color', id: 'ev-c-custom', value: 'custom', checked: isHex(color) }),
+      el('label', { for: 'ev-c-custom', class: 'cust', title: 'Warna lain' }, el('span', { class: 'vis-hidden', text: 'Warna lain' })),
+      el('input', { type: 'color', id: 'ev-custom', 'aria-label': 'Pilih warna lain', value: isHex(color) ? color : '#0E8C8C', oninput: () => { const r = document.getElementById('ev-c-custom'); r.checked = true; } }),
+    ])]),
+    el('label', { class: 'chk', for: 'ev-fill' }, [el('input', { type: 'checkbox', id: 'ev-fill', name: 'fill', checked: ed ? fills(ed) : true }), 'Warnakan seluruh kotak tarikh']),
     el('div', { class: 'msg', id: 'fmsg', role: 'status' }),
     el('div', { class: 'acts' }, [
       ed ? el('button', { type: 'button', class: 'btn', onclick: () => { S.editing = null; render(); } }, 'Batal') : null,
@@ -617,7 +657,7 @@ function renderDay(idx) {
     if (!/^2027-\d\d-\d\d$/.test(start)) { msg.className = 'msg err'; msg.textContent = 'Pilih tarikh mula dalam tahun 2027.'; return; }
     if (end && end < start) { msg.className = 'msg err'; msg.textContent = 'Tarikh akhir mesti selepas tarikh mula.'; return; }
     if (end === start) end = '';
-    const obj = { id: ed?.id || ('e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)), title, start, end, time: String(fd.get('time') || ''), note: String(fd.get('note') || '').trim(), color: String(fd.get('color') || 'c1'), updated: Date.now() };
+    const obj = { id: ed?.id || ('e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)), title, start, end, time: String(fd.get('time') || ''), note: String(fd.get('note') || '').trim(), color: (() => { const c = String(fd.get('color') || 'c1'); return c === 'custom' ? (isHex($('#ev-custom').value) ? $('#ev-custom').value : 'c1') : c; })(), fill: fd.get('fill') === 'on', updated: Date.now() };
     const ok = await Store.upsert(obj);
     S.editing = null; S.sel = start;
     render();
@@ -632,11 +672,12 @@ function renderDay(idx) {
   );
 }
 
-// ---------- eksport / import ----------
+// ---------- eksport / cetak / kosongkan ----------
 let DL = null;
 function csvEsc(s) { s = String(s ?? ''); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
 const usDate = k => { const [y, m, d] = k.split('-'); return `${m}/${d}/${y}`; };
 function to12h(t) { if (!t) return ''; let [h, m] = t.split(':').map(Number); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return `${h}:${pad(m)} ${ap}`; }
+function addMinutes(t, n) { let [h, m] = t.split(':').map(Number); m += n; h = (h + Math.floor(m / 60)) % 24; m = m % 60; return `${pad(h)}:${pad(m)}`; }
 function buildCSV() {
   const opts = { mine: $('#x-mine').checked, hol: $('#x-hol').checked, sch: $('#x-sch').checked, isl: $('#x-isl').checked };
   const rows = collectRows(null, opts);
@@ -649,47 +690,181 @@ function buildCSV() {
   });
   return { text: lines.join('\n'), count: rows.length };
 }
-function addMinutes(t, n) { let [h, m] = t.split(':').map(Number); m += n; h = (h + Math.floor(m / 60)) % 24; m = m % 60; return `${pad(h)}:${pad(m)}`; }
-async function offer(filename, text, okMsg) {
-  const msg = $('#tmsg'); msg.className = 'msg';
-  if (DL) {
-    try { await DL.save({ filename, data: text }); msg.textContent = okMsg; $('#outbox').hidden = true; return; }
-    catch (e) { if (e && e.code === 'declined') { msg.textContent = 'Muat turun dibatalkan.'; return; } if (e && e.code === 'rate_limited') { msg.className = 'msg err'; msg.textContent = 'Sila tunggu sebentar dan cuba lagi.'; return; } }
-  }
-  $('#out').value = text; $('#outbox').hidden = false;
-  msg.textContent = `Muat turun tidak tersedia di sini. Salin teks di bawah dan simpan sebagai ${filename}.`;
+function gcalLink(e) {
+  const c = k => k.replace(/-/g, '');
+  let dates;
+  if (e.time && (!e.end || e.end === e.start)) { const t1 = e.time.replace(':', '') + '00', t2 = addMinutes(e.time, 60).replace(':', '') + '00'; dates = `${c(e.start)}T${t1}/${c(e.start)}T${t2}`; }
+  else dates = `${c(e.start)}/${c(addDays(e.end && e.end > e.start ? e.end : e.start, 1))}`;
+  const p = new URLSearchParams({ action: 'TEMPLATE', text: e.title, dates, details: [e.note, `${hjLong(e.start)} · Takwim 2027`].filter(Boolean).join('\n'), ctz: 'Asia/Kuala_Lumpur' });
+  return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
-$('#b-csv').addEventListener('click', () => {
-  const { text, count } = buildCSV();
-  if (count === 0) { $('#tmsg').className = 'msg err'; $('#tmsg').textContent = 'Tiada tarikh untuk dieksport. Tandakan sekurang-kurangnya satu pilihan.'; return; }
-  offer(`takwim-2027-${S.state.toLowerCase()}.csv`, text, `${count} tarikh dieksport. Import di Google Calendar: Tetapan → Import & eksport.`);
-});
-$('#b-json').addEventListener('click', () => {
-  offer('takwim-2027-acara-saya.json', JSON.stringify({ app: 'takwim-2027', version: 1, state: S.state, events: Store.items }, null, 2), `Sandaran ${Store.items.length} acara disimpan.`);
-});
-$('#b-imp').addEventListener('click', () => $('#f-imp').click());
-$('#f-imp').addEventListener('change', async ev => {
-  const f = ev.target.files?.[0]; if (!f) return;
-  const msg = $('#tmsg');
-  try {
-    const j = JSON.parse(await f.text());
-    const list = Array.isArray(j) ? j : j.events;
-    if (!Array.isArray(list)) throw new Error();
-    let n = 0;
-    for (const e of list) {
-      if (!e || typeof e.title !== 'string' || !/^2027-\d\d-\d\d$/.test(e.start || '')) continue;
-      await Store.upsert({ id: String(e.id || ('e' + Date.now().toString(36) + n)), title: e.title.slice(0, 80), start: e.start, end: /^2027-\d\d-\d\d$/.test(e.end || '') ? e.end : '', time: /^\d\d:\d\d$/.test(e.time || '') ? e.time : '', note: String(e.note || '').slice(0, 300), color: COLORS.includes(e.color) ? e.color : 'c1', updated: Date.now() });
-      n++;
+function renderGcal() {
+  const box = $('#gcal-list');
+  const items = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1);
+  if (!items.length) { box.replaceChildren(el('p', { class: 'none', text: 'Belum ada acara peribadi. Tekan mana-mana tarikh untuk menambah acara.' })); return; }
+  box.replaceChildren(...items.map(e => el('a', { href: gcalLink(e), target: '_blank', rel: 'noopener' }, [
+    el('span', { class: 'sw', style: `background:${colorVar(e.color)}` }),
+    el('span', { class: 'tx' }, [e.title, ' ', el('small', { text: (e.end && e.end > e.start ? `${fmt(e.start)} – ${fmt(e.end)}` : fmt(e.start)) + (e.time ? ` · ${e.time}` : '') })]),
+    el('span', { class: 'go', text: 'Tambah ↗' }),
+  ])));
+}
+function tmsg(text, err) { const m = $('#tmsg'); m.className = err ? 'msg err' : 'msg'; m.textContent = text; }
+async function saveFile(filename, data, okMsg) {
+  if (DL) {
+    try { await DL.save({ filename, data }); tmsg(okMsg); return true; }
+    catch (e) {
+      if (e && e.code === 'declined') { tmsg('Muat turun dibatalkan.'); return false; }
+      if (e && e.code === 'rate_limited') { tmsg('Sila tunggu sebentar dan cuba lagi.', true); return false; }
     }
-    msg.className = 'msg'; msg.textContent = `${n} acara dipulihkan.`;
-    render();
-  } catch { msg.className = 'msg err'; msg.textContent = 'Fail ini bukan sandaran Takwim 2027 yang sah.'; }
-  ev.target.value = '';
+  }
+  if (!window.claude) { // dibuka sebagai fail biasa di luar Claude
+    try { const u = URL.createObjectURL(data instanceof Blob ? data : new Blob([data])); const a = el('a', { href: u, download: filename }); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); tmsg(okMsg); return true; } catch {}
+  }
+  return null;
+}
+$('#b-gcal').addEventListener('click', () => {
+  const box = $('#gcal'); box.hidden = !box.hidden;
+  $('#b-gcal').setAttribute('aria-expanded', String(!box.hidden));
+  if (!box.hidden) renderGcal();
+});
+$('#b-csv').addEventListener('click', async () => {
+  const { text, count } = buildCSV();
+  if (count === 0) { tmsg('Tiada tarikh untuk dimuat turun. Tandakan sekurang-kurangnya satu pilihan.', true); return; }
+  const r = await saveFile(`takwim-2027-${S.state.toLowerCase()}-google-calendar.csv`, text, `${count} tarikh sedia. Import di Google Calendar: Tetapan → Import & eksport → Import.`);
+  if (r === null) { $('#out').value = text; $('#outbox').hidden = false; tmsg('Muat turun tidak tersedia di sini. Salin teks di bawah dan simpan sebagai fail .csv.'); }
 });
 $('#b-copy').addEventListener('click', async () => {
   const t = $('#out');
-  try { await navigator.clipboard.writeText(t.value); $('#tmsg').textContent = 'Disalin.'; }
-  catch { t.focus(); t.select(); $('#tmsg').textContent = 'Teks dipilih. Tekan Ctrl+C / Cmd+C untuk salin.'; }
+  try { await navigator.clipboard.writeText(t.value); tmsg('Disalin.'); }
+  catch { t.focus(); t.select(); tmsg('Teks dipilih. Tekan Ctrl+C / Cmd+C untuk salin.'); }
+});
+
+// Kosongkan senarai (dengan pengesahan dalam halaman)
+function renderClear(open) {
+  const c = $('#clearconf');
+  if (!open) { c.hidden = true; c.replaceChildren(); return; }
+  const n = Store.items.length;
+  if (!n) { c.hidden = true; tmsg('Tiada acara peribadi untuk dipadam.'); return; }
+  c.hidden = false;
+  c.replaceChildren(`Padam semua ${n} acara saya?`,
+    el('button', { class: 'btn sm danger', onclick: async () => { await Store.clearAll(); renderClear(false); render(); tmsg(`${n} acara dipadam.`); } }, 'Ya, padam semua'),
+    el('button', { class: 'btn sm', onclick: () => renderClear(false) }, 'Batal'));
+}
+$('#b-clear').addEventListener('click', () => renderClear(true));
+
+// Cetak PDF (dijana dalam halaman, A4 dua muka surat)
+function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.append(s); }); }
+const PC = { brand: '#1F4E3D', gold: '#C9A44C', ink: '#16201B', muted: '#5D6B64', line: '#9AA7A0', hol: '#D3202B', isl: '#00796B', sch: '#FBE46B', we: '#E6ECE8', out: '#F3F5F4' };
+const PCOL = { c1: '#2F62D0', c2: '#7B3FC4', c3: '#D9731A', c4: '#C8377A', c5: '#4F5D57', c6: '#D32F2F', c7: '#2E9D4F', c8: '#D4A106' };
+const phex = c => isHex(c) ? c : (PCOL[c] || PCOL.c1);
+function blend(hex, p) { const n = parseInt(hex.slice(1), 16); const ch = s => Math.round(((n >> s) & 255) * p + 255 * (1 - p)); return `rgb(${ch(16)},${ch(8)},${ch(0)})`; }
+function printMonth(m, idx) {
+  const fs = DATA.weekendFriSat.includes(S.state);
+  const off = wd(key(2027, m, 1)), n = dim(2027, m);
+  const slots = new Array(35).fill(0);
+  for (let d = 1; d <= n; d++) { let i = off + d - 1; if (i >= 35) i -= 35; slots[i] = d; } // 5 minggu, lebihan dibalut ke minggu 1
+  const mh = monthHijri(m);
+  let h = `<div class="pm"><div class="pmt"><b>${MON[m - 1].toUpperCase()}</b><span>${mh.lat}</span></div><table><tr>` +
+    DAYS_S.map((d, i) => `<th class="${(fs ? (i === 4 || i === 5) : i >= 5) ? 'we' : ''}">${d}</th>`).join('') + '</tr>';
+  for (let w = 0; w < 5; w++) {
+    h += '<tr>';
+    for (let i = 0; i < 7; i++) {
+      const d = slots[w * 7 + i];
+      if (!d) { h += '<td class="o"></td>'; continue; }
+      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const labs = [];
+      info.hol.forEach(x => labs.push(`<i style="color:${PC.hol}">${esc(x.n)}</i>`));
+      if (S.layers.isl) info.isl.forEach(x => labs.push(`<i style="color:${PC.isl}">${esc(x.n)}</i>`));
+      if (S.layers.mine) info.mine.forEach(e => labs.push(`<i style="color:${phex(e.color)}">${fills(e) ? '' : '● '}${esc(e.title)}</i>`));
+      const fe = fillOf(info);
+      h += `<td class="${isWeekend(k) ? 'we' : ''}"${fe ? ` style="background:${blend(phex(fe.color), .32)}"` : ''}><div class="c"><span class="dn${info.hol.length ? ' r' : ''}${S.layers.sch && info.sch ? ' y' : ''}">${d}</span><span class="hj${hj.d === 1 ? ' h1' : ''}">${hj.d === 1 ? '1 ' + HM_S[hj.m] : hj.d}</span><div class="lb">${labs.join('')}</div></div></td>`;
+    }
+    h += '</tr>';
+  }
+  return h + '</table></div>';
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function buildPrint() {
+  const idx = buildIndex();
+  const grp = DATA.groupA.includes(S.state) ? 'A' : 'B';
+  const nHol = new Set(DATA.hol.filter(h => h.s.includes(S.state)).map(h => h.d)).size;
+  const css = `
+  .pp{width:794px;height:1123px;background:#fff;color:${PC.ink};font-family:'IBM Plex Sans',Arial,sans-serif;padding:22px 24px 16px;display:flex;flex-direction:column;box-sizing:border-box}
+  .pp *{box-sizing:border-box}
+  .ph{background:${PC.brand};color:#fff;border-radius:8px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center}
+  .ph h1{margin:0;font-family:Poppins,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:.3px}
+  .ph h1 b{color:${PC.gold}}
+  .ph div{text-align:right;font-size:9.5px;font-weight:600;line-height:1.4;letter-spacing:.3px}
+  .pl{display:flex;gap:14px;justify-content:center;font-size:8.5px;margin:6px 0 5px;color:${PC.muted}}
+  .pl span{display:inline-flex;gap:4px;align-items:center}
+  .pl em{display:inline-block;width:10px;height:8px;border-radius:2px;border:1px solid rgba(0,0,0,.25)}
+  .pg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;gap:5px 12px}
+  .pm{display:flex;flex-direction:column;min-height:0}
+  .pmt{display:flex;justify-content:space-between;align-items:center;padding:0 1px;height:17px}
+  .pmt b{font-family:Poppins,Arial,sans-serif;font-size:12.5px;color:${PC.brand};letter-spacing:.5px}
+  .pmt span{font-size:8px;font-weight:700;color:${PC.isl}}
+  .pm table{width:100%;border-collapse:collapse;table-layout:fixed}
+  .pm th{font-family:'Roboto Condensed',Arial,sans-serif;font-size:7.5px;background:#E8ECEA;border:1px solid ${PC.line};height:12px;padding:0}
+  .pm th.we{color:${PC.hol}}
+  .pm td{border:1px solid ${PC.line};vertical-align:top;padding:0}
+  .pm td .c{height:25px;overflow:hidden;position:relative;font-size:8px;line-height:1}
+  .pm td.o{height:26px}
+  .pm td.we{background:${PC.we}} .pm td.o{background:${PC.out}}
+  .dn{display:block;width:fit-content;font-family:'Roboto Condensed',Arial,sans-serif;font-weight:800;font-size:10px;line-height:10px;padding:1px 3px;min-width:13px;text-align:center}
+  .dn.r{color:${PC.hol}} .dn.y{background:${PC.sch}}
+  .hj{position:absolute;top:1px;right:2px;font-family:'Roboto Condensed',Arial,sans-serif;font-size:6.5px;color:${PC.muted}}
+  .hj.h1{color:${PC.isl};font-weight:800}
+  .lb{padding:0 2px;max-height:13.5px;overflow:hidden}
+  .lb i{display:block;font-style:normal;font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700;font-size:6.3px;line-height:6.7px;text-align:center;word-break:break-word}
+  .pf{font-size:7.5px;color:${PC.muted};margin-top:6px;line-height:1.4}
+  .p2 h2{font-family:Poppins,Arial,sans-serif;font-size:13px;color:${PC.brand};margin:14px 0 5px}
+  .p2 .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+  .p2 table{width:100%;border-collapse:collapse;font-size:9px}
+  .p2 th{background:${PC.brand};color:#fff;text-align:left;padding:4px 5px;font-size:8.5px}
+  .p2 td{border-bottom:1px solid #DDE3E0;padding:3px 5px;vertical-align:top}
+  .p2 td.m{color:${PC.muted};font-size:8px;white-space:nowrap}
+  .p2 .r{color:${PC.hol};font-weight:700} .p2 .t{color:${PC.isl};font-weight:700}`;
+  const head = (title, sub) => `<div class="ph"><h1>${title}</h1><div>${sub}</div></div>`;
+  const sub = `${esc(stateName(S.state).toUpperCase())} · HUJUNG MINGGU ${weekendLabel().toUpperCase()}<br>SEKOLAH KUMPULAN ${grp} · ${nHol} HARI CUTI UMUM`;
+  const legend = `<div class="pl"><span><em style="background:#fff;border-color:${PC.hol}"></em>Cuti umum</span>${S.layers.sch ? `<span><em style="background:${PC.sch}"></em>Cuti sekolah</span>` : ''}${S.layers.isl ? `<span><em style="background:${PC.isl}"></em>Tarikh Islam</span>` : ''}${S.layers.mine ? `<span><em style="background:${PCOL.c1}"></em>Acara saya</span>` : ''}<span><em style="background:${PC.we}"></em>Hujung minggu</span></div>`;
+  let months = ''; for (let m = 1; m <= 12; m++) months += printMonth(m, idx);
+  const foot = `<div class="pf">Sumber: Jadual Hari Kelepasan Am 2027 (JPM), Tarikh Penting Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri mengikut kriteria MABIMS. Aidilfitri, Aidiladha &amp; Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.</div>`;
+  const p1 = `<div class="pp">${head('TAKWIM <b>2027</b> · 1448–1449H', sub)}${legend}<div class="pg">${months}</div><div style="flex:1"></div>${foot}</div>`;
+  const hol = DATA.hol.filter(h => h.s.includes(S.state)).map(h => `<tr><td>${fmt(h.d)}</td><td>${DAYS[wd(h.d)]}</td><td class="r">${esc(h.n)}</td><td class="m">${hjLong(h.d)}</td></tr>`).join('');
+  const grpRows = DATA.sch[grp].filter(r => !(S.state === 'SWK' && r.n.startsWith('Cuti Deepavali'))).concat(S.state === 'SWK' ? DATA.sch.SWK : [])
+    .map(r => `<tr><td>${fmt(r.a)}${r.b !== r.a ? ' – ' + fmt(r.b) : ''}</td><td>${esc(r.n)}</td></tr>`).join('');
+  const isl = DATA.isl.map(h => `<tr><td>${fmt(h.d)}</td><td class="t">${esc(h.n)}</td><td class="m">${hjLong(h.d)}</td></tr>`).join('');
+  const mine = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1).map(e => `<tr><td>${fmt(e.start)}${e.end && e.end > e.start ? ' – ' + fmt(e.end) : ''}</td><td><b style="color:${phex(e.color)}">■</b> ${esc(e.title)}${e.time ? ' · ' + e.time : ''}${e.note ? `<br><span class="m">${esc(e.note)}</span>` : ''}</td></tr>`).join('');
+  const p2 = `<div class="pp p2">${head('TARIKH PENTING <b>2027</b>', sub)}<div class="cols"><div><h2>Cuti Umum ${esc(stateName(S.state))}</h2><table><tr><th>Tarikh</th><th>Hari</th><th>Perkara</th><th>Hijri</th></tr>${hol}</table></div><div>` +
+    (Store.items.length && S.layers.mine ? `<h2>Acara Saya</h2><table><tr><th>Tarikh</th><th>Acara</th></tr>${mine}</table>` : '') +
+    (S.layers.sch ? `<h2>Cuti Sekolah (Kumpulan ${grp})</h2><table><tr><th>Tempoh</th><th>Cuti</th></tr>${grpRows}</table>` : '') +
+    (S.layers.isl ? `<h2>Tarikh Penting Islam</h2><table><tr><th>Tarikh</th><th>Perkara</th><th>Hijri</th></tr>${isl}</table>` : '') +
+    `</div></div><div style="flex:1"></div>${foot}</div>`;
+  const host = el('div', { style: 'position:fixed;left:-12000px;top:0;z-index:-1', 'aria-hidden': 'true' });
+  host.innerHTML = `<style>${css}</style>${p1}${p2}`;
+  document.body.append(host);
+  return host;
+}
+$('#b-pdf').addEventListener('click', async () => {
+  const b = $('#b-pdf'); b.disabled = true; tmsg('Menyediakan PDF…');
+  let host = null;
+  try {
+    if (!window.html2canvas) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    host = buildPrint();
+    try { await document.fonts.ready; } catch {}
+    const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const pages = host.querySelectorAll('.pp');
+    for (let i = 0; i < pages.length; i++) {
+      const c = await window.html2canvas(pages[i], { scale: 2.5, backgroundColor: '#ffffff', logging: false });
+      if (i) pdf.addPage();
+      pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 210, 297);
+    }
+    const blob = pdf.output('blob');
+    const r = await saveFile(`Takwim-2027-${stateName(S.state).replace(/\s+/g, '-')}.pdf`, blob, 'PDF sedia. Buka fail itu dan cetak (A4).');
+    if (r === null) tmsg('Muat turun tidak tersedia dalam paparan ini. Buka halaman ini dalam aplikasi Claude atau pelayar dan cuba lagi.', true);
+  } catch { tmsg('PDF tidak dapat disediakan. Semak sambungan internet dan cuba lagi.', true); }
+  finally { host?.remove(); b.disabled = false; }
 });
 
 // ---------- kawalan ----------
@@ -710,6 +885,10 @@ function render() {
   renderSummary();
   $('#view').replaceChildren(S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
   renderDay(idx);
+  $('#savenote').textContent = Store.mode === 'db'
+    ? 'Acara anda disimpan dalam akaun Claude anda secara peribadi. Hanya anda yang nampak, dan ia ikut anda di peranti lain.'
+    : 'Acara anda disimpan dalam pelayar ini sahaja, secara peribadi. Ia tidak muncul di peranti lain dan akan hilang jika data pelayar dipadam.';
+  if (!$('#gcal').hidden) renderGcal();
   savePrefs();
 }
 
