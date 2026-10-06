@@ -6,7 +6,13 @@
 <title>Takwim 2027 Malaysia</title>
 <meta name="description" content="Takwim 2027 / 1448–1449H: cuti umum setiap negeri, cuti sekolah, tarikh Islam dan acara peribadi.">
 <meta name="theme-color" content="#1F4E3D">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F4E3D'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='26' fill='%23C9A44C' text-anchor='middle'%3E27%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Takwim 2027">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@600;700&family=Roboto+Condensed:wght@500;700;800&display=swap">
@@ -42,6 +48,7 @@ button { cursor: pointer; }
 .top-in { max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 .brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; min-width: 0; flex-wrap: wrap; }
 .brand .bt { min-width: 0; }
+.editt { align-self: center; font-size: 12px; color: var(--brand); border-color: var(--gold); background: #FFFBEE; }
 .brand h1 { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 0; letter-spacing: .2px; color: var(--brand); }
 .brand h1 b { color: var(--gold); font-weight: 700; }
 .brand .ar { font-family: var(--f-ar); font-size: 18px; color: var(--muted); direction: rtl; }
@@ -99,6 +106,17 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
 .d .dots { position: absolute; top: 3px; right: 3px; display: flex; gap: 2px; }
 .d .dots b { width: 5px; height: 5px; border-radius: 50%; display: block; }
 .d.sel { outline: 2px solid var(--gold); outline-offset: -2px; }
+.mnotes { list-style: none; margin: 9px 0 0; padding: 8px 2px 0; border-top: 1px dashed var(--hair); display: grid; gap: 3px; }
+.mnotes li { display: grid; grid-template-columns: 58px 8px minmax(0, 1fr); gap: 6px; align-items: baseline; font-size: 12px; line-height: 1.3; cursor: pointer; border-radius: 6px; padding: 1px 4px; }
+.mnotes li:hover { background: var(--surface-2); }
+.mn-d { font-family: var(--f-num); white-space: nowrap; }
+.mn-d b { font-weight: 800; font-size: 12.5px; }
+.mn-d small { color: var(--muted); font-size: 11px; font-weight: 600; }
+.mn-dot { width: 8px; height: 8px; border-radius: 2px; align-self: center; background: var(--line); }
+.mn-n { font-weight: 500; color: var(--ink); min-width: 0; }
+.mn-hol .mn-d b { color: var(--hol); } .mn-hol .mn-dot { background: var(--hol); }
+.mn-isl .mn-n { color: var(--isl); } .mn-isl .mn-dot { background: var(--isl); }
+.mn-sch .mn-dot { background: var(--sch); } .mn-sch .mn-n { color: var(--muted); }
 .d.empty { background: repeating-linear-gradient(135deg, var(--surface-2) 0 5px, var(--surface) 5px 10px); }
 
 /* Month view */
@@ -146,11 +164,12 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
   .cell .h .hm { display: none; }
   .cell .h.h1 .hm { display: inline; }
   .cell .h.h1 .hd { display: none; }
-  .cell { min-height: 64px; padding: 3px; }
+  .cell { min-height: 78px; padding: 3px 2px 5px; gap: 2px; }
   .cell .n { font-size: 15px; padding: 1px 3px; }
   .cell .h { font-size: 9.5px; }
-  .tag { font-size: 0; padding: 0; height: 5px; border-radius: 3px; -webkit-line-clamp: 1; }
-  .tag.hol { background: var(--hol); } .tag.isl { background: var(--isl); } .tag.prog { background: var(--prog); }
+  .tag { font-family: var(--f-num); font-size: 8.6px; font-weight: 700; line-height: 1.12; padding: 1px 2px; border-radius: 3px; -webkit-line-clamp: 3; letter-spacing: -.01em; word-break: normal; overflow-wrap: normal; }
+  .tag.hol { background: rgba(255,255,255,.65); color: #3A4540; }
+  .tag.isl { background: rgba(255,255,255,.65); color: var(--isl); }
 }
 
 /* List view */
@@ -208,11 +227,46 @@ form.f label.chk input { width: auto; }
 .tools .opts label { display: inline-flex; gap: 5px; align-items: center; }
 .out { width: 100%; min-height: 120px; font-family: ui-monospace, monospace; font-size: 11.5px; border: 1px solid var(--line); border-radius: 9px; padding: 8px; background: var(--surface-2); }
 .tbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.today { display: grid; gap: 14px; }
+.ttop { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 760px) { .ttop { grid-template-columns: minmax(0, 1fr); } }
+.tcard { border-radius: 18px; padding: 16px 18px 16px; color: #fff; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.09' stroke-width='1'%3E%3Crect x='12' y='12' width='20' height='20'/%3E%3Crect x='12' y='12' width='20' height='20' transform='rotate(45 22 22)'/%3E%3C/g%3E%3C/svg%3E") right -6px top -4px / 44px 44px, linear-gradient(140deg, var(--brand) 0%, var(--brand-2) 100%); border-bottom: 4px solid var(--gold); box-shadow: 0 10px 26px -14px rgba(20,50,38,.6); display: grid; gap: 8px; align-content: start; }
+.tnote { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #F1D58C; }
+.tmain { display: flex; align-items: center; gap: 16px; }
+.tnum { font-family: var(--f-display); font-weight: 700; font-size: 78px; line-height: .9; color: #fff; font-variant-numeric: tabular-nums; }
+.tday { font-family: var(--f-display); font-weight: 600; font-size: 22px; line-height: 1.1; }
+.tmon { font-size: 15px; font-weight: 600; color: #DCEBE3; }
+.thj { font-size: 13px; font-weight: 600; color: #F1D58C; margin-top: 3px; }
+.tar { font-family: var(--f-ar); font-size: 28px; line-height: 1.3; color: #fff; text-align: right; border-top: 1px solid rgba(255,255,255,.18); padding-top: 6px; }
+.tchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.tchip { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.14); color: #fff; }
+.tchip.hol { background: #FCE5E6; color: #9E1620; }
+.tchip.isl { background: #DDF1EE; color: #00695C; }
+.tchip.sch { background: #FFF3B0; color: #5A4800; }
+.tadd { justify-self: start; background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.35); }
+.tadd:hover { background: rgba(255,255,255,.22); }
+.tup { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; min-width: 0; box-shadow: 0 1px 2px rgba(20,50,38,.05), 0 8px 22px -12px rgba(20,50,38,.25); }
+.tup h3 { margin: 2px 0 8px; font-family: var(--f-display); font-size: 16px; color: var(--brand); }
+.trow { width: 100%; display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left; border: 0; border-top: 1px solid var(--hair); background: transparent; padding: 8px 2px; }
+.trow:hover { background: var(--surface-2); }
+.tdate { display: grid; place-items: center; border-radius: 10px; padding: 4px 0; background: var(--surface-2); line-height: 1.05; }
+.tdate b { font-family: var(--f-num); font-size: 19px; }
+.tdate small { font-size: 10.5px; font-weight: 600; color: var(--muted); }
+.tdate.hol { background: var(--hol-soft); } .tdate.hol b { color: var(--hol); }
+.tdate.isl { background: var(--isl-soft); } .tdate.isl b { color: var(--isl); }
+.tdate.mine { background: var(--mine-soft); } .tdate.mine b { color: var(--mine); }
+.tname { min-width: 0; font-weight: 600; font-size: 13.5px; }
+.tname small { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); }
+.twhen { font-size: 11.5px; font-weight: 600; color: var(--brand); white-space: nowrap; }
 .cfg summary { cursor: pointer; display: grid; grid-template-columns: 1fr auto; column-gap: 8px; font-family: var(--f-display); font-weight: 600; font-size: 15px; list-style: none; }
 .cfg summary::-webkit-details-marker { display: none; }
 .cfg summary::after { content: "▾"; color: var(--muted); font-size: 13px; grid-column: 2; grid-row: 1; }
 .cfg[open] summary::after { content: "▴"; }
 .cfg summary span { grid-column: 1; grid-row: 1; }
+.cfg summary .cfghint { grid-column: 1 / -1; font-family: var(--f-body); font-style: normal; font-weight: 400; font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.cfg[open] summary .cfghint { display: none; }
+.cfg { border: 1.5px solid var(--gold); background: linear-gradient(180deg, #FFFBEE 0%, var(--surface) 70%); }
+.cfg summary span { color: var(--brand); }
 .cfg summary small { grid-column: 1 / -1; font-family: var(--f-body); font-weight: 500; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cfgf { display: grid; gap: 9px; margin-top: 12px; }
 .cfgf label { font-size: 11.5px; font-weight: 600; color: var(--muted); display: grid; gap: 3px; }
@@ -246,13 +300,16 @@ form.f label.chk input { width: auto; }
   <div class="top-in">
     <div class="brand">
       <h1 id="apptitle">Takwim <b>2027</b></h1>
+      <button class="btn sm editt" id="b-edit-title" title="Tukar nama &amp; maklumat takwim">✎ Tukar nama</button>
       <span class="ar" lang="ar">١٤٤٨ – ١٤٤٩ هـ</span>
     </div>
+    <button class="btn pri" id="b-install" hidden>⤓ Pasang aplikasi</button>
     <div class="ctl">
       <label class="lbl" for="state">Negeri</label>
       <select id="state"></select>
     </div>
     <div class="seg" role="group" aria-label="Paparan">
+      <button id="v-today" data-v="today" aria-pressed="false">Hari Ini</button>
       <button id="v-year" data-v="year" aria-pressed="true">Tahun</button>
       <button id="v-month" data-v="month" aria-pressed="false">Bulan</button>
       <button id="v-list" data-v="list" aria-pressed="false">Senarai</button>
@@ -272,7 +329,7 @@ form.f label.chk input { width: auto; }
     <section id="view" aria-live="polite"></section>
     <aside class="side">
       <details class="panel cfg" id="cfgbox">
-        <summary><span>Nama &amp; maklumat takwim</span><small id="cfgsum"></small></summary>
+        <summary><span>✎ Tukar Nama &amp; Maklumat Takwim</span><small id="cfgsum"></small><em class="cfghint">Tekan di sini untuk tukar tajuk takwim, nama keluarga / sekolah / organisasi, maklumat tambahan dan logo.</em></summary>
         <div class="cfgf">
           <label for="cfg-type">Jenis takwim
             <select id="cfg-type">
@@ -383,13 +440,18 @@ function hijri(k) {
 }
 const hjLong = k => { const h = hijri(k); return h ? `${h.d} ${HM[h.m]} ${h.y}H` : ''; };
 
+// ---------- tarikh rujukan "hari ini" ----------
+const STANDALONE = (() => { try { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch { return false; } })();
+function todayKey() { const n = new Date(); return key(n.getFullYear(), n.getMonth() + 1, n.getDate()); }
+function refKey() { const t = todayKey(); return t < '2027-01-01' ? '2027-01-01' : t > '2027-12-31' ? '2027-12-31' : t; }
+
 // ---------- keadaan ----------
 const prefs = (() => { try { return JSON.parse(localStorage.getItem(LS + '.prefs') || '{}'); } catch { return {}; } })();
 const S = {
   state: prefs.state || 'KUL',
-  view: prefs.view || (innerWidth < 640 ? 'month' : 'year'),
-  month: prefs.month || 1,
-  sel: '2027-01-01',
+  view: STANDALONE ? 'today' : (prefs.view || (innerWidth < 640 ? 'today' : 'year')),
+  month: STANDALONE ? +refKey().slice(5, 7) : (prefs.month || +refKey().slice(5, 7)),
+  sel: refKey(),
   layers: { sch: true, isl: true, mine: true, ...(prefs.layers || {}) },
   cfg: Object.assign({ type: 'umum', title: '', sub: '', info: '', logo: '' }, prefs.cfg || {}),
   editing: null, confirmDel: null,
@@ -531,6 +593,16 @@ function buildIndex() {
   });
   return idx;
 }
+const wkStart = () => DATA.weekendFriSat.includes(S.state) ? 6 : 0; // Kedah/Kelantan/Terengganu: minggu bermula Ahad
+const colOf = k => (wd(k) - wkStart() + 7) % 7;
+const dayOrder = () => [0, 1, 2, 3, 4, 5, 6].map(i => (i + wkStart()) % 7);
+const SHORTN = { 'Hari Wilayah Persekutuan': 'Hari Wilayah', 'Tahun Baharu Cina (Hari Kedua)': 'Tahun Baharu Cina (2)', 'Cuti Ganti Tahun Baharu Cina': 'Cuti Ganti TBC',
+  'Hari Raya Aidilfitri': 'Aidilfitri', 'Hari Raya Aidilfitri (Hari Kedua)': 'Aidilfitri (2)', 'Hari Raya Aidilfitri (Hari Ketiga)': 'Aidilfitri (3)',
+  'Hari Raya Aidiladha': 'Aidiladha', 'Hari Raya Aidiladha (Hari Kedua)': 'Aidiladha (2)', 'Hari Nuzul Al-Quran': 'Nuzul Quran',
+  'Awal Muharram (Maal Hijrah)': 'Awal Muharram', 'Awal Muharram 1449H': 'Awal Muharram', 'Hari Keputeraan YDP Agong': 'Keputeraan YDPA',
+  'Cuti Ganti Awal Muharram*': 'Cuti Ganti*', 'Cuti Ganti Maulidur Rasul': 'Cuti Ganti', 'Cuti Ganti Hari Krismas': 'Cuti Ganti', 'Cuti Ganti Hari Pekerja': 'Cuti Ganti', 'Cuti Ganti Israk dan Mikraj': 'Cuti Ganti',
+  'Hari Pengisytiharan Tarikh Kemerdekaan': 'Hari Pengisytiharan', 'Hari Tapak Warisan Dunia George Town': 'Warisan Dunia', 'Hari Kemerdekaan Sarawak': 'Hari Sarawak', 'Hari Gawai Dayak (Hari Kedua)': 'Gawai (2)', 'Pesta Kaamatan (Hari Kedua)': 'Kaamatan (2)' };
+const shortName = n => SHORTN[n] || n.replace(/^Hari Keputeraan /, 'Keputeraan ').replace(/^Ulang Tahun Keputeraan /, 'Keputeraan ').replace(/^Hari Jadi Yang di-Pertua Negeri /, 'TYT ').replace(/^Hari Hol Almarhum /, 'Hol ').replace(/ \(Hari Kedua\)$/, ' (2)');
 const isWeekend = k => { const w = wd(k); return DATA.weekendFriSat.includes(S.state) ? (w === 4 || w === 5) : (w >= 5); };
 const weekendLabel = () => DATA.weekendFriSat.includes(S.state) ? 'Jumaat – Sabtu' : 'Sabtu – Ahad';
 const stateName = c => (DATA.states.find(s => s[0] === c) || [c, c])[1];
@@ -574,6 +646,34 @@ function ariaFor(k, info) {
   return parts.join(', ');
 }
 
+function monthNotes(m, idx) {
+  const a = key(2027, m, 1), b = key(2027, m, dim(2027, m)), items = [];
+  const DS = ['Isn', 'Sel', 'Rab', 'Kha', 'Jum', 'Sab', 'Ahd'];
+  for (let d = 1; d <= dim(2027, m); d++) {
+    const k = key(2027, m, d), info = idx[k]; if (!info) continue;
+    info.hol.forEach(x => items.push({ k, t: 'hol', n: x.n }));
+    if (S.layers.isl) info.isl.forEach(x => items.push({ k, t: 'isl', n: x.n }));
+  }
+  if (S.layers.mine) Store.items.forEach(e => { const end = e.end && e.end > e.start ? e.end : e.start; if (e.start <= b && end >= a) items.push({ k: e.start < a ? a : e.start, end: end > e.start ? (end > b ? b : end) : null, t: 'mine', n: e.title, c: e.color }); });
+  if (S.layers.sch) {
+    const grp = DATA.groupA.includes(S.state) ? 'A' : 'B';
+    DATA.sch[grp].concat(S.state === 'SWK' ? DATA.sch.SWK : []).forEach(r => {
+      if (S.state === 'SWK' && r.n.startsWith('Cuti Deepavali')) return;
+      if (r.a <= b && r.b >= a) items.push({ k: r.a < a ? a : r.a, end: r.b > b ? b : r.b, t: 'sch', n: r.n.replace(/ \(termasuk cuti tambahan KPM\)/, '') });
+    });
+  }
+  if (!items.length) return null;
+  items.sort((x, y) => x.k < y.k ? -1 : x.k > y.k ? 1 : 0);
+  return el('ul', { class: 'mnotes' }, items.map(it => {
+    const d1 = +it.k.slice(8), d2 = it.end && it.end !== it.k ? +it.end.slice(8) : null;
+    return el('li', { class: 'mn-' + it.t, onclick: () => select(it.k) }, [
+      el('span', { class: 'mn-d' }, [el('b', { text: d2 ? `${d1}–${d2}` : d1 }), d2 ? null : el('small', { text: ' ' + DS[wd(it.k)] })]),
+      el('i', { class: 'mn-dot', style: it.t === 'mine' ? `background:${colorVar(it.c)}` : null }),
+      el('span', { class: 'mn-n', text: it.n }),
+    ]);
+  }));
+}
+
 function renderYear(idx) {
   const wrap = el('div', { class: 'year' });
   for (let m = 1; m <= 12; m++) {
@@ -585,11 +685,11 @@ function renderYear(idx) {
     ]));
     const g = el('div', { class: 'g7' });
     const fs = DATA.weekendFriSat.includes(S.state);
-    DAYS_S.forEach((d, i) => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : ''), text: d.slice(0, 1) })));
+    dayOrder().forEach(i => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : ''), text: DAYS_S[i].slice(0, 1) })));
     const body = el('div', { class: 'mbody' }); card.append(body);
     body.append(g);
     const gd = el('div', { class: 'gd' });
-    const off = wd(key(2027, m, 1));
+    const off = colOf(key(2027, m, 1));
     for (let i = 0; i < off; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
     for (let d = 1; d <= dim(2027, m); d++) {
       const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
@@ -610,6 +710,8 @@ function renderYear(idx) {
     const tail = (7 - ((off + dim(2027, m)) % 7)) % 7;
     for (let i = 0; i < tail; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
     body.append(gd);
+    const notes = monthNotes(m, idx);
+    if (notes) body.append(notes);
     wrap.append(card);
   }
   return wrap;
@@ -627,8 +729,8 @@ function renderMonth(idx) {
   ]));
   const g = el('div', { class: 'mgrid' });
   const fs = DATA.weekendFriSat.includes(S.state);
-  DAYS.forEach((d, i) => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : '') }, [el('span', { class: 'full', text: d.toUpperCase() }), el('span', { class: 'short', text: DAYS_S[i] })])));
-  const off = wd(key(2027, m, 1)), n = dim(2027, m);
+  dayOrder().forEach(i => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : '') }, [el('span', { class: 'full', text: DAYS[i].toUpperCase() }), el('span', { class: 'short', text: DAYS_S[i] })])));
+  const off = colOf(key(2027, m, 1)), n = dim(2027, m);
   for (let i = 0; i < off; i++) g.append(el('div', { class: 'cell blank', 'aria-hidden': 'true' }));
   for (let d = 1; d <= n; d++) {
     const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
@@ -639,8 +741,9 @@ function renderMonth(idx) {
     if (S.layers.sch && info.sch) cls.push('sch');
     if (k === S.sel) cls.push('sel');
     const tags = [];
-    info.hol.forEach(x => tags.push(el('span', { class: 'tag hol', text: x.n })));
-    if (S.layers.isl) info.isl.forEach(x => tags.push(el('span', { class: 'tag isl', text: x.n })));
+    const nm = n => innerWidth <= 640 ? shortName(n) : n;
+    info.hol.forEach(x => tags.push(el('span', { class: 'tag hol', text: nm(x.n) })));
+    if (S.layers.isl) info.isl.forEach(x => tags.push(el('span', { class: 'tag isl', text: nm(x.n) })));
     if (S.layers.mine) info.mine.forEach(e => tags.push(el('span', { class: 'tag mine', style: `background:${colorVar(e.color)}`, text: (e.time ? e.time + ' ' : '') + e.title })));
     const fe = fillOf(info);
     g.append(el('button', { class: cls.join(' '), 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, 26)}` : null, onclick: () => select(k) }, [
@@ -658,7 +761,7 @@ function collectRows(idx, opts) {
   const rows = [];
   const st = S.state;
   if (opts.hol) DATA.hol.forEach(h => { if (h.s.includes(st)) rows.push({ k: h.d, end: null, n: h.n, t: 'hol', p: h.t === 'G' ? 'CUTI GANTI' : 'CUTI' }); });
-  if (opts.isl) DATA.isl.forEach(h => rows.push({ k: h.d, end: null, n: h.n, t: 'isl', p: 'ISLAM' }));
+  if (opts.isl) DATA.isl.forEach(h => { if (idx && !((idx[h.d] || {}).isl || []).some(x => x.n === h.n)) return; rows.push({ k: h.d, end: null, n: h.n, t: 'isl', p: 'ISLAM' }); });
   if (opts.sch) {
     const grp = DATA.groupA.includes(st) ? 'A' : 'B';
     DATA.sch[grp].forEach(r => { if (!(st === 'SWK' && r.n.startsWith('Cuti Deepavali'))) rows.push({ k: r.a, end: r.b, n: r.n, t: 'sch', p: 'SEKOLAH' }); });
@@ -685,6 +788,49 @@ function renderList(idx) {
   });
   if (!rows.length) box.append(el('p', { class: 'none', text: 'Tiada tarikh untuk lapisan yang dipilih.' }));
   return box;
+}
+
+function renderToday(idx) {
+  const ref = refKey(), tk = todayKey(), info = idx[ref] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(ref);
+  const t = parse(ref), dayMs = 864e5;
+  const before = tk < '2027-01-01', after = tk > '2027-12-31';
+  const chips = [];
+  info.hol.forEach(x => chips.push(el('span', { class: 'tchip hol', text: x.n })));
+  if (S.layers.isl) info.isl.forEach(x => chips.push(el('span', { class: 'tchip isl', text: x.n })));
+  if (S.layers.sch && info.sch) chips.push(el('span', { class: 'tchip sch', text: 'Cuti sekolah' }));
+  if (S.layers.mine) info.mine.forEach(e => chips.push(el('span', { class: 'tchip mine', style: `background:${colorVar(e.color)}`, text: e.title })));
+  if (isWeekend(ref) && !info.hol.length) chips.push(el('span', { class: 'tchip we', text: 'Hujung minggu' }));
+  const note = before ? `Takwim 2027 bermula dalam ${Math.round((parse('2027-01-01') - parse(tk)) / dayMs)} hari` : after ? 'Takwim 2027 telah berakhir' : 'Hari ini';
+  const hero = el('section', { class: 'tcard', 'aria-label': 'Hari ini' }, [
+    el('div', { class: 'tnote', text: note }),
+    el('div', { class: 'tmain' }, [
+      el('div', { class: 'tnum', text: t.getUTCDate() }),
+      el('div', { class: 'tinfo' }, [
+        el('div', { class: 'tday', text: DAYS[wd(ref)] }),
+        el('div', { class: 'tmon', text: `${MON[t.getUTCMonth()]} ${t.getUTCFullYear()}` }),
+        el('div', { class: 'thj', text: `${h.d} ${HM[h.m]} ${h.y}H` }),
+      ]),
+    ]),
+    el('div', { class: 'tar', lang: 'ar', dir: 'rtl', text: `${AR_DIG(h.d)} ${HM_AR[h.m]} ${AR_DIG(h.y)} هـ` }),
+    chips.length ? el('div', { class: 'tchips' }, chips) : null,
+    el('button', { class: 'btn tadd', onclick: () => { select(ref); setTimeout(() => $('#ev-title')?.focus(), 50); } }, '+ Tambah acara pada hari ini'),
+  ]);
+  // akan datang
+  const rows = collectRows(idx, { hol: true, isl: S.layers.isl, sch: false, mine: S.layers.mine })
+    .filter(r => (r.end || r.k) >= ref);
+  const seen = new Set(), up = [];
+  for (const r of rows) { const id = r.k + r.n; if (seen.has(id)) continue; seen.add(id); up.push(r); if (up.length >= 6) break; }
+  const list = el('section', { class: 'tup', 'aria-label': 'Akan datang' }, [el('h3', { text: 'Akan datang' }),
+    ...(up.length ? up.map(r => {
+      const d = parse(r.k), days = Math.round((parse(r.k) - parse(ref)) / dayMs);
+      const when = r.k <= ref ? (r.end ? 'Sedang berlangsung' : 'Hari ini') : days === 1 ? 'Esok' : `dalam ${days} hari`;
+      return el('button', { class: 'trow', onclick: () => select(r.k) }, [
+        el('span', { class: 'tdate ' + r.t }, [el('b', { text: d.getUTCDate() }), el('small', { text: MON_S[d.getUTCMonth()] })]),
+        el('span', { class: 'tname' }, [el('span', { class: 'pill ' + r.t, text: r.p }), r.n, el('small', { text: `${DAYS[wd(r.k)]} · ${hjLong(r.k)}` })]),
+        el('span', { class: 'twhen', text: when }),
+      ]);
+    }) : [el('p', { class: 'none', text: 'Tiada tarikh lagi selepas ini dalam 2027.' })])]);
+  return el('div', { class: 'today' }, [el('div', { class: 'ttop' }, [hero, list]), renderMonth(idx)]);
 }
 
 function renderSummary() {
@@ -962,8 +1108,8 @@ function buildPDF() {
     F(FB, 6, PC.goldL); doc.text(monthHijri(m).lat, x0 + mw - 1.2, y0 + 3.25, { align: 'right' });
     const ty = y0 + titleH + 0.6;
     fillC(PC.head); doc.rect(x0, ty, mw, thH, 'F');
-    DAYS_S.forEach((d, i) => { F(FB, 5.6, (fs ? (i === 4 || i === 5) : i >= 5) ? PC.hol : PC.brand); doc.text(d, x0 + i * cw + cw / 2, ty + 2.2, { align: 'center' }); });
-    const off = wd(key(2027, m, 1)), n = dim(2027, m), slots = new Array(35).fill(0);
+    dayOrder().forEach((i, c) => { F(FB, 5.6, (fs ? (i === 4 || i === 5) : i >= 5) ? PC.hol : PC.brand); doc.text(DAYS_S[i], x0 + c * cw + cw / 2, ty + 2.2, { align: 'center' }); });
+    const off = colOf(key(2027, m, 1)), n = dim(2027, m), slots = new Array(35).fill(0);
     for (let d = 1; d <= n; d++) { let i = off + d - 1; if (i >= 35) i -= 35; slots[i] = d; }
     const by = ty + thH;
     for (let s = 0; s < 35; s++) {
@@ -1055,7 +1201,7 @@ const sel = $('#state');
 DATA.states.forEach(([c, n]) => sel.append(el('option', { value: c, text: n })));
 sel.value = S.state;
 sel.addEventListener('change', () => { S.state = sel.value; render(); });
-document.querySelectorAll('.seg button[data-v]').forEach(b => b.addEventListener('click', () => { S.view = b.dataset.v; if (S.view === 'month') S.month = +S.sel.slice(5, 7); render(); }));
+document.querySelectorAll('.seg button[data-v]').forEach(b => b.addEventListener('click', () => { S.view = b.dataset.v; if (S.view === 'month') S.month = +S.sel.slice(5, 7); if (S.view === 'today') { S.sel = refKey(); S.month = +S.sel.slice(5, 7); } render(); }));
 document.querySelectorAll('button.chip').forEach(b => b.addEventListener('click', () => { S.layers[b.dataset.l] = !S.layers[b.dataset.l]; render(); }));
 
 function renderGoogle() {
@@ -1095,6 +1241,7 @@ function renderCfgHeader() {
   $('#cfg-logo-del').hidden = !C.logo;
 }
 function fillCfgForm() { $('#cfg-type').value = S.cfg.type; $('#cfg-title').value = S.cfg.title; $('#cfg-sub').value = S.cfg.sub; $('#cfg-info').value = S.cfg.info; $('#cfg-title').placeholder = CFG_TITLES[S.cfg.type] || ''; }
+$('#b-edit-title').addEventListener('click', () => { const b = $('#cfgbox'); b.open = true; b.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); setTimeout(() => $('#cfg-title').focus({ preventScroll: true }), 350); });
 (function wireCfg() {
   const ty = $('#cfg-type'), ti = $('#cfg-title'), su = $('#cfg-sub'), inf = $('#cfg-info');
   fillCfgForm();
@@ -1131,7 +1278,7 @@ function render() {
   document.querySelectorAll('button.chip').forEach(b => b.setAttribute('aria-pressed', String(!!S.layers[b.dataset.l])));
   renderSummary();
   renderCfgHeader();
-  $('#view').replaceChildren(S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
+  $('#view').replaceChildren(S.view === 'today' ? renderToday(idx) : S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
   renderDay(idx);
   $('#savenote').textContent = Store.mode === 'google'
     ? 'Acara anda disimpan dalam Google Drive akaun anda (ruang tersembunyi untuk aplikasi ini). Hanya anda yang nampak, dan ia ikut anda di semua peranti.'
@@ -1143,6 +1290,19 @@ function render() {
 
 Store.init();
 render();
+// ---------- aplikasi telefon (PWA) ----------
+let installEvt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#b-install').hidden = false; });
+window.addEventListener('appinstalled', () => { installEvt = null; $('#b-install').hidden = true; tmsg('Aplikasi Takwim 2027 dipasang. Cari ikonnya di skrin utama.'); });
+$('#b-install').addEventListener('click', async () => {
+  if (!installEvt) return;
+  installEvt.prompt();
+  try { await installEvt.userChoice; } catch {}
+  installEvt = null; $('#b-install').hidden = true;
+});
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 if (googleOn()) { const s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true; s.onload = initGoogle; document.head.append(s); }
 </script>
 </body>
