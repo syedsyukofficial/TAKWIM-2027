@@ -13,6 +13,7 @@
 <style>
 /* Layout: sticky bar (negeri + paparan + lapisan), kemudian kalendar; panel hari di kanan (desktop) / bawah (telefon). */
 :root {
+  --hair: #D9E2DD;
   --bg: #EEF3F0; --surface: #FFFFFF; --surface-2: #F6F9F7; --ink: #15221C; --muted: #5B6B63; --line: #D3DDD7;
   --brand: #1F4E3D; --brand-ink: #FFFFFF; --gold: #B8902F; --gold-soft: #F3E6C2;
   --hol: #D3202B; --hol-soft: #FCE5E6; --isl: #00796B; --isl-soft: #DDF1EE;
@@ -25,25 +26,8 @@
   --f-ar: 'Amiri', 'Traditional Arabic', serif;
   --c1: #2F62D0; --c2: #7B3FC4; --c3: #D9731A; --c4: #C8377A; --c5: #4F5D57; --c6: #D32F2F; --c7: #2E9D4F; --c8: #D4A106;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
-  --brand: #2F6B54; --brand-ink: #FFFFFF; --gold: #E0BD62; --gold-soft: #3A3220;
-  --hol: #FF6B6F; --hol-soft: #3A1C1F; --isl: #4DD0BC; --isl-soft: #12322D;
-  --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
-  --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
-  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
-  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB; --c6: #FF7A7A; --c7: #6FD08C; --c8: #F2C94C;
-  color-scheme: dark; } }
-:root[data-theme="dark"] {
-  --bg: #0D1613; --surface: #15211C; --surface-2: #1A2822; --ink: #E5EEE9; --muted: #9AABA2; --line: #2A3B34;
-  --brand: #2F6B54; --brand-ink: #FFFFFF; --gold: #E0BD62; --gold-soft: #3A3220;
-  --hol: #FF6B6F; --hol-soft: #3A1C1F; --isl: #4DD0BC; --isl-soft: #12322D;
-  --sch: #C9A82A; --sch-soft: #3A3417; --prog: #7FCB7C; --prog-soft: #1E3420;
-  --mine: #7FA6FF; --mine-soft: #1D2A48; --weekend: #19251F;
-  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
-  --c1: #7FA6FF; --c2: #B88CF0; --c3: #F0A35A; --c4: #F07FB0; --c5: #A3B2AB; --c6: #FF7A7A; --c7: #6FD08C; --c8: #F2C94C;
-  color-scheme: dark; }
 
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { background: var(--bg); color: var(--ink); }
@@ -56,10 +40,9 @@ button { cursor: pointer; }
 /* Header */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: -16px; padding: 10px 16px 8px; background: var(--bg); border-bottom: 1px solid var(--line); }
 .top-in { max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
-.brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; min-width: 0; }
+.brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; min-width: 0; flex-wrap: wrap; }
+.brand .bt { min-width: 0; }
 .brand h1 { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 0; letter-spacing: .2px; color: var(--brand); }
-:root[data-theme="dark"] .brand h1 { color: var(--ink); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brand h1 { color: var(--ink); } }
 .brand h1 b { color: var(--gold); font-weight: 700; }
 .brand .ar { font-family: var(--f-ar); font-size: 18px; color: var(--muted); direction: rtl; }
 .ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -92,15 +75,14 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
 .mcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 12px 10px; min-width: 0; }
 .mhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
 .mhead h3 { margin: 0; font-family: var(--f-display); font-size: 15px; letter-spacing: .06em; color: var(--brand); cursor: pointer; }
-:root[data-theme="dark"] .mhead h3 { color: var(--gold); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mhead h3 { color: var(--gold); } }
 .mhead .hj { text-align: right; line-height: 1.1; }
 .mhead .hj small { display: block; font-size: 10.5px; color: var(--isl); font-weight: 600; letter-spacing: .02em; }
 .mhead .hj span { font-family: var(--f-ar); font-size: 13px; color: var(--muted); }
 .g7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .wd { font-family: var(--f-num); font-size: 10.5px; font-weight: 700; text-align: center; color: var(--muted); padding: 2px 0 4px; letter-spacing: .04em; }
 .wd.we { color: var(--hol); }
-.d { position: relative; border: 0; background: transparent; padding: 3px 0 7px; border-radius: 7px; text-align: center; line-height: 1.05; min-height: 36px; }
+.gd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); border-radius: 6px; overflow: hidden; }
+.d { position: relative; border: 0; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); background: var(--surface); padding: 3px 0 7px; border-radius: 0; text-align: center; line-height: 1.05; min-height: 38px; }
 .d:hover { background: var(--surface-2); }
 .d.we { background: var(--weekend); }
 .d .n { font-family: var(--f-num); font-weight: 700; font-size: 14px; display: block; font-variant-numeric: tabular-nums; }
@@ -112,14 +94,12 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
 .d .dots { position: absolute; top: 3px; right: 3px; display: flex; gap: 2px; }
 .d .dots b { width: 5px; height: 5px; border-radius: 50%; display: block; }
 .d.sel { outline: 2px solid var(--gold); outline-offset: -2px; }
-.d.empty { visibility: hidden; }
+.d.empty { background: var(--surface-2); }
 
 /* Month view */
 .mview { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; min-width: 0; }
 .mnav { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
 .mnav h2 { margin: 0; font-family: var(--f-display); font-size: 22px; color: var(--brand); min-width: 0; }
-:root[data-theme="dark"] .mnav h2 { color: var(--ink); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mnav h2 { color: var(--ink); } }
 .mnav .hj { font-size: 12px; color: var(--isl); font-weight: 600; }
 .mnav .ar { font-family: var(--f-ar); color: var(--muted); font-size: 16px; }
 .mnav .sp { margin-left: auto; display: flex; gap: 6px; }
@@ -165,8 +145,6 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
 /* List view */
 .list { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px 16px 14px; min-width: 0; }
 .list h4 { font-family: var(--f-display); font-size: 14px; letter-spacing: .08em; color: var(--brand); margin: 16px 0 6px; }
-:root[data-theme="dark"] .list h4 { color: var(--gold); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .list h4 { color: var(--gold); } }
 .row { display: grid; grid-template-columns: 74px 66px minmax(0, 1fr) auto; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .row .dt { font-family: var(--f-num); font-weight: 700; font-variant-numeric: tabular-nums; }
 .row .dy { color: var(--muted); font-size: 12.5px; }
@@ -219,6 +197,19 @@ form.f label.chk input { width: auto; }
 .tools .opts label { display: inline-flex; gap: 5px; align-items: center; }
 .out { width: 100%; min-height: 120px; font-family: ui-monospace, monospace; font-size: 11.5px; border: 1px solid var(--line); border-radius: 9px; padding: 8px; background: var(--surface-2); }
 .tbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.cfg summary { cursor: pointer; display: grid; grid-template-columns: 1fr auto; column-gap: 8px; font-family: var(--f-display); font-weight: 600; font-size: 15px; list-style: none; }
+.cfg summary::-webkit-details-marker { display: none; }
+.cfg summary::after { content: "▾"; color: var(--muted); font-size: 13px; grid-column: 2; grid-row: 1; }
+.cfg[open] summary::after { content: "▴"; }
+.cfg summary span { grid-column: 1; grid-row: 1; }
+.cfg summary small { grid-column: 1 / -1; font-family: var(--f-body); font-weight: 500; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cfgf { display: grid; gap: 9px; margin-top: 12px; }
+.cfgf label { font-size: 11.5px; font-weight: 600; color: var(--muted); display: grid; gap: 3px; }
+.cfgf input, .cfgf select { border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; background: var(--surface-2); width: 100%; min-width: 0; font-weight: 500; color: var(--ink); }
+.logo-row { display: flex; gap: 12px; align-items: center; }
+.logo-prev { width: 56px; height: 56px; border-radius: 12px; border: 1px dashed var(--line); background: var(--surface-2) center / contain no-repeat; flex: none; }
+.brand .subt { display: block; font-family: var(--f-body); font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .02em; margin-top: 1px; }
+.brand .blogo { width: 36px; height: 36px; border-radius: 9px; object-fit: contain; background: #fff; border: 1px solid var(--line); align-self: center; }
 .gbox { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); }
 .gst { display: flex; gap: 8px; align-items: center; font-size: 13px; min-width: 0; overflow-wrap: anywhere; }
 .gst small { color: var(--muted); }
@@ -243,16 +234,12 @@ form.f label.chk input { width: auto; }
 <header class="top">
   <div class="top-in">
     <div class="brand">
-      <h1>Takwim <b>2027</b></h1>
+      <h1 id="apptitle">Takwim <b>2027</b></h1>
       <span class="ar" lang="ar">١٤٤٨ – ١٤٤٩ هـ</span>
     </div>
     <div class="ctl">
       <label class="lbl" for="state">Negeri</label>
       <select id="state"></select>
-    </div>
-    <div class="seg" role="group" aria-label="Tema">
-      <button id="t-light" data-t="light" aria-pressed="true" title="Mod cerah">☀ Cerah</button>
-      <button id="t-dark" data-t="dark" aria-pressed="false" title="Mod gelap">☾ Gelap</button>
     </div>
     <div class="seg" role="group" aria-label="Paparan">
       <button id="v-year" data-v="year" aria-pressed="true">Tahun</button>
@@ -273,6 +260,32 @@ form.f label.chk input { width: auto; }
   <div class="main">
     <section id="view" aria-live="polite"></section>
     <aside class="side">
+      <details class="panel cfg" id="cfgbox">
+        <summary><span>Nama &amp; maklumat takwim</span><small id="cfgsum"></small></summary>
+        <div class="cfgf">
+          <label for="cfg-type">Jenis takwim
+            <select id="cfg-type">
+              <option value="umum">Umum</option><option value="peribadi">Peribadi</option><option value="keluarga">Keluarga</option>
+              <option value="kelas">Kelas</option><option value="sekolah">Sekolah</option><option value="jabatan">Jabatan / Unit</option>
+              <option value="organisasi">Organisasi / Masjid / Surau</option><option value="lain">Lain-lain</option>
+            </select></label>
+          <label for="cfg-title">Tajuk takwim<input id="cfg-title" maxlength="60" placeholder="cth. Takwim Keluarga Syed 2027"></label>
+          <label for="cfg-sub">Nama / organisasi (pilihan)<input id="cfg-sub" maxlength="80" placeholder="cth. SK Taman Melati · Kelas 5 Bestari"></label>
+          <label for="cfg-info">Maklumat tambahan (pilihan)<input id="cfg-info" maxlength="100" placeholder="cth. Guru Kelas: Ustaz Syed · 012-345 6789"></label>
+          <div class="logo-row">
+            <div class="logo-prev" id="cfg-logo-prev" aria-hidden="true"></div>
+            <div style="display:grid;gap:6px">
+              <span class="lbl">Logo (pilihan)</span>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <button type="button" class="btn sm" id="cfg-logo-btn">Pilih gambar</button>
+                <button type="button" class="btn sm danger" id="cfg-logo-del" hidden>Buang</button>
+              </div>
+              <input type="file" id="cfg-logo" accept="image/*" hidden>
+            </div>
+          </div>
+          <div class="sub">Tajuk dan maklumat ini dipaparkan di atas takwim dan dalam PDF yang dicetak.</div>
+        </div>
+      </details>
       <div class="panel" id="day"></div>
       <div class="panel">
         <h3 style="font-size:15px">Petunjuk</h3>
@@ -367,10 +380,10 @@ const S = {
   month: prefs.month || 1,
   sel: '2027-01-01',
   layers: { sch: true, isl: true, mine: true, ...(prefs.layers || {}) },
-  theme: prefs.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+  cfg: Object.assign({ type: 'umum', title: '', sub: '', info: '', logo: '' }, prefs.cfg || {}),
   editing: null, confirmDel: null,
 };
-function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ state: S.state, view: S.view, month: S.month, layers: S.layers, theme: S.theme })); } catch {} }
+function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ state: S.state, view: S.view, month: S.month, layers: S.layers, cfg: S.cfg })); } catch {} }
 
 // ---------- simpanan acara peribadi ----------
 // Tanpa log masuk: acara disimpan dalam pelayar (localStorage) peranti ini.
@@ -400,6 +413,7 @@ const Store = {
     this.all.forEach(e => { if (!e.deleted) { e.deleted = true; e.updated = now; } });
     return this.touch();
   },
+  touchCfg() { this.dirty = true; this.schedule(); },
   schedule() { if (!this.token) return; clearTimeout(this.timer); this.timer = setTimeout(() => this.sync(), 700); },
   merge(a, b) {
     const m = new Map();
@@ -425,10 +439,13 @@ const Store = {
       let remote = [];
       if (this.fileId) {
         const r = await this.api(`https://www.googleapis.com/drive/v3/files/${this.fileId}?alt=media`);
-        try { const j = await r.json(); remote = Array.isArray(j.events) ? j.events : []; } catch {}
+        try {
+          const j = await r.json(); remote = Array.isArray(j.events) ? j.events : [];
+          if (j.settings && (j.settings.updated || 0) > (S.cfg.updated || 0)) { S.cfg = Object.assign({}, S.cfg, j.settings); savePrefs(); fillCfgForm(); }
+        } catch {}
       }
       this.all = this.merge(this.all, remote);
-      const body = JSON.stringify({ app: 'takwim-2027', version: 1, events: this.all });
+      const body = JSON.stringify({ app: 'takwim-2027', version: 1, events: this.all, settings: S.cfg });
       if (this.fileId) {
         await this.api(`https://www.googleapis.com/upload/drive/v3/files/${this.fileId}?uploadType=media`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body });
       } else {
@@ -558,8 +575,10 @@ function renderYear(idx) {
     const g = el('div', { class: 'g7' });
     const fs = DATA.weekendFriSat.includes(S.state);
     DAYS_S.forEach((d, i) => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : ''), text: d.slice(0, 1) })));
+    card.append(g);
+    const gd = el('div', { class: 'gd' });
     const off = wd(key(2027, m, 1));
-    for (let i = 0; i < off; i++) g.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
+    for (let i = 0; i < off; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
     for (let d = 1; d <= dim(2027, m); d++) {
       const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
       const cls = ['d'];
@@ -569,13 +588,15 @@ function renderYear(idx) {
       if (k === S.sel) cls.push('sel');
       const dots = dayDots(info);
       const fe = fillOf(info);
-      g.append(el('button', { class: cls.join(' ') + (fe ? ' filled' : ''), 'data-k': k, 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, 38)};box-shadow:inset 0 0 0 1.5px ${colorVar(fe.color)}` : null, onclick: () => select(k) }, [
+      gd.append(el('button', { class: cls.join(' ') + (fe ? ' filled' : ''), 'data-k': k, 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, 38)};box-shadow:inset 0 0 0 1.5px ${colorVar(fe.color)}` : null, onclick: () => select(k) }, [
         el('span', { class: 'n', text: d }),
         el('span', { class: 'h' + (h.d === 1 ? ' h1' : ''), text: h.d === 1 ? HM_S[h.m] : h.d }),
         dots.length ? el('span', { class: 'dots' }, dots.map(c => el('b', { style: `background:${c}` }))) : null,
       ]));
     }
-    card.append(g);
+    const tail = (7 - ((off + dim(2027, m)) % 7)) % 7;
+    for (let i = 0; i < tail; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
+    card.append(gd);
     wrap.append(card);
   }
   return wrap;
@@ -860,11 +881,18 @@ function buildPrint() {
   const css = `
   .pp{width:794px;height:1123px;background:#fff;color:${PC.ink};font-family:'IBM Plex Sans',Arial,sans-serif;padding:22px 24px 16px;display:flex;flex-direction:column;box-sizing:border-box}
   .pp *{box-sizing:border-box}
-  .ph{background:${PC.brand};color:#fff;border-radius:8px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center}
-  .ph h1{margin:0;font-family:Poppins,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:.3px}
+  .ph{background:${PC.brand};color:#fff;border-radius:10px;padding:10px 14px 13px 12px;display:flex;gap:12px;align-items:center;border-bottom:4px solid ${PC.gold};min-height:66px}
+  .ph .lg{width:50px;height:50px;border-radius:9px;background:#fff;object-fit:contain;padding:3px;flex:none}
+  .ph .tt{flex:1;min-width:0}
+  .ph .tt .s1{font-size:10.5px;font-weight:700;color:${PC.gold};letter-spacing:.6px;margin-top:3px;text-transform:uppercase}
+  .ph .tt .s2{font-size:9px;opacity:.88;margin-top:2px}
+  .ph .yr{text-align:right;flex:none;border-left:1px solid rgba(255,255,255,.25);padding-left:12px}
+  .ph .yr b{display:block;font-family:Poppins,Arial,sans-serif;font-size:26px;line-height:1;color:${PC.gold}}
+  .ph .yr span{display:block;font-size:9.5px;font-weight:700;letter-spacing:.5px;margin-top:2px}
+  .ph .yr small{display:block;font-size:7.8px;opacity:.85;margin-top:4px;line-height:1.35;letter-spacing:.3px}
+  .ph h1{margin:0;font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:.3px;line-height:1.1;text-transform:uppercase}
   .ph h1 b{color:${PC.gold}}
-  .ph div{text-align:right;font-size:9.5px;font-weight:600;line-height:1.4;letter-spacing:.3px}
-  .pl{display:flex;gap:14px;justify-content:center;font-size:8.5px;margin:6px 0 5px;color:${PC.muted}}
+    .pl{display:flex;gap:14px;justify-content:center;font-size:8.5px;margin:6px 0 5px;color:${PC.muted}}
   .pl span{display:inline-flex;gap:4px;align-items:center}
   .pl em{display:inline-block;width:10px;height:8px;border-radius:2px;border:1px solid rgba(0,0,0,.25)}
   .pg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;gap:5px 12px}
@@ -893,18 +921,22 @@ function buildPrint() {
   .p2 td{border-bottom:1px solid #DDE3E0;padding:3px 5px;vertical-align:top}
   .p2 td.m{color:${PC.muted};font-size:8px;white-space:nowrap}
   .p2 .r{color:${PC.hol};font-weight:700} .p2 .t{color:${PC.isl};font-weight:700}`;
-  const head = (title, sub) => `<div class="ph"><h1>${title}</h1><div>${sub}</div></div>`;
-  const sub = `${esc(stateName(S.state).toUpperCase())} · HUJUNG MINGGU ${weekendLabel().toUpperCase()}<br>SEKOLAH KUMPULAN ${grp} · ${nHol} HARI CUTI UMUM`;
+  const C = S.cfg, T = cfgTitle();
+  const head = (title, sub) => {
+    const fsz = title.length > 34 ? 16 : title.length > 26 ? 18.5 : 22;
+    return `<div class="ph">${C.logo ? `<img class="lg" src="${C.logo}" alt="">` : ''}<div class="tt"><h1 style="font-size:${fsz}px">${esc(title)}</h1>${C.sub ? `<div class="s1">${esc(C.sub)}</div>` : ''}${C.info ? `<div class="s2">${esc(C.info)}</div>` : ''}</div><div class="yr"><b>2027</b><span>1448–1449H</span><small>${sub}</small></div></div>`;
+  };
+  const sub = `${esc(stateName(S.state).toUpperCase())} · ${nHol} HARI CUTI UMUM<br>HUJUNG MINGGU ${weekendLabel().toUpperCase()} · SEKOLAH KUMP. ${grp}`;
   const legend = `<div class="pl"><span><em style="background:#fff;border-color:${PC.hol}"></em>Cuti umum</span>${S.layers.sch ? `<span><em style="background:${PC.sch}"></em>Cuti sekolah</span>` : ''}${S.layers.isl ? `<span><em style="background:${PC.isl}"></em>Tarikh Islam</span>` : ''}${S.layers.mine ? `<span><em style="background:${PCOL.c1}"></em>Acara saya</span>` : ''}<span><em style="background:${PC.we}"></em>Hujung minggu</span></div>`;
   let months = ''; for (let m = 1; m <= 12; m++) months += printMonth(m, idx);
   const foot = `<div class="pf">Sumber: Jadual Hari Kelepasan Am 2027 (JPM), Tarikh Penting Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri mengikut kriteria MABIMS. Aidilfitri, Aidiladha &amp; Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.</div>`;
-  const p1 = `<div class="pp">${head('TAKWIM <b>2027</b> · 1448–1449H', sub)}${legend}<div class="pg">${months}</div><div style="flex:1"></div>${foot}</div>`;
+  const p1 = `<div class="pp">${head(T, sub)}${legend}<div class="pg">${months}</div><div style="flex:1"></div>${foot}</div>`;
   const hol = DATA.hol.filter(h => h.s.includes(S.state)).map(h => `<tr><td>${fmt(h.d)}</td><td>${DAYS[wd(h.d)]}</td><td class="r">${esc(h.n)}</td><td class="m">${hjLong(h.d)}</td></tr>`).join('');
   const grpRows = DATA.sch[grp].filter(r => !(S.state === 'SWK' && r.n.startsWith('Cuti Deepavali'))).concat(S.state === 'SWK' ? DATA.sch.SWK : [])
     .map(r => `<tr><td>${fmt(r.a)}${r.b !== r.a ? ' – ' + fmt(r.b) : ''}</td><td>${esc(r.n)}</td></tr>`).join('');
   const isl = DATA.isl.map(h => `<tr><td>${fmt(h.d)}</td><td class="t">${esc(h.n)}</td><td class="m">${hjLong(h.d)}</td></tr>`).join('');
   const mine = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1).map(e => `<tr><td>${fmt(e.start)}${e.end && e.end > e.start ? ' – ' + fmt(e.end) : ''}</td><td><b style="color:${phex(e.color)}">■</b> ${esc(e.title)}${e.time ? ' · ' + e.time : ''}${e.note ? `<br><span class="m">${esc(e.note)}</span>` : ''}</td></tr>`).join('');
-  const p2 = `<div class="pp p2">${head('TARIKH PENTING <b>2027</b>', sub)}<div class="cols"><div><h2>Cuti Umum ${esc(stateName(S.state))}</h2><table><tr><th>Tarikh</th><th>Hari</th><th>Perkara</th><th>Hijri</th></tr>${hol}</table></div><div>` +
+  const p2 = `<div class="pp p2">${head(T + ' · Tarikh Penting', sub)}<div class="cols"><div><h2>Cuti Umum ${esc(stateName(S.state))}</h2><table><tr><th>Tarikh</th><th>Hari</th><th>Perkara</th><th>Hijri</th></tr>${hol}</table></div><div>` +
     (Store.items.length && S.layers.mine ? `<h2>Acara Saya</h2><table><tr><th>Tarikh</th><th>Acara</th></tr>${mine}</table>` : '') +
     (S.layers.sch ? `<h2>Cuti Sekolah (Kumpulan ${grp})</h2><table><tr><th>Tempoh</th><th>Cuti</th></tr>${grpRows}</table>` : '') +
     (S.layers.isl ? `<h2>Tarikh Penting Islam</h2><table><tr><th>Tarikh</th><th>Perkara</th><th>Hijri</th></tr>${isl}</table>` : '') +
@@ -930,7 +962,7 @@ $('#b-pdf').addEventListener('click', async () => {
       pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 210, 297);
     }
     const blob = pdf.output('blob');
-    const r = await saveFile(`Takwim-2027-${stateName(S.state).replace(/\s+/g, '-')}.pdf`, blob, 'PDF sedia. Buka fail itu dan cetak (A4).');
+    const r = await saveFile(`${cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || 'Takwim-2027'}-${S.state}.pdf`, blob, 'PDF sedia. Buka fail itu dan cetak (A4).');
     if (r === null) tmsg('Muat turun tidak tersedia dalam paparan ini. Buka halaman ini dalam aplikasi Claude atau pelayar dan cuba lagi.', true);
   } catch { tmsg('PDF tidak dapat disediakan. Semak sambungan internet dan cuba lagi.', true); }
   finally { host?.remove(); b.disabled = false; }
@@ -941,7 +973,6 @@ const sel = $('#state');
 DATA.states.forEach(([c, n]) => sel.append(el('option', { value: c, text: n })));
 sel.value = S.state;
 sel.addEventListener('change', () => { S.state = sel.value; render(); });
-document.querySelectorAll('.seg button[data-t]').forEach(b => b.addEventListener('click', () => { S.theme = b.dataset.t; render(); }));
 document.querySelectorAll('.seg button[data-v]').forEach(b => b.addEventListener('click', () => { S.view = b.dataset.v; if (S.view === 'month') S.month = +S.sel.slice(5, 7); render(); }));
 document.querySelectorAll('button.chip').forEach(b => b.addEventListener('click', () => { S.layers[b.dataset.l] = !S.layers[b.dataset.l]; render(); }));
 
@@ -965,13 +996,59 @@ function renderGoogle() {
   b.replaceChildren(...kids);
 }
 
+const CFG_TITLES = { umum: 'Takwim 2027', peribadi: 'Takwim Peribadi 2027', keluarga: 'Takwim Keluarga 2027', kelas: 'Takwim Kelas 2027', sekolah: 'Takwim Sekolah 2027', jabatan: 'Takwim Jabatan 2027', organisasi: 'Takwim Organisasi 2027', lain: 'Takwim 2027' };
+const cfgTitle = () => (S.cfg.title || '').trim() || CFG_TITLES[S.cfg.type] || 'Takwim 2027';
+function renderCfgHeader() {
+  const C = S.cfg, T = cfgTitle();
+  const h = $('#apptitle');
+  const m = T.match(/^(.*?)(\s*2027)(.*)$/);
+  h.replaceChildren(...(m ? [m[1], el('b', { text: m[2] }), m[3]] : [T]));
+  const brand = h.parentElement;
+  brand.querySelector('.blogo')?.remove(); brand.querySelector('.subt')?.remove();
+  if (C.logo) brand.prepend(el('img', { class: 'blogo', src: C.logo, alt: '' }));
+  if (C.sub) h.after(el('span', { class: 'subt', text: C.sub }));
+  document.title = T + ' · ' + stateName(S.state);
+  $('#cfgsum').textContent = T;
+  const pv = $('#cfg-logo-prev'); pv.style.backgroundImage = C.logo ? `url("${C.logo}")` : 'none';
+  $('#cfg-logo-del').hidden = !C.logo;
+}
+function fillCfgForm() { $('#cfg-type').value = S.cfg.type; $('#cfg-title').value = S.cfg.title; $('#cfg-sub').value = S.cfg.sub; $('#cfg-info').value = S.cfg.info; $('#cfg-title').placeholder = CFG_TITLES[S.cfg.type] || ''; }
+(function wireCfg() {
+  const ty = $('#cfg-type'), ti = $('#cfg-title'), su = $('#cfg-sub'), inf = $('#cfg-info');
+  fillCfgForm();
+  ti.placeholder = CFG_TITLES[S.cfg.type];
+  if (!S.cfg.title && S.cfg.type === 'umum' && !S.cfg.sub) $('#cfgbox').open = innerWidth > 980;
+  const save = () => { S.cfg.updated = Date.now(); savePrefs(); renderCfgHeader(); if (typeof Store.touchCfg === 'function') Store.touchCfg(); };
+  ty.addEventListener('change', () => {
+    const old = S.cfg.title.trim();
+    if (!old || Object.values(CFG_TITLES).includes(old)) { S.cfg.title = CFG_TITLES[ty.value]; ti.value = S.cfg.title; }
+    S.cfg.type = ty.value; ti.placeholder = CFG_TITLES[ty.value]; save();
+  });
+  ti.addEventListener('input', () => { S.cfg.title = ti.value; save(); });
+  su.addEventListener('input', () => { S.cfg.sub = su.value; save(); });
+  inf.addEventListener('input', () => { S.cfg.info = inf.value; save(); });
+  $('#cfg-logo-btn').addEventListener('click', () => $('#cfg-logo').click());
+  $('#cfg-logo-del').addEventListener('click', () => { S.cfg.logo = ''; save(); });
+  $('#cfg-logo').addEventListener('change', ev => {
+    const f = ev.target.files?.[0]; ev.target.value = ''; if (!f) return;
+    const img = new Image(), url = URL.createObjectURL(f);
+    img.onload = () => {
+      const max = 240, sc = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      S.cfg.logo = c.toDataURL('image/png'); URL.revokeObjectURL(url); save();
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); tmsg('Gambar ini tidak dapat dibaca. Cuba fail PNG atau JPG.', true); };
+    img.src = url;
+  });
+})();
+
 function render() {
   const idx = buildIndex();
-  document.documentElement.setAttribute('data-theme', S.theme);
   document.querySelectorAll('.seg button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === S.view)));
-  document.querySelectorAll('.seg button[data-t]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.t === S.theme)));
   document.querySelectorAll('button.chip').forEach(b => b.setAttribute('aria-pressed', String(!!S.layers[b.dataset.l])));
   renderSummary();
+  renderCfgHeader();
   $('#view').replaceChildren(S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
   renderDay(idx);
   $('#savenote').textContent = Store.mode === 'google'
