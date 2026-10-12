@@ -1,6 +1,6 @@
 // Takwim 2027 — service worker (boleh dibuka tanpa internet)
 // Tukar nombor versi ini setiap kali index.html dikemas kini supaya telefon mengambil versi baharu.
-const VERSION = 'takwim2027-v11';
+const VERSION = 'takwim2027-v12';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png',
   './icons/icon-maskable-192.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png', './icons/favicon-64.png'];
 
