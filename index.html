@@ -189,7 +189,11 @@ select#state { padding: 8px 32px 8px 12px; border-radius: 10px; border: 1px soli
 
 /* List view */
 .list { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px 16px 14px; min-width: 0; }
-.list h4 { font-family: var(--f-display); font-size: 14px; letter-spacing: .08em; color: var(--brand); margin: 16px 0 6px; }
+.list h4 { display: flex; align-items: center; gap: 10px; margin: 22px -6px 4px; padding: 9px 14px; border-radius: 12px; color: #fff; font-family: var(--f-display); font-size: 15px; letter-spacing: .1em; background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%); border-bottom: 3px solid var(--gold); box-shadow: 0 6px 16px -10px rgba(20,50,38,.6); }
+.list h4:first-child { margin-top: 10px; }
+.list h4 .mn { font-family: var(--f-num); font-size: 12px; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--gold); color: var(--brand); letter-spacing: 0; flex: none; }
+.list h4 .lh { margin-left: auto; text-align: right; font-family: var(--f-body); font-size: 11.5px; font-weight: 600; letter-spacing: .02em; color: #F1D58C; line-height: 1.2; }
+.list h4 .lh span { display: block; font-family: var(--f-ar); font-size: 13px; color: #CFE3D9; font-weight: 400; }
 .row { display: grid; grid-template-columns: 74px 66px minmax(0, 1fr) auto; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .row .dt { font-family: var(--f-num); font-weight: 700; font-variant-numeric: tabular-nums; }
 .row .dy { color: var(--muted); font-size: 12.5px; }
@@ -398,6 +402,8 @@ form.f label.chk input { width: auto; }
             <label><input type="radio" name="pstyle" value="poster1"> <span><b>Poster Klasik</b> · ringkasan cuti di bawah setiap bulan</span></label>
             <label><input type="radio" name="pstyle" value="poster" checked> <span><b>Poster Moden</b> · cuti tertera dalam petak tarikh</span></label>
             <label><input type="radio" name="pstyle" value="list"> <span><b>Senarai Tarikh Penting</b> · cuti umum, cuti sekolah, tarikh Islam &amp; hujung minggu panjang</span></label>
+            <label><input type="radio" name="pstyle" value="desk3"> <span><b>Meja Kerja · 3 bulan sehalaman</b> · ruang menulis program &amp; tugasan (4 muka surat)</span></label>
+            <label><input type="radio" name="pstyle" value="desk1"> <span><b>Meja Kerja · 1 bulan sehalaman</b> · kotak besar untuk menulis (12 muka surat)</span></label>
           </div>
           <div class="opts popts">
             <label id="addlist-wrap"><input type="checkbox" id="p-addlist"> <span>Sertakan <b>Senarai Tarikh Penting</b> sebagai muka surat kedua</span></label>
@@ -828,7 +834,7 @@ function renderList(idx) {
   let cur = 0;
   rows.forEach(r => {
     const m = +r.k.slice(5, 7);
-    if (m !== cur) { cur = m; box.append(el('h4', { text: MON[m - 1].toUpperCase() })); }
+    if (m !== cur) { cur = m; const mh = monthHijri(m); box.append(el('h4', {}, [el('span', { class: 'mn', text: pad(m) }), MON[m - 1].toUpperCase(), el('span', { class: 'lh' }, [mh.lat, el('span', { lang: 'ar', text: mh.ar })])])); }
     box.append(el('div', { class: 'row' }, [
       el('span', { class: 'dt', text: r.end ? `${fmt(r.k)}–${fmt(r.end)}` : fmt(r.k) }),
       el('span', { class: 'dy', text: r.end ? `${Math.round((parse(r.end) - parse(r.k)) / 864e5) + 1} hari` : DAYS[wd(r.k)] }),
@@ -1624,6 +1630,127 @@ async function buildPoster(variant = 2, withList = false) {
     footer(287.6);
   }
   if (variant === 3) { listPage(); return doc; }
+  // ---------------- MEJA KERJA: 3 bulan / 1 bulan sehalaman, ruang menulis ----------------
+  function deskHeader(pageNo, total) {
+    const y = 8, h = 13;
+    clipRound(X - 2, y, CW + 4, h, 2.4, () => {
+      const n = 50; for (let i = 0; i < n; i++) { fill(lerp(PP.brand, PP.brand2, i / (n - 1))); doc.rect(X - 2 + ((CW + 4) * i) / n, y, (CW + 4) / n + 0.3, h, 'F'); }
+      fill(PP.gold); doc.rect(X - 2, y + h - 0.9, CW + 4, 0.9, 'F');
+    });
+    let x = X + 1;
+    if (C.logo) {
+      fill(PP.white); doc.roundedRect(x, y + 1.6, 9, 9, 1.4, 1.4, 'F');
+      clipRound(x + 0.4, y + 2, 8.2, 8.2, 1.2, () => { try { doc.addImage(C.logo, 'PNG', x + 0.4, y + 2, 8.2, 8.2, undefined, 'SLOW'); } catch {} });
+      x += 11.5;
+    }
+    const up = T.toUpperCase(), tW = 108 - (x - X);
+    const ts = fit(up, FT, tW, 13, 9);
+    F(FT, ts, PP.white); doc.text(up, x, y + (C.sub ? 6.2 : 8));
+    if (C.sub || C.info) { F(FB, 6.6, PP.goldL); doc.text(clip1([C.sub, C.info].filter(Boolean).join(' · '), tW), x, y + 10.3); }
+    const rx = X + CW + 0.5;
+    F(FT, 13, PP.gold); doc.text('2027', rx, y + 6.2, { align: 'right' }); const yW = tw('2027');
+    F(FB, 6.4, PP.white); doc.text('1448–1449H', rx - yW - 2, y + 6, { align: 'right' });
+    F(FR, 5.8, [214, 228, 221]); doc.text(`${st.toUpperCase()} · HUJUNG MINGGU ${weekendLabel().toUpperCase()} · SEKOLAH KUMP. ${grp}`, rx, y + 10.3, { align: 'right' });
+    // petunjuk
+    const items = [[PP.holSoft, 'Cuti umum', PP.holLine], [PP.sch, 'Cuti sekolah (jalur kuning)', PP.sch], [PP.islSoft, 'Tarikh Islam', PP.isl], ['#D7DFDB', 'Hujung minggu', '#B5C2BC']];
+    if (S.layers.mine && Store.items.length) items.splice(3, 0, [mix(PCOL.c7, 0.3), 'Acara peribadi', PCOL.c7]);
+    F(FR, 6.2); let lx = X; const ly = y + h + 3.6;
+    items.forEach(([c, t, b]) => { fill(c); draw(b); doc.setLineWidth(0.3); doc.roundedRect(lx, ly - 2.4, 3.6, 2.8, 0.6, 0.6, 'FD'); F(FR, 6.2, PP.ink); doc.text(t, lx + 4.8, ly); lx += 4.8 + tw(t) + 5; });
+    F(FR, 5.8, PP.muted); doc.text(`Nombor kecil = tarikh Hijri  ·  Muka surat ${pageNo}/${total}`, X + CW, ly, { align: 'right' });
+    return ly + 2.6;
+  }
+  function deskFooter() {
+    F(FR, 5.2, PP.muted);
+    doc.text('Sumber: Hari Kelepasan Am 2027 (JPM) · Tarikh Penting Islam 2027 (JAKIM) · Kalendar Akademik 2027 (KPM). Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.', W / 2, 291, { align: 'center' });
+  }
+  function deskMonth(m, x0, y0, w, h, big) {
+    const titleH = big ? 11 : 8.4, dayH = big ? 7 : 5.6, wkW = big ? 15 : 14;
+    const WE = '#D7DFDB', WEH = '#C9D3CE';
+    const cw = (w - wkW) / 7, gy = y0 + titleH + 0.7 + dayH, rowH = (y0 + h - gy) / 5;
+    // kad + jalur tajuk (gaya poster)
+    fill(PP.white); draw(PP.line); doc.setLineWidth(0.3); doc.roundedRect(x0, y0, w, h, 2.6, 2.6, 'FD');
+    clipRound(x0, y0, w, h, 2.6, () => {
+      const n = 40; for (let i = 0; i < n; i++) { fill(lerp(PP.brand, PP.brand2, i / (n - 1))); doc.rect(x0 + (w * i) / n, y0, w / n + 0.3, titleH, 'F'); }
+      op(0.08); doc.setLineWidth(0.25); draw('#FFFFFF');
+      for (let sx = x0 + w * 0.42; sx < x0 + w; sx += 9) star(sx, y0 + titleH / 2, titleH * 0.32, 'S');
+      op(1);
+      fill(PP.gold); doc.rect(x0, y0 + titleH, w, 0.7, 'F');
+    });
+    const r0 = big ? 3.3 : 2.6;
+    fill(PP.gold); doc.circle(x0 + 3.2 + r0, y0 + titleH / 2, r0, 'F');
+    F(FB, big ? 9.5 : 7.6, PP.brand); doc.text(pad(m), x0 + 3.2 + r0, y0 + titleH / 2 + (big ? 1.6 : 1.3), { align: 'center' });
+    const mname = MON[m - 1].toUpperCase();
+    F(FT, big ? 17 : 13, PP.white); doc.text(mname, x0 + 3.2 + 2 * r0 + 3, y0 + titleH / 2 + (big ? 2.2 : 1.7)); const mW = tw(mname);
+    F(FB, big ? 9 : 7.4, PP.goldL); doc.text('2027', x0 + 3.2 + 2 * r0 + 3 + mW + 3, y0 + titleH / 2 + (big ? 2 : 1.6));
+    F(FB, big ? 9 : 7.6, PP.goldL); doc.text(monthHijri(m).lat, x0 + w - 3, y0 + titleH / 2 + (big ? 1.7 : 1.4), { align: 'right' });
+    // baris hari
+    const dy = y0 + titleH + 0.7;
+    fill(PP.head); doc.rect(x0, dy, w, dayH, 'F');
+    F(FB, big ? 7 : 6.2, PP.muted); doc.text('MINGGU', x0 + wkW / 2, dy + dayH * 0.67, { align: 'center' });
+    dayOrder().forEach((i, c) => {
+      const weCol = fs ? (i === 4 || i === 5) : i >= 5;
+      if (weCol) { fill(WEH); doc.rect(x0 + wkW + c * cw, dy, cw, dayH, 'F'); }
+      F(FB, big ? 9.6 : 8.2, weCol ? PP.hol : PP.brand); doc.text(DAYS[i].toUpperCase(), x0 + wkW + c * cw + cw / 2, dy + dayH * 0.68, { align: 'center' });
+    });
+    for (let r = 0; r < 5; r++) { fill(PP.card); doc.rect(x0, gy + r * rowH, wkW, rowH, 'F'); F(FB, big ? 8.6 : 7.6, PP.brand); doc.text(`MINGGU ${r + 1}`, x0 + wkW / 2, gy + r * rowH + rowH / 2 + 1.2, { align: 'center' }); }
+    const off = colOf(key(2027, m, 1)), n = dim(2027, m), used = new Set();
+    for (let d = 1; d <= n; d++) {
+      let s = off + d - 1; if (s >= 35) s -= 35; used.add(s);
+      const cx = x0 + wkW + (s % 7) * cw, cy = gy + Math.floor(s / 7) * rowH;
+      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const fe = fillOf(info), we = isWeekend(k), isH = info.hol.length > 0, isS = S.layers.sch && info.sch, isI = S.layers.isl && info.isl.length;
+      const bg = fe ? mix(phex(fe.color), 0.24) : isH ? PP.holSoft : we ? WE : isI ? PP.islSoft : null;
+      if (bg) { fill(bg); doc.rect(cx, cy, cw, rowH, 'F'); }
+      if (isS) { fill(PP.sch); doc.rect(cx, cy, big ? 2 : 1.6, rowH, 'F'); }
+      if (isH) { fill(PP.hol); doc.triangle(cx + cw, cy, cx + cw - (big ? 3.4 : 2.6), cy, cx + cw, cy + (big ? 3.4 : 2.6), 'F'); }
+      const nx = cx + (isS ? (big ? 3.2 : 2.7) : (big ? 1.8 : 1.4)), by = cy + (big ? 7 : 5.2);
+      F(FB, big ? 19 : 14, isH ? PP.hol : isI ? PP.isl : PP.ink); doc.text(String(d), nx, by);
+      const nW = tw(String(d));
+      F(hj.d === 1 ? FB : FR, big ? 8.6 : 7, hj.d === 1 ? PP.isl : PP.muted); doc.text(`${hj.d} ${HM_S[hj.m]}`, nx + nW + 1.3, by);
+      const labs = [];
+      info.hol.forEach(x => labs.push([shortName(x.n), PP.holTxt]));
+      if (S.layers.isl) info.isl.forEach(x => labs.push([shortName(x.n), PP.isl]));
+      if (S.layers.mine) info.mine.forEach(e => { if (e.start === k || d === 1 || s % 7 === 0 || big) labs.push([e.title, rgb(phex(e.color)).map(v => Math.round(v * 0.7))]); });
+      if (isS && (s % 7 === 0 || d === 1 || !(idx[addDays(k, -1)] || {}).sch)) labs.push(['Cuti sekolah', [125, 98, 0]]);
+      const fz = big ? 8.4 : 7, lh = big ? 3.4 : 2.75, maxL = big ? 4 : 2, avail = cw - (nx - cx) - 1;
+      let li = 0;
+      for (const [t, c] of labs) {
+        F(FB, fz); const ls = doc.splitTextToSize(t, avail);
+        for (let j = 0; j < ls.length && li < maxL; j++) { const last = li === maxL - 1 && (j < ls.length - 1); F(FB, fz, c); doc.text(last ? clip1(ls[j] + '…', avail) : ls[j], nx, by + (big ? 4.2 : 3.4) + li * lh); li++; }
+        if (li >= maxL) break;
+      }
+    }
+    for (let s = 0; s < 35; s++) if (!used.has(s)) { fill('#F4F7F5'); doc.rect(x0 + wkW + (s % 7) * cw, gy + Math.floor(s / 7) * rowH, cw, rowH, 'F'); }
+    doc.setLineWidth(0.2); draw('#A9BAB2');
+    doc.line(x0 + wkW, dy, x0 + wkW, gy + 5 * rowH);
+    for (let c = 1; c < 7; c++) doc.line(x0 + wkW + c * cw, dy, x0 + wkW + c * cw, gy + 5 * rowH);
+    for (let r = 0; r < 5; r++) doc.line(x0, gy + r * rowH, x0 + w, gy + r * rowH);
+    doc.setLineWidth(0.3); draw(PP.line); doc.roundedRect(x0, y0, w, h, 2.6, 2.6, 'S');
+  }
+  if (variant === 4 || variant === 5) {
+    const per = variant === 4 ? 3 : 1, pages = 12 / per;
+    for (let pg = 0; pg < pages; pg++) {
+      if (pg) doc.addPage();
+      let y = deskHeader(pg + 1, pages);
+      const bottom = 287.5;
+      if (per === 3) {
+        const gap = 3.6, mh = (bottom - y - 2 * gap) / 3;
+        for (let i = 0; i < 3; i++) deskMonth(pg * 3 + i + 1, X - 2, y + i * (mh + gap), CW + 4, mh, false);
+      } else {
+        const notesH = 26, mh = bottom - y - notesH - 3;
+        deskMonth(pg + 1, X - 2, y, CW + 4, mh, true);
+        const ny = y + mh + 3;
+        fill(PP.card); draw('#A9BAB2'); doc.setLineWidth(0.25); doc.roundedRect(X - 2, ny, CW + 4, notesH, 1.5, 1.5, 'FD');
+        F(FB, 7.6, PP.brand); doc.text('CATATAN', X + 1, ny + 4.6);
+        doc.setLineWidth(0.15); draw('#C3D0CA');
+        for (let ln = 1; ln <= 3; ln++) doc.line(X + 1, ny + 4.6 + ln * 6.6, X + CW - 1, ny + 4.6 + ln * 6.6);
+      }
+      deskFooter();
+    }
+    return doc;
+  }
+
+
 
   if (variant === 1) {
     frame();
@@ -1668,7 +1795,7 @@ async function toA3(a4bytes) {
   return new Blob([await out.save()], { type: 'application/pdf' });
 }
 
-document.querySelectorAll('input[name="pstyle"]').forEach(r => r.addEventListener('change', () => { $('#addlist-wrap').hidden = document.querySelector('input[name="pstyle"]:checked').value === 'list'; }));
+document.querySelectorAll('input[name="pstyle"]').forEach(r => r.addEventListener('change', () => { $('#addlist-wrap').hidden = !document.querySelector('input[name="pstyle"]:checked').value.startsWith('poster'); }));
 $('#b-pdf').addEventListener('click', () => {
   const box = $('#pdfbox'); box.hidden = !box.hidden;
   $('#b-pdf').setAttribute('aria-expanded', String(!box.hidden));
@@ -1681,12 +1808,12 @@ $('#b-pdf-go').addEventListener('click', async () => {
   try {
     if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
     const withList = !!document.getElementById('p-addlist')?.checked;
-    const doc = style === 'poster1' ? await buildPoster(1, withList) : style === 'poster' ? await buildPoster(2, withList) : await buildPoster(3);
+    const doc = style === 'poster1' ? await buildPoster(1, withList) : style === 'poster' ? await buildPoster(2, withList) : style === 'desk3' ? await buildPoster(4) : style === 'desk1' ? await buildPoster(5) : await buildPoster(3);
     doc.setProperties({ title: cfgTitle(), creator: 'Takwim 2027' });
     let blob = doc.output('blob');
     if (size === 'a3') { try { blob = await toA3(doc.output('arraybuffer')); } catch (e) { console.error(e); tmsg('Saiz A3 tidak dapat disediakan, PDF A4 dimuat turun. Ia boleh dicetak pada A3 dengan pilihan "Fit to page".', true); } }
     const base = cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || 'Takwim-2027';
-    const r = await saveFile(`${base}-${S.state}-${(style === 'poster1' ? 'Poster-Klasik' : style === 'poster' ? 'Poster-Moden' : 'Senarai-Tarikh-Penting') + (withList && style !== 'list' ? '-dan-Senarai' : '')}-${size.toUpperCase()}.pdf`, blob, `PDF ${size.toUpperCase()} sedia. Buka fail itu dan cetak pada kertas ${size.toUpperCase()} (skala 100% / Actual size).`);
+    const r = await saveFile(`${base}-${S.state}-${({ poster1: 'Poster-Klasik', poster: 'Poster-Moden', list: 'Senarai-Tarikh-Penting', desk3: 'Meja-Kerja-3-Bulan', desk1: 'Meja-Kerja-1-Bulan' }[style] || 'Takwim') + (withList && style.startsWith('poster') ? '-dan-Senarai' : '')}-${size.toUpperCase()}.pdf`, blob, `PDF ${size.toUpperCase()} sedia. Buka fail itu dan cetak pada kertas ${size.toUpperCase()} (skala 100% / Actual size).`);
     if (r === null) tmsg('Muat turun tidak tersedia dalam paparan ini. Buka halaman ini dalam aplikasi Claude atau pelayar dan cuba lagi.', true);
   } catch (e) { console.error(e); tmsg('PDF tidak dapat disediakan. Semak sambungan internet dan cuba lagi.', true); }
   finally { b.disabled = false; }
