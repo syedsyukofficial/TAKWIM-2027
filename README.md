@@ -8,6 +8,7 @@ Takwim interaktif dalam satu fail (`index.html`):
 - Hujung minggu ikut negeri (Kedah, Kelantan dan Terengganu: Jumaat–Sabtu)
 - Acara peribadi dengan kotak berwarna
 - Eksport ke Google Calendar
+- Muat turun Excel (.xlsx) gaya takwim JPPS, 3 bulan sehalaman: boleh dibuka dalam Microsoft Excel, Google Sheets dan WPS Office
 - Cetak PDF: Poster satu muka surat (Klasik: ringkasan cuti di bawah bulan · Moden: cuti tertera dalam petak tarikh), serta Senarai Tarikh Penting (boleh dicetak sendiri atau sebagai muka surat kedua), dan Takwim Meja Kerja (3 bulan atau 1 bulan sehalaman, dengan ruang menulis), saiz A4 atau A3
 - Paparan **Hari Ini**: tarikh hari ini (Masihi, Hijri dan tulisan Arab) dan senarai tarikh akan datang
 - Boleh dipasang di telefon sebagai aplikasi (PWA), dan boleh dibuka tanpa internet
@@ -54,7 +55,7 @@ Pada tahap ini takwim sudah boleh digunakan. Acara disimpan dalam pelayar setiap
 
 Selepas dibuka sekali dengan internet, aplikasi boleh dibuka tanpa internet.
 
-**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v15';` kepada `v16`, `v17` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
+**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v16';` kepada `v17`, `v18` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
 
 ---
 
