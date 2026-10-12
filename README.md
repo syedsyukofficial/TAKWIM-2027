@@ -8,7 +8,7 @@ Takwim interaktif dalam satu fail (`index.html`):
 - Hujung minggu ikut negeri (Kedah, Kelantan dan Terengganu: Jumaat–Sabtu)
 - Acara peribadi dengan kotak berwarna
 - Eksport ke Google Calendar
-- Cetak PDF A4
+- Cetak PDF: Poster satu muka surat (Klasik: ringkasan cuti di bawah bulan · Moden: cuti tertera dalam petak tarikh) atau Terperinci, saiz A4 atau A3
 - Paparan **Hari Ini**: tarikh hari ini (Masihi, Hijri dan tulisan Arab) dan senarai tarikh akan datang
 - Boleh dipasang di telefon sebagai aplikasi (PWA), dan boleh dibuka tanpa internet
 
@@ -54,7 +54,7 @@ Pada tahap ini takwim sudah boleh digunakan. Acara disimpan dalam pelayar setiap
 
 Selepas dibuka sekali dengan internet, aplikasi boleh dibuka tanpa internet.
 
-**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v3';` kepada `v4`, `v5` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
+**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v11';` kepada `v12`, `v13` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
 
 ---
 
