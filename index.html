@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Takwim 2027 Malaysia</title>
-<meta name="description" content="Takwim 2027 / 1448–1449H: cuti umum setiap negeri, cuti sekolah, tarikh Islam dan acara peribadi.">
+<title>Takwim Malaysia 2026–2027</title>
+<meta name="description" content="Takwim Malaysia 2026–2027 / 1447–1449H: cuti umum setiap negeri, cuti sekolah, tarikh Islam dan acara peribadi.">
 <meta name="theme-color" content="#1F4E3D">
 <link rel="icon" type="image/png" href="icons/favicon-64.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Takwim 2027">
+<meta name="apple-mobile-web-app-title" content="Takwim">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +48,8 @@ button { cursor: pointer; }
 .top-in { max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 .brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; min-width: 0; flex-wrap: wrap; }
 .brand .bt { min-width: 0; }
+.yseg button { padding: 8px 13px; font-family: var(--f-num); font-size: 15px; font-weight: 800; letter-spacing: .02em; }
+.yseg button[aria-pressed="true"] { background: var(--gold); color: var(--brand); }
 .editt { align-self: center; font-size: 12px; color: var(--brand); border-color: var(--gold); background: #FFFBEE; }
 .brand h1 { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 0; letter-spacing: .2px; color: var(--brand); }
 .brand h1 b { color: var(--gold); font-weight: 700; }
@@ -321,7 +323,14 @@ form.f label.chk input { width: auto; }
     <div class="brand">
       <h1 id="apptitle">Takwim <b>2027</b></h1>
       <button class="btn sm editt" id="b-edit-title" title="Tukar nama &amp; maklumat takwim">✎ Tukar nama</button>
-      <span class="ar" lang="ar">١٤٤٨ – ١٤٤٩ هـ</span>
+      <span class="ar" lang="ar" id="hyar">١٤٤٨ – ١٤٤٩ هـ</span>
+    </div>
+    <div class="ctl">
+      <span class="lbl" id="ylbl">Tahun</span>
+      <div class="seg yseg" role="group" aria-labelledby="ylbl">
+        <button data-y="2026" aria-pressed="false">2026</button>
+        <button data-y="2027" aria-pressed="false">2027</button>
+      </div>
     </div>
     <button class="btn pri" id="b-install" hidden>⤓ Pasang aplikasi</button>
     <div class="ctl">
@@ -437,11 +446,19 @@ form.f label.chk input { width: auto; }
       </div>
     </aside>
   </div>
-  <p class="foot">Sumber: Jadual Hari Kelepasan Am Persekutuan &amp; Negeri 2027 (Jabatan Perdana Menteri), Tarikh-Tarikh Penting Dalam Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri dikira mengikut kriteria imkanur rukyah MABIMS dan sepadan dengan senarai JAKIM. Aidilfitri, Aidiladha &amp; Deepavali tertakluk kepada perubahan; 1 Ramadan, 1 Syawal &amp; 10 Zulhijjah tertakluk pengisytiharan Penyimpan Mohor Besar Raja-Raja. Cuti ganti (termasuk *8 Jun) tertakluk pengumuman rasmi kerajaan negeri.</p>
+  <p class="foot" id="foot">Sumber: Jadual Hari Kelepasan Am Persekutuan &amp; Negeri 2027 (Jabatan Perdana Menteri), Tarikh-Tarikh Penting Dalam Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri dikira mengikut kriteria imkanur rukyah MABIMS dan sepadan dengan senarai JAKIM. Aidilfitri, Aidiladha &amp; Deepavali tertakluk kepada perubahan; 1 Ramadan, 1 Syawal &amp; 10 Zulhijjah tertakluk pengisytiharan Penyimpan Mohor Besar Raja-Raja. Cuti ganti (termasuk *8 Jun) tertakluk pengumuman rasmi kerajaan negeri.</p>
 </div>
 
 <script>
-const DATA = {"states":[["JHR","Johor"],["KDH","Kedah"],["KTN","Kelantan"],["MLK","Melaka"],["NSN","Negeri Sembilan"],["PHG","Pahang"],["PRK","Perak"],["PLS","Perlis"],["PNG","Pulau Pinang"],["SBH","Sabah"],["SWK","Sarawak"],["SGR","Selangor"],["TRG","Terengganu"],["KUL","WP Kuala Lumpur"],["LBN","WP Labuan"],["PJY","WP Putrajaya"]],"weekendFriSat":["KDH","KTN","TRG"],"groupA":["KDH","KTN","TRG"],"hol":[{"d":"2027-01-01","n":"Tahun Baharu","t":"N","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PNG","SBH","SWK","SGR"]},{"d":"2027-01-06","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-01-14","n":"Hari Keputeraan YDP Besar Negeri Sembilan","t":"N","s":["NSN"]},{"d":"2027-01-22","n":"Hari Thaipusam","t":"N","s":["KUL","PJY","JHR","NSN","PRK","PNG","SGR"]},{"d":"2027-02-01","n":"Hari Wilayah Persekutuan","t":"N","s":["KUL","LBN","PJY"]},{"d":"2027-02-06","n":"Tahun Baharu Cina","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-07","n":"Tahun Baharu Cina (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-08","n":"Awal Ramadan","t":"N","s":["JHR","KDH"]},{"d":"2027-02-08","n":"Cuti Ganti Tahun Baharu Cina","t":"G","s":["KUL","LBN","PJY","JHR","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-20","n":"Hari Pengisytiharan Tarikh Kemerdekaan","t":"N","s":["MLK"]},{"d":"2027-02-24","n":"Hari Nuzul Al-Quran","t":"N","s":["KUL","LBN","PJY","KTN","PHG","PRK","PLS","PNG","SGR","TRG"]},{"d":"2027-03-04","n":"Ulang Tahun Pertabalan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-03-10","n":"Hari Raya Aidilfitri","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-11","n":"Hari Raya Aidilfitri (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-12","n":"Hari Raya Aidilfitri (Hari Ketiga)","t":"N","s":["MLK"]},{"d":"2027-03-23","n":"Hari Keputeraan Sultan Johor","t":"N","s":["JHR"]},{"d":"2027-03-26","n":"Good Friday","t":"N","s":["SBH","SWK"]},{"d":"2027-03-30","n":"Hari Jadi Yang di-Pertua Negeri Sabah","t":"N","s":["SBH"]},{"d":"2027-04-26","n":"Hari Keputeraan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-05-01","n":"Hari Pekerja","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-02","n":"Cuti Ganti Hari Pekerja","t":"G","s":["KTN","TRG"]},{"d":"2027-05-16","n":"Hari Arafah","t":"N","s":["KTN","TRG"]},{"d":"2027-05-17","n":"Hari Raya Aidiladha","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-17","n":"Ulang Tahun Keputeraan Raja Perlis","t":"N","s":["PLS"]},{"d":"2027-05-18","n":"Hari Raya Aidiladha (Hari Kedua)","t":"N","s":["KDH","KTN","PLS","TRG"]},{"d":"2027-05-20","n":"Hari Wesak","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-22","n":"Hari Hol Almarhum Sultan Ahmad Shah","t":"N","s":["PHG"]},{"d":"2027-05-30","n":"Pesta Kaamatan","t":"N","s":["LBN","SBH"]},{"d":"2027-05-31","n":"Pesta Kaamatan (Hari Kedua)","t":"N","s":["LBN","SBH"]},{"d":"2027-06-01","n":"Hari Gawai Dayak","t":"N","s":["SWK"]},{"d":"2027-06-02","n":"Hari Gawai Dayak (Hari Kedua)","t":"N","s":["SWK"]},{"d":"2027-06-06","n":"Awal Muharram (Maal Hijrah)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-07","n":"Hari Keputeraan YDP Agong","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-08","n":"Cuti Ganti Awal Muharram*","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-06-20","n":"Hari Keputeraan Sultan Kedah","t":"N","s":["KDH"]},{"d":"2027-07-07","n":"Hari Tapak Warisan Dunia George Town","t":"N","s":["PNG"]},{"d":"2027-07-10","n":"Hari Jadi Yang di-Pertua Negeri Pulau Pinang","t":"N","s":["PNG"]},{"d":"2027-07-11","n":"Hari Hol Almarhum Sultan Iskandar","t":"N","s":["JHR"]},{"d":"2027-07-22","n":"Hari Kemerdekaan Sarawak","t":"N","s":["SWK"]},{"d":"2027-07-30","n":"Hari Keputeraan Sultan Pahang","t":"N","s":["PHG"]},{"d":"2027-08-15","n":"Maulidur Rasul","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-08-16","n":"Cuti Ganti Maulidur Rasul","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-08-24","n":"Hari Jadi Yang di-Pertua Negeri Melaka","t":"N","s":["MLK"]},{"d":"2027-08-31","n":"Hari Kebangsaan","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-16","n":"Hari Malaysia","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-29","n":"Hari Keputeraan Sultan Kelantan","t":"N","s":["KTN"]},{"d":"2027-09-30","n":"Hari Keputeraan Sultan Kelantan (Hari Kedua)","t":"N","s":["KTN"]},{"d":"2027-10-09","n":"Hari Jadi Yang di-Pertua Negeri Sarawak","t":"N","s":["SWK"]},{"d":"2027-10-28","n":"Hari Deepavali","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR","TRG"]},{"d":"2027-11-05","n":"Hari Keputeraan Sultan Perak","t":"N","s":["PRK"]},{"d":"2027-12-11","n":"Hari Keputeraan Sultan Selangor","t":"N","s":["SGR"]},{"d":"2027-12-24","n":"Christmas Eve","t":"N","s":["SBH"]},{"d":"2027-12-25","n":"Hari Krismas","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-12-26","n":"Cuti Ganti Hari Krismas","t":"G","s":["KTN","TRG"]},{"d":"2027-12-26","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-12-27","n":"Cuti Ganti Israk dan Mikraj","t":"G","s":["NSN","PLS"]}],"isl":[{"d":"2027-01-06","n":"Israk dan Mikraj"},{"d":"2027-01-23","n":"Nisfu Syaaban"},{"d":"2027-02-08","n":"Awal Ramadan"},{"d":"2027-02-24","n":"Nuzul Al-Quran"},{"d":"2027-03-10","n":"Aidilfitri"},{"d":"2027-05-08","n":"Awal Zulhijjah"},{"d":"2027-05-16","n":"Hari Arafah"},{"d":"2027-05-17","n":"Aidiladha"},{"d":"2027-06-06","n":"Awal Muharram 1449H"},{"d":"2027-06-15","n":"Hari Asyura"},{"d":"2027-08-15","n":"Maulidur Rasul"},{"d":"2027-12-26","n":"Israk dan Mikraj"}],"sch":{"A":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-13","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-05","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-16","b":"2027-06-05","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-27","b":"2027-09-04","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-30","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-03","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"B":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-14","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-06","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-15","b":"2027-06-06","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-28","b":"2027-09-05","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-31","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-04","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"SWK":[{"a":"2027-10-28","b":"2027-10-28","n":"Cuti tambahan KPM (Deepavali)"}]},"hs":[["2026-12-11",6,1448],["2027-01-09",7,1448],["2027-02-08",8,1448],["2027-03-10",9,1448],["2027-04-08",10,1448],["2027-05-08",11,1448],["2027-06-06",0,1449],["2027-07-06",1,1449],["2027-08-04",2,1449],["2027-09-02",3,1449],["2027-10-02",4,1449],["2027-10-31",5,1449],["2027-11-30",6,1449],["2027-12-29",7,1449],["2028-01-28",8,1449],["2028-02-27",9,1449]]};
+const DATA27 = {"states":[["JHR","Johor"],["KDH","Kedah"],["KTN","Kelantan"],["MLK","Melaka"],["NSN","Negeri Sembilan"],["PHG","Pahang"],["PRK","Perak"],["PLS","Perlis"],["PNG","Pulau Pinang"],["SBH","Sabah"],["SWK","Sarawak"],["SGR","Selangor"],["TRG","Terengganu"],["KUL","WP Kuala Lumpur"],["LBN","WP Labuan"],["PJY","WP Putrajaya"]],"weekendFriSat":["KDH","KTN","TRG"],"groupA":["KDH","KTN","TRG"],"hol":[{"d":"2027-01-01","n":"Tahun Baharu","t":"N","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PNG","SBH","SWK","SGR"]},{"d":"2027-01-06","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-01-14","n":"Hari Keputeraan YDP Besar Negeri Sembilan","t":"N","s":["NSN"]},{"d":"2027-01-22","n":"Hari Thaipusam","t":"N","s":["KUL","PJY","JHR","NSN","PRK","PNG","SGR"]},{"d":"2027-02-01","n":"Hari Wilayah Persekutuan","t":"N","s":["KUL","LBN","PJY"]},{"d":"2027-02-06","n":"Tahun Baharu Cina","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-07","n":"Tahun Baharu Cina (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-08","n":"Awal Ramadan","t":"N","s":["JHR","KDH"]},{"d":"2027-02-08","n":"Cuti Ganti Tahun Baharu Cina","t":"G","s":["KUL","LBN","PJY","JHR","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-02-20","n":"Hari Pengisytiharan Tarikh Kemerdekaan","t":"N","s":["MLK"]},{"d":"2027-02-24","n":"Hari Nuzul Al-Quran","t":"N","s":["KUL","LBN","PJY","KTN","PHG","PRK","PLS","PNG","SGR","TRG"]},{"d":"2027-03-04","n":"Ulang Tahun Pertabalan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-03-10","n":"Hari Raya Aidilfitri","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-11","n":"Hari Raya Aidilfitri (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-03-12","n":"Hari Raya Aidilfitri (Hari Ketiga)","t":"N","s":["MLK"]},{"d":"2027-03-23","n":"Hari Keputeraan Sultan Johor","t":"N","s":["JHR"]},{"d":"2027-03-26","n":"Good Friday","t":"N","s":["SBH","SWK"]},{"d":"2027-03-30","n":"Hari Jadi Yang di-Pertua Negeri Sabah","t":"N","s":["SBH"]},{"d":"2027-04-26","n":"Hari Keputeraan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2027-05-01","n":"Hari Pekerja","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-02","n":"Cuti Ganti Hari Pekerja","t":"G","s":["KTN","TRG"]},{"d":"2027-05-16","n":"Hari Arafah","t":"N","s":["KTN","TRG"]},{"d":"2027-05-17","n":"Hari Raya Aidiladha","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-17","n":"Ulang Tahun Keputeraan Raja Perlis","t":"N","s":["PLS"]},{"d":"2027-05-18","n":"Hari Raya Aidiladha (Hari Kedua)","t":"N","s":["KDH","KTN","PLS","TRG"]},{"d":"2027-05-20","n":"Hari Wesak","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-05-22","n":"Hari Hol Almarhum Sultan Ahmad Shah","t":"N","s":["PHG"]},{"d":"2027-05-30","n":"Pesta Kaamatan","t":"N","s":["LBN","SBH"]},{"d":"2027-05-31","n":"Pesta Kaamatan (Hari Kedua)","t":"N","s":["LBN","SBH"]},{"d":"2027-06-01","n":"Hari Gawai Dayak","t":"N","s":["SWK"]},{"d":"2027-06-02","n":"Hari Gawai Dayak (Hari Kedua)","t":"N","s":["SWK"]},{"d":"2027-06-06","n":"Awal Muharram (Maal Hijrah)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-07","n":"Hari Keputeraan YDP Agong","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-06-08","n":"Cuti Ganti Awal Muharram*","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-06-20","n":"Hari Keputeraan Sultan Kedah","t":"N","s":["KDH"]},{"d":"2027-07-07","n":"Hari Tapak Warisan Dunia George Town","t":"N","s":["PNG"]},{"d":"2027-07-10","n":"Hari Jadi Yang di-Pertua Negeri Pulau Pinang","t":"N","s":["PNG"]},{"d":"2027-07-11","n":"Hari Hol Almarhum Sultan Iskandar","t":"N","s":["JHR"]},{"d":"2027-07-22","n":"Hari Kemerdekaan Sarawak","t":"N","s":["SWK"]},{"d":"2027-07-30","n":"Hari Keputeraan Sultan Pahang","t":"N","s":["PHG"]},{"d":"2027-08-15","n":"Maulidur Rasul","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-08-16","n":"Cuti Ganti Maulidur Rasul","t":"G","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR"]},{"d":"2027-08-24","n":"Hari Jadi Yang di-Pertua Negeri Melaka","t":"N","s":["MLK"]},{"d":"2027-08-31","n":"Hari Kebangsaan","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-16","n":"Hari Malaysia","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-09-29","n":"Hari Keputeraan Sultan Kelantan","t":"N","s":["KTN"]},{"d":"2027-09-30","n":"Hari Keputeraan Sultan Kelantan (Hari Kedua)","t":"N","s":["KTN"]},{"d":"2027-10-09","n":"Hari Jadi Yang di-Pertua Negeri Sarawak","t":"N","s":["SWK"]},{"d":"2027-10-28","n":"Hari Deepavali","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR","TRG"]},{"d":"2027-11-05","n":"Hari Keputeraan Sultan Perak","t":"N","s":["PRK"]},{"d":"2027-12-11","n":"Hari Keputeraan Sultan Selangor","t":"N","s":["SGR"]},{"d":"2027-12-24","n":"Christmas Eve","t":"N","s":["SBH"]},{"d":"2027-12-25","n":"Hari Krismas","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2027-12-26","n":"Cuti Ganti Hari Krismas","t":"G","s":["KTN","TRG"]},{"d":"2027-12-26","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2027-12-27","n":"Cuti Ganti Israk dan Mikraj","t":"G","s":["NSN","PLS"]}],"isl":[{"d":"2027-01-06","n":"Israk dan Mikraj"},{"d":"2027-01-23","n":"Nisfu Syaaban"},{"d":"2027-02-08","n":"Awal Ramadan"},{"d":"2027-02-24","n":"Nuzul Al-Quran"},{"d":"2027-03-10","n":"Aidilfitri"},{"d":"2027-05-08","n":"Awal Zulhijjah"},{"d":"2027-05-16","n":"Hari Arafah"},{"d":"2027-05-17","n":"Aidiladha"},{"d":"2027-06-06","n":"Awal Muharram 1449H"},{"d":"2027-06-15","n":"Hari Asyura"},{"d":"2027-08-15","n":"Maulidur Rasul"},{"d":"2027-12-26","n":"Israk dan Mikraj"}],"sch":{"A":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-13","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-05","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-16","b":"2027-06-05","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-27","b":"2027-09-04","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-30","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-03","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"B":[{"a":"2027-01-01","b":"2027-01-03","n":"Sambungan Cuti Akhir Tahun 2026"},{"a":"2027-02-05","b":"2027-02-14","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2027-03-06","b":"2027-03-14","n":"Cuti Penggal 1 + Aidilfitri"},{"a":"2027-05-15","b":"2027-06-06","n":"Cuti Aidiladha, Wesak & Pertengahan Tahun"},{"a":"2027-08-28","b":"2027-09-05","n":"Cuti Penggal 2"},{"a":"2027-10-27","b":"2027-10-31","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2027-12-04","b":"2027-12-31","n":"Cuti Akhir Persekolahan"}],"SWK":[{"a":"2027-10-28","b":"2027-10-28","n":"Cuti tambahan KPM (Deepavali)"}]},"hs":[["2025-12-22",6,1447],["2026-01-20",7,1447],["2026-02-19",8,1447],["2026-03-21",9,1447],["2026-04-19",10,1447],["2026-05-18",11,1447],["2026-06-17",0,1448],["2026-07-16",1,1448],["2026-08-14",2,1448],["2026-09-13",3,1448],["2026-10-12",4,1448],["2026-11-11",5,1448],["2026-12-11",6,1448],["2027-01-09",7,1448],["2027-02-08",8,1448],["2027-03-10",9,1448],["2027-04-08",10,1448],["2027-05-08",11,1448],["2027-06-06",0,1449],["2027-07-06",1,1449],["2027-08-04",2,1449],["2027-09-02",3,1449],["2027-10-02",4,1449],["2027-10-31",5,1449],["2027-11-30",6,1449],["2027-12-29",7,1449],["2028-01-28",8,1449],["2028-02-27",9,1449]]};
+const DATA26 = {"states":[["JHR","Johor"],["KDH","Kedah"],["KTN","Kelantan"],["MLK","Melaka"],["NSN","Negeri Sembilan"],["PHG","Pahang"],["PRK","Perak"],["PLS","Perlis"],["PNG","Pulau Pinang"],["SBH","Sabah"],["SWK","Sarawak"],["SGR","Selangor"],["TRG","Terengganu"],["KUL","WP Kuala Lumpur"],["LBN","WP Labuan"],["PJY","WP Putrajaya"]],"weekendFriSat":["KDH","KTN","TRG"],"groupA":["KDH","KTN","TRG"],"hol":[{"d":"2026-01-01","n":"Tahun Baharu","t":"N","s":["KUL","LBN","PJY","MLK","NSN","PHG","PRK","PNG","SBH","SWK","SGR"]},{"d":"2026-01-14","n":"Hari Keputeraan YDP Besar Negeri Sembilan","t":"N","s":["NSN"]},{"d":"2026-01-17","n":"Israk dan Mikraj","t":"N","s":["KDH","NSN","PLS","TRG"]},{"d":"2026-01-18","n":"Cuti Ganti Israk dan Mikraj","t":"G","s":["TRG"]},{"d":"2026-02-01","n":"Hari Wilayah Persekutuan","t":"N","s":["KUL","LBN","PJY"]},{"d":"2026-02-01","n":"Hari Thaipusam","t":"N","s":["KUL","PJY","JHR","NSN","PRK","PNG","SGR"]},{"d":"2026-02-02","n":"Cuti Ganti Hari Wilayah / Thaipusam","t":"G","s":["KUL","LBN","PJY","JHR","NSN","PRK","PNG","SGR"]},{"d":"2026-02-17","n":"Tahun Baharu Cina","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-02-18","n":"Tahun Baharu Cina (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-02-19","n":"Awal Ramadan","t":"N","s":["JHR","KDH"]},{"d":"2026-02-20","n":"Hari Pengisytiharan Tarikh Kemerdekaan","t":"N","s":["MLK"]},{"d":"2026-03-04","n":"Ulang Tahun Pertabalan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2026-03-07","n":"Hari Nuzul Al-Quran","t":"N","s":["KUL","LBN","PJY","KTN","PHG","PRK","PLS","PNG","SGR","TRG"]},{"d":"2026-03-08","n":"Cuti Ganti Nuzul Al-Quran","t":"G","s":["KTN","TRG"]},{"d":"2026-03-21","n":"Hari Raya Aidilfitri","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-03-22","n":"Hari Raya Aidilfitri (Hari Kedua)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-03-23","n":"Cuti Ganti Hari Raya Aidilfitri","t":"G","s":["KUL","LBN","PJY","JHR","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-03-23","n":"Hari Raya Aidilfitri (Hari Ketiga)","t":"N","s":["MLK"]},{"d":"2026-03-23","n":"Hari Keputeraan Sultan Johor","t":"N","s":["JHR"]},{"d":"2026-03-24","n":"Cuti Ganti Hari Raya Aidilfitri*","t":"G","s":["JHR","MLK"]},{"d":"2026-03-30","n":"Hari Jadi Yang di-Pertua Negeri Sabah","t":"N","s":["SBH"]},{"d":"2026-04-03","n":"Good Friday","t":"N","s":["SBH","SWK"]},{"d":"2026-04-26","n":"Hari Keputeraan Sultan Terengganu","t":"N","s":["TRG"]},{"d":"2026-05-01","n":"Hari Pekerja","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-05-03","n":"Cuti Ganti Hari Pekerja","t":"G","s":["KDH"]},{"d":"2026-05-17","n":"Ulang Tahun Keputeraan Raja Perlis","t":"N","s":["PLS"]},{"d":"2026-05-18","n":"Cuti Ganti Keputeraan Raja Perlis","t":"G","s":["PLS"]},{"d":"2026-05-22","n":"Hari Hol Almarhum Sultan Ahmad Shah","t":"N","s":["PHG"]},{"d":"2026-05-26","n":"Hari Arafah","t":"N","s":["KTN","TRG"]},{"d":"2026-05-27","n":"Hari Raya Aidiladha","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-05-28","n":"Hari Raya Aidiladha (Hari Kedua)","t":"N","s":["KDH","KTN","PLS","TRG"]},{"d":"2026-05-30","n":"Pesta Kaamatan","t":"N","s":["LBN","SBH"]},{"d":"2026-05-31","n":"Pesta Kaamatan (Hari Kedua)","t":"N","s":["LBN","SBH"]},{"d":"2026-05-31","n":"Hari Wesak","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-06-01","n":"Hari Keputeraan YDP Agong","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-06-01","n":"Hari Gawai Dayak","t":"N","s":["SWK"]},{"d":"2026-06-02","n":"Hari Gawai Dayak (Hari Kedua)","t":"N","s":["SWK"]},{"d":"2026-06-02","n":"Cuti Ganti Hari Wesak","t":"G","s":["KUL","LBN","PJY","JHR","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR"]},{"d":"2026-06-03","n":"Cuti Ganti Hari Wesak","t":"G","s":["SWK"]},{"d":"2026-06-03","n":"Cuti Ganti Pesta Kaamatan*","t":"G","s":["LBN","SBH"]},{"d":"2026-06-04","n":"Cuti Ganti Hari Keputeraan YDP Agong","t":"G","s":["SWK"]},{"d":"2026-06-17","n":"Awal Muharram (Maal Hijrah)","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-06-21","n":"Hari Keputeraan Sultan Kedah","t":"N","s":["KDH"]},{"d":"2026-07-07","n":"Hari Tapak Warisan Dunia George Town","t":"N","s":["PNG"]},{"d":"2026-07-11","n":"Hari Jadi Yang di-Pertua Negeri Pulau Pinang","t":"N","s":["PNG"]},{"d":"2026-07-21","n":"Hari Hol Almarhum Sultan Iskandar","t":"N","s":["JHR"]},{"d":"2026-07-22","n":"Hari Kemerdekaan Sarawak","t":"N","s":["SWK"]},{"d":"2026-07-31","n":"Hari Keputeraan Sultan Pahang","t":"N","s":["PHG"]},{"d":"2026-08-24","n":"Hari Jadi Yang di-Pertua Negeri Melaka","t":"N","s":["MLK"]},{"d":"2026-08-25","n":"Maulidur Rasul","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-08-31","n":"Hari Kebangsaan","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-09-16","n":"Hari Malaysia","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-09-29","n":"Hari Keputeraan Sultan Kelantan","t":"N","s":["KTN"]},{"d":"2026-09-30","n":"Hari Keputeraan Sultan Kelantan (Hari Kedua)","t":"N","s":["KTN"]},{"d":"2026-10-10","n":"Hari Jadi Yang di-Pertua Negeri Sarawak","t":"N","s":["SWK"]},{"d":"2026-11-06","n":"Hari Keputeraan Sultan Perak","t":"N","s":["PRK"]},{"d":"2026-11-08","n":"Hari Deepavali","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR","TRG"]},{"d":"2026-11-09","n":"Cuti Ganti Hari Deepavali","t":"G","s":["KUL","LBN","PJY","JHR","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SGR"]},{"d":"2026-12-11","n":"Hari Keputeraan Sultan Selangor","t":"N","s":["SGR"]},{"d":"2026-12-24","n":"Christmas Eve","t":"N","s":["SBH"]},{"d":"2026-12-25","n":"Hari Krismas","t":"P","s":["KUL","LBN","PJY","JHR","KDH","KTN","MLK","NSN","PHG","PRK","PLS","PNG","SBH","SWK","SGR","TRG"]},{"d":"2026-12-27","n":"Cuti Ganti Hari Krismas","t":"G","s":["KDH"]}],"isl":[{"d":"2026-01-17","n":"Israk dan Mikraj"},{"d":"2026-02-03","n":"Nisfu Syaaban"},{"d":"2026-02-19","n":"Awal Ramadan"},{"d":"2026-03-07","n":"Nuzul Al-Quran"},{"d":"2026-03-21","n":"Aidilfitri"},{"d":"2026-05-18","n":"Awal Zulhijjah"},{"d":"2026-05-26","n":"Hari Arafah"},{"d":"2026-05-27","n":"Aidiladha"},{"d":"2026-06-17","n":"Awal Muharram 1448H"},{"d":"2026-06-26","n":"Hari Asyura"},{"d":"2026-08-25","n":"Maulidur Rasul"}],"sch":{"A":[{"a":"2026-01-01","b":"2026-01-10","n":"Sambungan Cuti Akhir Tahun 2025"},{"a":"2026-02-13","b":"2026-02-21","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2026-03-19","b":"2026-03-28","n":"Cuti Penggal 1 + Aidilfitri (termasuk cuti tambahan KPM)"},{"a":"2026-05-22","b":"2026-06-06","n":"Cuti Pertengahan Tahun (termasuk Aidiladha & Wesak)"},{"a":"2026-08-28","b":"2026-09-05","n":"Cuti Penggal 2"},{"a":"2026-11-06","b":"2026-11-09","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2026-12-04","b":"2026-12-31","n":"Cuti Akhir Persekolahan"}],"B":[{"a":"2026-01-01","b":"2026-01-11","n":"Sambungan Cuti Akhir Tahun 2025"},{"a":"2026-02-14","b":"2026-02-22","n":"Cuti Tahun Baharu Cina (termasuk cuti tambahan KPM)"},{"a":"2026-03-19","b":"2026-03-29","n":"Cuti Penggal 1 + Aidilfitri (termasuk cuti tambahan KPM)"},{"a":"2026-05-23","b":"2026-06-07","n":"Cuti Pertengahan Tahun (termasuk Aidiladha & Wesak)"},{"a":"2026-08-29","b":"2026-09-06","n":"Cuti Penggal 2"},{"a":"2026-11-07","b":"2026-11-10","n":"Cuti Deepavali (termasuk cuti tambahan KPM)"},{"a":"2026-12-05","b":"2026-12-31","n":"Cuti Akhir Persekolahan"}],"SWK":[{"a":"2026-11-09","b":"2026-11-09","n":"Cuti peruntukan KPM (Deepavali)"}]},"hs":[["2025-12-22",6,1447],["2026-01-20",7,1447],["2026-02-19",8,1447],["2026-03-21",9,1447],["2026-04-19",10,1447],["2026-05-18",11,1447],["2026-06-17",0,1448],["2026-07-16",1,1448],["2026-08-14",2,1448],["2026-09-13",3,1448],["2026-10-12",4,1448],["2026-11-11",5,1448],["2026-12-11",6,1448],["2027-01-09",7,1448],["2027-02-08",8,1448],["2027-03-10",9,1448],["2027-04-08",10,1448],["2027-05-08",11,1448],["2027-06-06",0,1449],["2027-07-06",1,1449],["2027-08-04",2,1449],["2027-09-02",3,1449],["2027-10-02",4,1449],["2027-10-31",5,1449],["2027-11-30",6,1449],["2027-12-29",7,1449],["2028-01-28",8,1449],["2028-02-27",9,1449]]};
+const YEARS = { 2026: DATA26, 2027: DATA27 };
+let Y = (() => { let p = {}; try { p = JSON.parse(localStorage.getItem('takwim2027.v1.prefs') || '{}'); } catch {} const t = new Date().getFullYear(); return YEARS[p.year] ? +p.year : YEARS[t] ? t : (t < 2026 ? 2026 : 2027); })();
+let DATA = YEARS[Y];
+const HY = () => [hijri(`${Y}-01-01`).y, hijri(`${Y}-12-31`).y];
+const HY_S = (sep = '–') => HY().join(sep);
+const HY_AR = () => HY().map(AR_DIG).join(' – ') + ' هـ';
+const yItems = () => Store.items.filter(e => e.start <= `${Y}-12-31` && (e.end && e.end > e.start ? e.end : e.start) >= `${Y}-01-01`);
 const MON = ['Januari','Februari','Mac','April','Mei','Jun','Julai','Ogos','September','Oktober','November','Disember'];
 const MON_S = ['Jan','Feb','Mac','Apr','Mei','Jun','Jul','Ogos','Sep','Okt','Nov','Dis'];
 const DAYS = ['Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu','Ahad'];
@@ -484,7 +501,7 @@ const hjLong = k => { const h = hijri(k); return h ? `${h.d} ${HM[h.m]} ${h.y}H`
 // ---------- tarikh rujukan "hari ini" ----------
 const STANDALONE = (() => { try { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch { return false; } })();
 function todayKey() { const n = new Date(); return key(n.getFullYear(), n.getMonth() + 1, n.getDate()); }
-function refKey() { const t = todayKey(); return t < '2027-01-01' ? '2027-01-01' : t > '2027-12-31' ? '2027-12-31' : t; }
+function refKey() { const t = todayKey(); return t < `${Y}-01-01` ? `${Y}-01-01` : t > `${Y}-12-31` ? `${Y}-12-31` : t; }
 
 // ---------- keadaan ----------
 const prefs = (() => { try { return JSON.parse(localStorage.getItem(LS + '.prefs') || '{}'); } catch { return {}; } })();
@@ -498,7 +515,7 @@ const S = {
   ystyle: prefs.ystyle === 'box' ? 'box' : 'list',
   editing: null, confirmDel: null,
 };
-function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ state: S.state, view: S.view, month: S.month, layers: S.layers, cfg: S.cfg, ystyle: S.ystyle })); } catch {} }
+function savePrefs() { try { localStorage.setItem(LS + '.prefs', JSON.stringify({ year: Y, state: S.state, view: S.view, month: S.month, layers: S.layers, cfg: S.cfg, ystyle: S.ystyle })); } catch {} }
 
 // ---------- simpanan acara peribadi ----------
 // Tanpa log masuk: acara disimpan dalam pelayar (localStorage) peranti ini.
@@ -628,7 +645,7 @@ function buildIndex() {
     for (let k = r.a; k <= r.b; k = addDays(k, 1)) at(k).sch = r.n;
   });
   if (st === 'SWK') DATA.sch.SWK.forEach(r => { at(r.a).sch = r.n; });
-  Store.items.forEach(e => {
+  yItems().forEach(e => {
     const end = e.end && e.end >= e.start ? e.end : e.start;
     let n = 0;
     for (let k = e.start; k <= end && n < 400; k = addDays(k, 1), n++) at(k).mine.push(e);
@@ -641,7 +658,7 @@ const dayOrder = () => [0, 1, 2, 3, 4, 5, 6].map(i => (i + wkStart()) % 7);
 const SHORTN = { 'Hari Wilayah Persekutuan': 'Hari Wilayah', 'Tahun Baharu Cina (Hari Kedua)': 'Tahun Baharu Cina (2)', 'Cuti Ganti Tahun Baharu Cina': 'Cuti Ganti TBC',
   'Hari Raya Aidilfitri': 'Aidilfitri', 'Hari Raya Aidilfitri (Hari Kedua)': 'Aidilfitri (2)', 'Hari Raya Aidilfitri (Hari Ketiga)': 'Aidilfitri (3)',
   'Hari Raya Aidiladha': 'Aidiladha', 'Hari Raya Aidiladha (Hari Kedua)': 'Aidiladha (2)', 'Hari Nuzul Al-Quran': 'Nuzul Quran',
-  'Awal Muharram (Maal Hijrah)': 'Awal Muharram', 'Awal Muharram 1449H': 'Awal Muharram', 'Hari Keputeraan YDP Agong': 'Keputeraan YDPA',
+  'Awal Muharram (Maal Hijrah)': 'Awal Muharram', 'Awal Muharram 1449H': 'Awal Muharram', 'Awal Muharram 1448H': 'Awal Muharram', 'Cuti Ganti Hari Wilayah / Thaipusam': 'Cuti Ganti', 'Cuti Ganti Hari Raya Aidilfitri': 'Cuti Ganti', 'Cuti Ganti Hari Raya Aidilfitri*': 'Cuti Ganti*', 'Cuti Ganti Nuzul Al-Quran': 'Cuti Ganti', 'Cuti Ganti Hari Wesak': 'Cuti Ganti', 'Cuti Ganti Pesta Kaamatan*': 'Cuti Ganti*', 'Cuti Ganti Hari Keputeraan YDP Agong': 'Cuti Ganti', 'Cuti Ganti Hari Deepavali': 'Cuti Ganti', 'Cuti Ganti Keputeraan Raja Perlis': 'Cuti Ganti', 'Hari Keputeraan YDP Agong': 'Keputeraan YDPA',
   'Cuti Ganti Awal Muharram*': 'Cuti Ganti*', 'Cuti Ganti Maulidur Rasul': 'Cuti Ganti', 'Cuti Ganti Hari Krismas': 'Cuti Ganti', 'Cuti Ganti Hari Pekerja': 'Cuti Ganti', 'Cuti Ganti Israk dan Mikraj': 'Cuti Ganti',
   'Hari Pengisytiharan Tarikh Kemerdekaan': 'Hari Pengisytiharan', 'Hari Tapak Warisan Dunia George Town': 'Warisan Dunia', 'Hari Kemerdekaan Sarawak': 'Hari Sarawak', 'Hari Gawai Dayak (Hari Kedua)': 'Gawai (2)', 'Pesta Kaamatan (Hari Kedua)': 'Kaamatan (2)' };
 const shortName = n => SHORTN[n] || n.replace(/^Hari Keputeraan /, 'Keputeraan ').replace(/^Ulang Tahun Keputeraan /, 'Keputeraan ').replace(/^Hari Jadi Yang di-Pertua Negeri /, 'TYT ').replace(/^Hari Hol Almarhum /, 'Hol ').replace(/ \(Hari Kedua\)$/, ' (2)');
@@ -666,7 +683,7 @@ const tint = (c, pct) => `color-mix(in srgb, ${colorVar(c)} ${pct}%, var(--surfa
 const fillOf = info => S.layers.mine ? info.mine.find(fills) : null;
 
 function monthHijri(m) {
-  const a = hijri(key(2027, m, 1)), b = hijri(key(2027, m, dim(2027, m)));
+  const a = hijri(key(Y, m, 1)), b = hijri(key(Y, m, dim(Y, m)));
   const lat = a.y === b.y ? `${HM[a.m]} – ${HM[b.m]} ${a.y}H` : `${HM[a.m]} ${a.y} – ${HM[b.m]} ${b.y}H`;
   const ar = a.y === b.y ? `${HM_AR[a.m]} – ${HM_AR[b.m]} ${AR_DIG(a.y)}` : `${HM_AR[a.m]} ${AR_DIG(a.y)} – ${HM_AR[b.m]} ${AR_DIG(b.y)}`;
   return { lat, ar };
@@ -689,14 +706,14 @@ function ariaFor(k, info) {
 }
 
 function monthNotes(m, idx) {
-  const a = key(2027, m, 1), b = key(2027, m, dim(2027, m)), items = [];
+  const a = key(Y, m, 1), b = key(Y, m, dim(Y, m)), items = [];
   const DS = ['Isn', 'Sel', 'Rab', 'Kha', 'Jum', 'Sab', 'Ahd'];
-  for (let d = 1; d <= dim(2027, m); d++) {
-    const k = key(2027, m, d), info = idx[k]; if (!info) continue;
+  for (let d = 1; d <= dim(Y, m); d++) {
+    const k = key(Y, m, d), info = idx[k]; if (!info) continue;
     info.hol.forEach(x => items.push({ k, t: 'hol', n: x.n }));
     if (S.layers.isl) info.isl.forEach(x => items.push({ k, t: 'isl', n: x.n }));
   }
-  if (S.layers.mine) Store.items.forEach(e => { const end = e.end && e.end > e.start ? e.end : e.start; if (e.start <= b && end >= a) items.push({ k: e.start < a ? a : e.start, end: end > e.start ? (end > b ? b : end) : null, t: 'mine', n: e.title, c: e.color }); });
+  if (S.layers.mine) yItems().forEach(e => { const end = e.end && e.end > e.start ? e.end : e.start; if (e.start <= b && end >= a) items.push({ k: e.start < a ? a : e.start, end: end > e.start ? (end > b ? b : end) : null, t: 'mine', n: e.title, c: e.color }); });
   if (S.layers.sch) {
     const grp = DATA.groupA.includes(S.state) ? 'A' : 'B';
     DATA.sch[grp].concat(S.state === 'SWK' ? DATA.sch.SWK : []).forEach(r => {
@@ -740,10 +757,10 @@ function renderYear(idx) {
     const body = el('div', { class: 'mbody' }); card.append(body);
     body.append(g);
     const gd = el('div', { class: 'gd' });
-    const off = colOf(key(2027, m, 1));
+    const off = colOf(key(Y, m, 1));
     for (let i = 0; i < off; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
-    for (let d = 1; d <= dim(2027, m); d++) {
-      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+    for (let d = 1; d <= dim(Y, m); d++) {
+      const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
       const cls = ['d'];
       if (isWeekend(k)) cls.push('we');
       if (S.layers.isl && info.isl.length) cls.push('isld');
@@ -765,7 +782,7 @@ function renderYear(idx) {
       }
       gd.append(el('button', { class: cls.join(' ') + (fe ? ' filled' : ''), 'data-k': k, 'aria-label': ariaFor(k, info), style: fe ? `background:${tint(fe.color, box ? 30 : 38)};box-shadow:inset 0 0 0 1.5px ${colorVar(fe.color)}` : null, onclick: () => select(k) }, kids));
     }
-    const tail = (7 - ((off + dim(2027, m)) % 7)) % 7;
+    const tail = (7 - ((off + dim(Y, m)) % 7)) % 7;
     for (let i = 0; i < tail; i++) gd.append(el('span', { class: 'd empty', 'aria-hidden': 'true' }));
     body.append(gd);
     if (!box) { const notes = monthNotes(m, idx); if (notes) body.append(notes); }
@@ -778,7 +795,7 @@ function renderMonth(idx) {
   const m = S.month, mh = monthHijri(m);
   const box = el('div', { class: 'mview' });
   box.append(el('div', { class: 'mnav' }, [
-    el('div', {}, [el('h2', { text: `${MON[m - 1]} 2027` }), el('div', { class: 'hj', text: mh.lat }), el('div', { class: 'ar', lang: 'ar', text: mh.ar })]),
+    el('div', {}, [el('h2', { text: `${MON[m - 1]} ${Y}` }), el('div', { class: 'hj', text: mh.lat }), el('div', { class: 'ar', lang: 'ar', text: mh.ar })]),
     el('div', { class: 'sp' }, [
       el('button', { class: 'btn', 'aria-label': 'Bulan sebelumnya', disabled: m === 1, onclick: () => { S.month--; render(); } }, '‹'),
       el('button', { class: 'btn', 'aria-label': 'Bulan berikutnya', disabled: m === 12, onclick: () => { S.month++; render(); } }, '›'),
@@ -787,10 +804,10 @@ function renderMonth(idx) {
   const g = el('div', { class: 'mgrid' });
   const fs = DATA.weekendFriSat.includes(S.state);
   dayOrder().forEach(i => g.append(el('div', { class: 'wd' + ((fs ? (i === 4 || i === 5) : i >= 5) ? ' we' : '') }, [el('span', { class: 'full', text: DAYS[i].toUpperCase() }), el('span', { class: 'short', text: DAYS_S[i] })])));
-  const off = colOf(key(2027, m, 1)), n = dim(2027, m);
+  const off = colOf(key(Y, m, 1)), n = dim(Y, m);
   for (let i = 0; i < off; i++) g.append(el('div', { class: 'cell blank', 'aria-hidden': 'true' }));
   for (let d = 1; d <= n; d++) {
-    const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+    const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
     const cls = ['cell'];
     if (isWeekend(k)) cls.push('we');
     if (S.layers.isl && info.isl.length) cls.push('isld');
@@ -824,7 +841,7 @@ function collectRows(idx, opts) {
     DATA.sch[grp].forEach(r => { if (!(st === 'SWK' && r.n.startsWith('Cuti Deepavali'))) rows.push({ k: r.a, end: r.b, n: r.n, t: 'sch', p: 'SEKOLAH' }); });
     if (st === 'SWK') DATA.sch.SWK.forEach(r => rows.push({ k: r.a, end: r.b, n: r.n, t: 'sch', p: 'SEKOLAH' }));
   }
-  if (opts.mine) Store.items.forEach(e => rows.push({ k: e.start, end: e.end && e.end > e.start ? e.end : null, n: e.title, t: 'mine', p: 'SAYA', time: e.time, note: e.note }));
+  if (opts.mine) yItems().forEach(e => rows.push({ k: e.start, end: e.end && e.end > e.start ? e.end : null, n: e.title, t: 'mine', p: 'SAYA', time: e.time, note: e.note }));
   rows.sort((a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : 0);
   return rows;
 }
@@ -850,14 +867,14 @@ function renderList(idx) {
 function renderToday(idx) {
   const ref = refKey(), tk = todayKey(), info = idx[ref] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(ref);
   const t = parse(ref), dayMs = 864e5;
-  const before = tk < '2027-01-01', after = tk > '2027-12-31';
+  const before = tk < `${Y}-01-01`, after = tk > `${Y}-12-31`;
   const chips = [];
   info.hol.forEach(x => chips.push(el('span', { class: 'tchip hol', text: x.n })));
   if (S.layers.isl) info.isl.forEach(x => chips.push(el('span', { class: 'tchip isl', text: x.n })));
   if (S.layers.sch && info.sch) chips.push(el('span', { class: 'tchip sch', text: 'Cuti sekolah' }));
   if (S.layers.mine) info.mine.forEach(e => chips.push(el('span', { class: 'tchip mine', style: `background:${colorVar(e.color)}`, text: e.title })));
   if (isWeekend(ref) && !info.hol.length) chips.push(el('span', { class: 'tchip we', text: 'Hujung minggu' }));
-  const note = before ? `Takwim 2027 bermula dalam ${Math.round((parse('2027-01-01') - parse(tk)) / dayMs)} hari` : after ? 'Takwim 2027 telah berakhir' : 'Hari ini';
+  const note = before ? `Takwim ${Y} bermula dalam ${Math.round((parse(`${Y}-01-01`) - parse(tk)) / dayMs)} hari` : after ? `Takwim ${Y} telah berakhir` : 'Hari ini';
   const hero = el('section', { class: 'tcard', 'aria-label': 'Hari ini' }, [
     el('div', { class: 'tnote', text: note }),
     el('div', { class: 'tmain' }, [
@@ -886,7 +903,7 @@ function renderToday(idx) {
         el('span', { class: 'tname' }, [el('span', { class: 'pill ' + r.t, text: r.p }), r.n, el('small', { text: `${DAYS[wd(r.k)]} · ${hjLong(r.k)}` })]),
         el('span', { class: 'twhen', text: when }),
       ]);
-    }) : [el('p', { class: 'none', text: 'Tiada tarikh lagi selepas ini dalam 2027.' })])]);
+    }) : [el('p', { class: 'none', text: `Tiada tarikh lagi selepas ini dalam ${Y}.` })])]);
   return el('div', { class: 'today' }, [el('div', { class: 'ttop' }, [hero, list]), renderMonth(idx)]);
 }
 
@@ -896,12 +913,12 @@ function renderSummary() {
   const live = Store.mode === 'google';
   $('#sum').replaceChildren(
     el('div', {}, [el('span', { class: 'k', text: 'Negeri' }), el('span', { class: 'big', text: stateName(S.state) })]),
-    el('div', {}, [el('span', { class: 'k', text: 'Cuti umum 2027' }), el('span', { class: 'v', text: `${n} hari` })]),
+    el('div', {}, [el('span', { class: 'k', text: `Cuti umum ${Y}` }), el('span', { class: 'v', text: `${n} hari` })]),
     el('div', {}, [el('span', { class: 'k', text: 'Hujung minggu' }), el('span', { class: 'v', text: weekendLabel() })]),
     el('div', {}, [el('span', { class: 'k', text: 'Kalendar sekolah' }), el('span', { class: 'v', text: `Kumpulan ${grp}` })]),
     el('div', {}, [el('span', { class: 'k', text: 'Acara saya' }), el('span', { class: 'v save' }, [
       el('span', { class: 'dotlive' + (live ? ' on' : '') }),
-      `${Store.items.length} · ${live ? 'disegerakkan dengan Google' : 'disimpan dalam pelayar ini'}`,
+      `${yItems().length} · ${live ? 'disegerakkan dengan Google' : 'disimpan dalam pelayar ini'}`,
     ])]),
   );
 }
@@ -942,8 +959,8 @@ function renderDay(idx) {
     el('div', { class: 'lbl', text: ed ? 'Ubah acara' : 'Tambah acara peribadi' }),
     el('label', { for: 'ev-title' }, ['Tajuk', el('input', { id: 'ev-title', name: 'title', required: true, maxlength: 80, placeholder: 'cth. Balik kampung, Kursus, Hari jadi', value: ed?.title || '' })]),
     el('div', { class: 'r2' }, [
-      el('label', { for: 'ev-start' }, ['Mula', el('input', { id: 'ev-start', type: 'date', name: 'start', min: '2027-01-01', max: '2027-12-31', value: ed?.start || k, required: true })]),
-      el('label', { for: 'ev-end' }, ['Hingga (pilihan)', el('input', { id: 'ev-end', type: 'date', name: 'end', min: '2027-01-01', max: '2027-12-31', value: ed?.end || '' })]),
+      el('label', { for: 'ev-start' }, ['Mula', el('input', { id: 'ev-start', type: 'date', name: 'start', min: `${Y}-01-01`, max: `${Y}-12-31`, value: ed?.start || k, required: true })]),
+      el('label', { for: 'ev-end' }, ['Hingga (pilihan)', el('input', { id: 'ev-end', type: 'date', name: 'end', min: `${Y}-01-01`, max: `${Y}-12-31`, value: ed?.end || '' })]),
     ]),
     el('label', { for: 'ev-time' }, ['Masa (pilihan)', el('input', { id: 'ev-time', type: 'time', name: 'time', value: ed?.time || '' })]),
     el('label', { for: 'ev-note' }, ['Catatan (pilihan)', el('textarea', { id: 'ev-note', name: 'note', maxlength: 300 }, ed?.note || '')]),
@@ -968,7 +985,7 @@ function renderDay(idx) {
     let end = String(fd.get('end') || '');
     const msg = form.querySelector('#fmsg');
     if (!title) { msg.className = 'msg err'; msg.textContent = 'Isi tajuk acara.'; return; }
-    if (!/^2027-\d\d-\d\d$/.test(start)) { msg.className = 'msg err'; msg.textContent = 'Pilih tarikh mula dalam tahun 2027.'; return; }
+    if (!new RegExp(`^${Y}-\\d\\d-\\d\\d$`).test(start)) { msg.className = 'msg err'; msg.textContent = `Pilih tarikh mula dalam tahun ${Y}.`; return; }
     if (end && end < start) { msg.className = 'msg err'; msg.textContent = 'Tarikh akhir mesti selepas tarikh mula.'; return; }
     if (end === start) end = '';
     const obj = { id: ed?.id || ('e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)), title, start, end, time: String(fd.get('time') || ''), note: String(fd.get('note') || '').trim(), color: (() => { const c = String(fd.get('color') || 'c1'); return c === 'custom' ? (isHex($('#ev-custom').value) ? $('#ev-custom').value : 'c1') : c; })(), fill: fd.get('fill') === 'on', updated: Date.now() };
@@ -998,7 +1015,7 @@ function buildCSV() {
   rows.forEach(r => {
     const prefix = { hol: 'Cuti: ', isl: '', sch: 'Cuti Sekolah: ', mine: '' }[r.t];
     const timed = (r.t === 'mine') && r.time && !r.end;
-    const desc = r.t === 'mine' ? (r.note || '') : `${hjLong(r.k)} · Takwim 2027 ${stateName(S.state)}`;
+    const desc = r.t === 'mine' ? (r.note || '') : `${hjLong(r.k)} · Takwim ${Y} ${stateName(S.state)}`;
     lines.push([prefix + r.n, usDate(r.k), timed ? to12h(r.time) : '', usDate(r.end || r.k), timed ? to12h(addMinutes(r.time, 60)) : '', timed ? 'False' : 'True', desc].map(csvEsc).join(','));
   });
   return { text: lines.join('\n'), count: rows.length };
@@ -1008,12 +1025,12 @@ function gcalLink(e) {
   let dates;
   if (e.time && (!e.end || e.end === e.start)) { const t1 = e.time.replace(':', '') + '00', t2 = addMinutes(e.time, 60).replace(':', '') + '00'; dates = `${c(e.start)}T${t1}/${c(e.start)}T${t2}`; }
   else dates = `${c(e.start)}/${c(addDays(e.end && e.end > e.start ? e.end : e.start, 1))}`;
-  const p = new URLSearchParams({ action: 'TEMPLATE', text: e.title, dates, details: [e.note, `${hjLong(e.start)} · Takwim 2027`].filter(Boolean).join('\n'), ctz: 'Asia/Kuala_Lumpur' });
+  const p = new URLSearchParams({ action: 'TEMPLATE', text: e.title, dates, details: [e.note, `${hjLong(e.start)} · Takwim ${Y}`].filter(Boolean).join('\n'), ctz: 'Asia/Kuala_Lumpur' });
   return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
 function renderGcal() {
   const box = $('#gcal-list');
-  const items = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1);
+  const items = [...yItems()].sort((a, b) => a.start < b.start ? -1 : 1);
   if (!items.length) { box.replaceChildren(el('p', { class: 'none', text: 'Belum ada acara peribadi. Tekan mana-mana tarikh untuk menambah acara.' })); return; }
   box.replaceChildren(...items.map(e => el('a', { href: gcalLink(e), target: '_blank', rel: 'noopener' }, [
     el('span', { class: 'sw', style: `background:${colorVar(e.color)}` }),
@@ -1037,7 +1054,7 @@ $('#b-gcal').addEventListener('click', () => {
 $('#b-csv').addEventListener('click', async () => {
   const { text, count } = buildCSV();
   if (count === 0) { tmsg('Tiada tarikh untuk dimuat turun. Tandakan sekurang-kurangnya satu pilihan.', true); return; }
-  const r = await saveFile(`takwim-2027-${S.state.toLowerCase()}-google-calendar.csv`, text, `${count} tarikh sedia. Import di Google Calendar: Tetapan → Import & eksport → Import.`);
+  const r = await saveFile(`takwim-${Y}-${S.state.toLowerCase()}-google-calendar.csv`, text, `${count} tarikh sedia. Import di Google Calendar: Tetapan → Import & eksport → Import.`);
   if (r === null) { $('#out').value = text; $('#outbox').hidden = false; tmsg('Muat turun tidak tersedia di sini. Salin teks di bawah dan simpan sebagai fail .csv.'); }
 });
 $('#b-copy').addEventListener('click', async () => {
@@ -1122,8 +1139,8 @@ function buildPDF() {
     if (C.info) { ty += 4; F(FR, 7.2, [226, 236, 231]); doc.text(clip1(C.info, titleW), x, ty); }
     const rx = M + CW - 4;
     doc.setLineWidth(0.2); drawC('#4E7A68'); doc.line(M + CW - rightW, y + 3.5, M + CW - rightW, y + h - 4.5);
-    F(FT, 21, PC.gold); doc.text('2027', rx, y + 8.8, { align: 'right' });
-    F(FB, 7.6, '#FFFFFF'); doc.text('1448–1449H', rx, y + 12.5, { align: 'right' });
+    F(FT, 21, PC.gold); doc.text(String(Y), rx, y + 8.8, { align: 'right' });
+    F(FB, 7.6, '#FFFFFF'); doc.text(`${HY_S()}H`, rx, y + 12.5, { align: 'right' });
     F(FR, 5.7, [214, 228, 221]);
     doc.text(`${stateName(S.state).toUpperCase()} · ${nHol} HARI CUTI UMUM`, rx, y + 15.6, { align: 'right' });
     doc.text(`HUJUNG MINGGU ${weekendLabel().toUpperCase()} · SEKOLAH KUMP. ${grp}`, rx, y + 18, { align: 'right' });
@@ -1131,7 +1148,7 @@ function buildPDF() {
   }
   function footer() {
     F(FR, 5.6, PC.muted);
-    const t = 'Sumber: Jadual Hari Kelepasan Am 2027 (JPM), Tarikh Penting Islam 2027 (JAKIM), Kalendar Akademik 2027 (KPM). Tarikh Hijri mengikut kriteria MABIMS. Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.';
+    const t = `Sumber: Jadual Hari Kelepasan Am ${Y} (JPM), Tarikh Penting Islam ${Y} (JAKIM), Kalendar Akademik ${Y} (KPM). Tarikh Hijri mengikut kriteria MABIMS. Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.`;
     doc.text(doc.splitTextToSize(t, CW), M, 291.3);
   }
 
@@ -1166,13 +1183,13 @@ function buildPDF() {
     const ty = y0 + titleH + 0.6;
     fillC(PC.head); doc.rect(x0, ty, mw, thH, 'F');
     dayOrder().forEach((i, c) => { F(FB, 5.6, (fs ? (i === 4 || i === 5) : i >= 5) ? PC.hol : PC.brand); doc.text(DAYS_S[i], x0 + c * cw + cw / 2, ty + 2.2, { align: 'center' }); });
-    const off = colOf(key(2027, m, 1)), n = dim(2027, m), slots = new Array(35).fill(0);
+    const off = colOf(key(Y, m, 1)), n = dim(Y, m), slots = new Array(35).fill(0);
     for (let d = 1; d <= n; d++) { let i = off + d - 1; if (i >= 35) i -= 35; slots[i] = d; }
     const by = ty + thH;
     for (let s = 0; s < 35; s++) {
       const cx = x0 + (s % 7) * cw, cy = by + Math.floor(s / 7) * rowH, d = slots[s];
       if (!d) { fillC(PC.out); doc.rect(cx, cy, cw, rowH, 'F'); continue; }
-      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
       const fe = fillOf(info);
       const bg = fe ? mix(phex(fe.color), 0.3) : info.hol.length ? PC.holS : (S.layers.sch && info.sch) ? PC.schS : (S.layers.isl && info.isl.length) ? PC.islS : isWeekend(k) ? PC.we : null;
       if (bg) { fillC(bg); doc.rect(cx, cy, cw, rowH, 'F'); }
@@ -1230,7 +1247,7 @@ function buildPDF() {
   const holRows = DATA.hol.filter(h => h.s.includes(S.state)).map(h => [fmt(h.d), DAYS[wd(h.d)], [h.n, PC.holT], hjLong(h.d)]);
   const yL = table(xL, top, half, `Cuti Umum ${stateName(S.state)}`, [['Tarikh', 14], ['Hari', 14], ['Perkara', half - 52], ['Hijri', 24, 1]], holRows);
   let yR = top;
-  const mine = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1);
+  const mine = [...yItems()].sort((a, b) => a.start < b.start ? -1 : 1);
   const startPage = doc.getNumberOfPages();
   doc.setPage(2);
   if (S.layers.mine && mine.length) yR = table(xR, yR, half, 'Acara Saya', [['Tarikh', 24], ['Acara', half - 24]], mine.map(e => [fmt(e.start) + (e.end && e.end > e.start ? ' – ' + fmt(e.end) : ''), [e.title + (e.time ? ' · ' + e.time : '') + (e.note ? ' — ' + e.note : ''), phex(e.color)]]));
@@ -1256,8 +1273,8 @@ async function buildXlsx() {
   const S1 = c => ({ style: 'thin', color: A(c || X.line) });
   const idx = buildIndex(), C = S.cfg, T = cfgTitle(), st = stateName(S.state);
   const grp = DATA.groupA.includes(S.state) ? 'A' : 'B', fs = DATA.weekendFriSat.includes(S.state);
-  const wb = new ExcelJS.Workbook(); wb.creator = 'Takwim 2027'; wb.created = new Date();
-  const ws = wb.addWorksheet('Takwim 2027', { views: [{ showGridLines: false, state: 'frozen', ySplit: 3 }] });
+  const wb = new ExcelJS.Workbook(); wb.creator = `Takwim ${Y}`; wb.created = new Date();
+  const ws = wb.addWorksheet(`Takwim ${Y}`, { views: [{ showGridLines: false, state: 'frozen', ySplit: 3 }] });
   ws.getColumn(1).width = 11.5;
   for (let i = 0; i < 7; i++) { ws.getColumn(2 + 2 * i).width = 5.2; ws.getColumn(3 + 2 * i).width = 8.2; }
   const cell = (r, c) => ws.getCell(r, c);
@@ -1273,7 +1290,7 @@ async function buildXlsx() {
     tc = 2;
   }
   ws.mergeCells(1, tc, 1, 10); put(1, tc, T.toUpperCase(), F(18, true, 'FFFFFF'), { vertical: 'middle', indent: 1 });
-  ws.mergeCells(1, 11, 1, 15); put(1, 11, '2027 · 1448–1449H', F(14, true, X.gold), { horizontal: 'right', vertical: 'middle', indent: 1 });
+  ws.mergeCells(1, 11, 1, 15); put(1, 11, `${Y} · ${HY_S()}H`, F(14, true, X.gold), { horizontal: 'right', vertical: 'middle', indent: 1 });
   ws.mergeCells(2, tc, 2, 10);
   const sub = [C.sub, C.info].filter(Boolean).join(' · ') || 'JABATAN / UNIT : ______________________________';
   put(2, tc, sub, F(9, true, X.goldL), { vertical: 'middle', indent: 1 });
@@ -1288,7 +1305,7 @@ async function buildXlsx() {
   for (let m = 1; m <= 12; m++) {
     const top = row;
     put(row, 1, pad(m), F(12, true, X.brand), CEN, X.gold);
-    ws.mergeCells(row, 2, row, 9); put(row, 2, `${MON[m - 1].toUpperCase()}  2027`, F(15, true, 'FFFFFF'), { vertical: 'middle', indent: 1 });
+    ws.mergeCells(row, 2, row, 9); put(row, 2, `${MON[m - 1].toUpperCase()}  ${Y}`, F(15, true, 'FFFFFF'), { vertical: 'middle', indent: 1 });
     ws.mergeCells(row, 10, row, 15); put(row, 10, monthHijri(m).lat.toUpperCase(), F(9, true, X.goldL), { horizontal: 'right', vertical: 'middle', indent: 1 });
     for (let c = 2; c <= 15; c++) cell(row, c).fill = solid(X.brand);
     for (let c = 1; c <= 15; c++) cell(row, c).border = { bottom: { style: 'medium', color: A(X.gold) } };
@@ -1303,7 +1320,7 @@ async function buildXlsx() {
     for (let c = 1; c <= 15; c++) cell(row, c).border = { top: S1(), bottom: { style: 'medium', color: A(X.mid) }, left: (c === 1 || c % 2 === 0) ? S1() : undefined, right: (c === 1 || c % 2 === 1) ? S1() : undefined };
     ws.getRow(row).height = 15; row++;
     // 5 minggu × 3 baris; baki dibalut ke minggu pertama
-    const off = colOf(key(2027, m, 1)), n = dim(2027, m), slots = new Array(35).fill(0);
+    const off = colOf(key(Y, m, 1)), n = dim(Y, m), slots = new Array(35).fill(0);
     for (let d = 1; d <= n; d++) { let s = off + d - 1; if (s >= 35) s -= 35; slots[s] = d; }
     for (let w = 0; w < 5; w++) {
       const r = row + 3 * w;
@@ -1315,7 +1332,7 @@ async function buildXlsx() {
         let schoolBar = false;
         if (!d) { for (let rr = r; rr <= r + 2; rr++) for (const k of [cc, cc + 1]) cell(rr, k).fill = solid(X.out); }
         else {
-          const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
+          const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, h = hijri(k);
           const fe = fillOf(info), isH = info.hol.length > 0, isI = S.layers.isl && info.isl.length > 0, isS = S.layers.sch && !!info.sch;
           const bg = fe ? rgb(phex(fe.color)).map(v => Math.round(v * 0.24 + 255 * 0.76)).map(v => v.toString(16).padStart(2, '0')).join('') : isH ? X.holS : isWeekend(k) ? X.we : isI ? X.islS : null;
           if (bg) for (let rr = r; rr <= r + 2; rr++) for (const kk of [cc, cc + 1]) cell(rr, kk).fill = solid(bg);
@@ -1341,7 +1358,7 @@ async function buildXlsx() {
     ws.getRow(row).height = 6; row++;
   }
   ws.mergeCells(row, 1, row, 15);
-  put(row, 1, 'Sumber: Hari Kelepasan Am 2027 (JPM) · Tarikh Penting Islam 2027 (JAKIM) · Kalendar Akademik 2027 (KPM). Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.', F(7, false, X.muted), CEN);
+  put(row, 1, `Sumber: Hari Kelepasan Am ${Y} (JPM) · Tarikh Penting Islam ${Y} (JAKIM) · Kalendar Akademik ${Y} (KPM). Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.`, F(7, false, X.muted), CEN);
   ws.pageSetup = { paperSize: 9, orientation: 'portrait', fitToPage: true, fitToWidth: 1, fitToHeight: 0, horizontalCentered: true,
     margins: { left: 0.3, right: 0.3, top: 0.35, bottom: 0.35, header: 0.2, footer: 0.2 }, printArea: `A1:O${row}`, printTitlesRow: '1:3' };
 
@@ -1349,7 +1366,7 @@ async function buildXlsx() {
   const w2 = wb.addWorksheet('Senarai Tarikh Penting', { views: [{ showGridLines: false }] });
   [12, 10, 40, 24, 22].forEach((wd2, i) => { w2.getColumn(i + 1).width = wd2; });
   w2.mergeCells(1, 1, 1, 5);
-  Object.assign(w2.getCell(1, 1), { value: `SENARAI TARIKH PENTING 2027 · ${st.toUpperCase()}`, font: F(13, true, 'FFFFFF'), fill: solid(X.brand), alignment: { vertical: 'middle', indent: 1 } });
+  Object.assign(w2.getCell(1, 1), { value: `SENARAI TARIKH PENTING ${Y} · ${st.toUpperCase()}`, font: F(13, true, 'FFFFFF'), fill: solid(X.brand), alignment: { vertical: 'middle', indent: 1 } });
   w2.getRow(1).height = 26;
   let r2 = 3;
   const section = (title, color) => {
@@ -1359,7 +1376,7 @@ async function buildXlsx() {
     r2++;
   };
   const line = (d, name, cat, bg, fc) => {
-    [new Date(Date.UTC(2027, +d.slice(5, 7) - 1, +d.slice(8))), DAYS[wd(d)], name, hjLong(d), cat].forEach((v, i) => {
+    [new Date(Date.UTC(Y, +d.slice(5, 7) - 1, +d.slice(8))), DAYS[wd(d)], name, hjLong(d), cat].forEach((v, i) => {
       const x = w2.getCell(r2, i + 1); x.value = v; x.border = { bottom: S1() }; x.font = F(9, i === 2, i === 2 ? fc : X.ink); if (bg) x.fill = solid(bg);
       if (i === 0) x.numFmt = 'd mmm yyyy';
     });
@@ -1376,13 +1393,13 @@ async function buildXlsx() {
   w2.pageSetup = { paperSize: 9, orientation: 'portrait', fitToPage: true, fitToWidth: 1, fitToHeight: 0, margins: { left: 0.4, right: 0.4, top: 0.4, bottom: 0.4, header: 0.2, footer: 0.2 } };
 
   // ---- helaian 3: acara peribadi
-  const mine = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1);
+  const mine = [...yItems()].sort((a, b) => a.start < b.start ? -1 : 1);
   if (mine.length) {
     const w3 = wb.addWorksheet('Acara Saya', { views: [{ showGridLines: false }] });
     [14, 14, 10, 34, 36].forEach((wd3, i) => { w3.getColumn(i + 1).width = wd3; });
     ['Mula', 'Hingga', 'Masa', 'Acara', 'Catatan'].forEach((h, i) => Object.assign(w3.getCell(1, i + 1), { value: h, font: F(10, true, 'FFFFFF'), fill: solid(X.brand), alignment: CEN }));
     mine.forEach((e, i) => {
-      const dt = k => k ? new Date(Date.UTC(2027, +k.slice(5, 7) - 1, +k.slice(8))) : null;
+      const dt = k => k ? new Date(Date.UTC(Y, +k.slice(5, 7) - 1, +k.slice(8))) : null;
       [dt(e.start), e.end && e.end > e.start ? dt(e.end) : null, e.time || '', e.title, e.note || ''].forEach((v, j) => {
         const x = w3.getCell(i + 2, j + 1); x.value = v; x.border = { bottom: S1() }; x.font = F(10, j === 3, j === 3 ? phex(e.color).replace('#', '') : X.ink);
         if (j < 2) x.numFmt = 'd mmm yyyy';
@@ -1396,7 +1413,7 @@ $('#b-xlsx').addEventListener('click', async () => {
   try {
     await loadExcelJS();
     const blob = await buildXlsx();
-    const base = cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || 'Takwim-2027';
+    const base = cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || `Takwim-${Y}`;
     const r = await saveFile(`${base}-${S.state}.xlsx`, blob, 'Fail Excel sedia. Boleh dibuka dalam Microsoft Excel, Google Sheets atau WPS Office.');
     if (r === null) tmsg('Muat turun tidak tersedia dalam paparan ini. Buka halaman ini dalam aplikasi Claude atau pelayar dan cuba lagi.', true);
   } catch (e) { console.error(e); tmsg('Fail Excel tidak dapat disediakan. Semak sambungan internet dan cuba lagi.', true); }
@@ -1458,8 +1475,8 @@ async function buildPoster(variant = 2, withList = false) {
   const nHol = new Set(holList.map(h => h.d)).size;
   const schList = DATA.sch[grp].filter(r => !(S.state === 'SWK' && r.n.startsWith('Cuti Deepavali'))).concat(S.state === 'SWK' ? DATA.sch.SWK : []);
   const fs = DATA.weekendFriSat.includes(S.state);
-  const arYear = await arabicImage('١٤٤٨ – ١٤٤٩ هـ', 64, '#F1D58C');
-  const arTitle = variant === 1 ? await arabicImage('تقويم ٢٠٢٧', 64, '#FFFFFF') : null;
+  const arYear = await arabicImage(HY_AR(), 64, '#F1D58C');
+  const arTitle = variant === 1 ? await arabicImage('تقويم ' + AR_DIG(Y), 64, '#FFFFFF') : null;
 
   function frame() {
     doc.setLineWidth(0.7); draw(PP.gold); doc.roundedRect(5, 5, W - 10, H - 10, 4, 4, 'S');
@@ -1492,14 +1509,14 @@ async function buildPoster(variant = 2, withList = false) {
     if (subtitle) { ty += 4.4; F(FB, 7.4, PP.goldL); doc.text(clip1(subtitle, tW), x, ty); }
     const rx = X + CW - 4.5, dx = X + CW - rightW;
     op(0.3); doc.setLineWidth(0.25); draw('#FFFFFF'); doc.line(dx, y + 4, dx, y + h - 5); op(1);
-    F(FT, 27, PP.gold); doc.text('2027', rx, y + 12.6, { align: 'right' });
+    F(FT, 27, PP.gold); doc.text(String(Y), rx, y + 12.6, { align: 'right' });
     const yw = 25, yh = yw / arYear.ratio; try { doc.addImage(arYear.url, 'PNG', rx - yw, y + 14, yw, yh); } catch {}
-    F(FB, 6.6, PP.white); doc.text('1448 – 1449 HIJRAH', rx, y + h - 3.2, { align: 'right' });
+    F(FB, 6.6, PP.white); doc.text(`${HY_S(' – ')} HIJRAH`, rx, y + h - 3.2, { align: 'right' });
     fill(PP.gold); doc.lines([[2, 2], [-2, 2], [-2, -2]], W / 2, y + h - 1.4, [1, 1], 'F', true);
     return y + h;
   }
   function chips(y) {
-    const items = [['NEGERI', st, PP.brand], ['CUTI UMUM 2027', `${nHol} hari`, PP.hol], ['HUJUNG MINGGU', weekendLabel(), PP.brand2], ['CUTI SEKOLAH', `Kumpulan ${grp}`, PP.sch]];
+    const items = [['NEGERI', st, PP.brand], [`CUTI UMUM ${Y}`, `${nHol} hari`, PP.hol], ['HUJUNG MINGGU', weekendLabel(), PP.brand2], ['CUTI SEKOLAH', `Kumpulan ${grp}`, PP.sch]];
     const gap = 3, w = (CW - gap * 3) / 4, h = 7.2;
     items.forEach(([k, v, c], i) => {
       const x = X + i * (w + gap);
@@ -1512,7 +1529,7 @@ async function buildPoster(variant = 2, withList = false) {
   }
   function legend(y) {
     const items = [[PP.holSoft, 'Cuti umum', PP.holLine], [PP.schSoft, 'Cuti sekolah', PP.sch], [PP.islSoft, 'Tarikh Islam', PP.isl], [PP.we, 'Hujung minggu', PP.line]];
-    if (S.layers.mine && Store.items.length) items.splice(3, 0, [mix(PCOL.c7, 0.3), 'Acara peribadi', PCOL.c7]);
+    if (S.layers.mine && yItems().length) items.splice(3, 0, [mix(PCOL.c7, 0.3), 'Acara peribadi', PCOL.c7]);
     F(FR, 7);
     const total = items.reduce((s, [, t]) => s + 5.4 + tw(t) + 7, -7);
     let x = (W - total) / 2;
@@ -1524,7 +1541,7 @@ async function buildPoster(variant = 2, withList = false) {
   }
   function footer(y) {
     F(FR, 5.4, PP.muted);
-    doc.text('Sumber: Jadual Hari Kelepasan Am 2027 (JPM) · Tarikh-Tarikh Penting Dalam Islam 2027 (JAKIM) · Kalendar Akademik 2027 (KPM). Tarikh Hijri: kriteria MABIMS.', W / 2, y, { align: 'center' });
+    doc.text(`Sumber: Jadual Hari Kelepasan Am ${Y} (JPM) · Tarikh-Tarikh Penting Dalam Islam ${Y} (JAKIM) · Kalendar Akademik ${Y} (KPM). Tarikh Hijri: kriteria MABIMS.`, W / 2, y, { align: 'center' });
     doc.text('Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan. Cuti ganti tertakluk pengumuman rasmi kerajaan negeri.', W / 2, y + 2.6, { align: 'center' });
   }
   function month(m, x0, y0, mw, mh) {
@@ -1542,13 +1559,13 @@ async function buildPoster(variant = 2, withList = false) {
     const wy = y0 + bandH + 0.6;
     fill(PP.head); doc.rect(x0, wy, mw, wdH, 'F');
     dayOrder().forEach((i, c) => { F(FB, 5.8, (fs ? (i === 4 || i === 5) : i >= 5) ? PP.hol : PP.brand); doc.text(DS3[i].toUpperCase(), x0 + c * cw + cw / 2, wy + 2.5, { align: 'center' }); });
-    const gy = wy + wdH, off = colOf(key(2027, m, 1)), n = dim(2027, m);
+    const gy = wy + wdH, off = colOf(key(Y, m, 1)), n = dim(Y, m);
     const used = new Set();
     for (let d = 1; d <= n; d++) {
       let s = off + d - 1; if (s >= 35) s -= 35; // 5 minggu: baki dibalut ke minggu pertama
       used.add(s);
       const cx = x0 + (s % 7) * cw, cy = gy + Math.floor(s / 7) * rowH;
-      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
       const fe = fillOf(info), we = isWeekend(k), isH = info.hol.length > 0, isS = S.layers.sch && info.sch, isI = S.layers.isl && info.isl.length;
       const bg = fe ? mix(phex(fe.color), 0.26) : isH ? PP.holSoft : isS ? PP.schSoft : isI ? PP.islSoft : we ? PP.we : null;
       if (bg) { fill(bg); doc.rect(cx, cy, cw, rowH, 'F'); }
@@ -1612,14 +1629,14 @@ async function buildPoster(variant = 2, withList = false) {
     const rx = X + CW - 5, dx = X + CW - rightW;
     op(0.3); doc.setLineWidth(0.25); draw('#FFFFFF'); doc.line(dx, y + 5, dx, y + h - 6); op(1);
     const aw = 30, ah = aw / arTitle.ratio; try { doc.addImage(arTitle.url, 'PNG', rx - aw, y + 3, aw, ah); } catch {}
-    F(FT, 38, PP.gold); doc.text('2027', rx, y + 25.5, { align: 'right' });
+    F(FT, 38, PP.gold); doc.text(String(Y), rx, y + 25.5, { align: 'right' });
     const yw = 28, yh = yw / arYear.ratio; try { doc.addImage(arYear.url, 'PNG', rx - yw, y + 27, yw, yh); } catch {}
-    F(FB, 7.6, PP.white); doc.text('1448 – 1449 HIJRAH', rx, y + h - 3.4, { align: 'right' });
+    F(FB, 7.6, PP.white); doc.text(`${HY_S(' – ')} HIJRAH`, rx, y + h - 3.4, { align: 'right' });
     fill(PP.gold); doc.lines([[2.2, 2.2], [-2.2, 2.2], [-2.2, -2.2]], W / 2, y + h - 1.6, [1, 1], 'F', true);
     return y + h;
   }
   function chipsBig(y) {
-    const items = [['NEGERI', st, PP.brand], ['CUTI UMUM 2027', `${nHol} hari`, PP.hol], ['HUJUNG MINGGU', weekendLabel(), PP.brand2], ['CUTI SEKOLAH', `Kumpulan ${grp}`, PP.sch]];
+    const items = [['NEGERI', st, PP.brand], [`CUTI UMUM ${Y}`, `${nHol} hari`, PP.hol], ['HUJUNG MINGGU', weekendLabel(), PP.brand2], ['CUTI SEKOLAH', `Kumpulan ${grp}`, PP.sch]];
     const gap = 3, w = (CW - gap * 3) / 4, h = 9.2;
     items.forEach(([k, v, c], i) => {
       const x = X + i * (w + gap);
@@ -1631,14 +1648,14 @@ async function buildPoster(variant = 2, withList = false) {
     return y + h;
   }
   function monthNotesData(m) {
-    const a = key(2027, m, 1), b = key(2027, m, dim(2027, m)), out = [];
-    for (let d = 1; d <= dim(2027, m); d++) {
-      const k = key(2027, m, d), info = idx[k]; if (!info) continue;
+    const a = key(Y, m, 1), b = key(Y, m, dim(Y, m)), out = [];
+    for (let d = 1; d <= dim(Y, m); d++) {
+      const k = key(Y, m, d), info = idx[k]; if (!info) continue;
       info.hol.forEach(x => out.push({ k, t: 'hol', n: shortName(x.n) }));
       if (S.layers.isl) info.isl.forEach(x => out.push({ k, t: 'isl', n: shortName(x.n) }));
     }
     if (S.layers.sch) schList.forEach(r => { if (r.a <= b && r.b >= a) out.push({ k: r.a < a ? a : r.a, end: r.b > b ? b : r.b, t: 'sch', n: 'Cuti sekolah' }); });
-    if (S.layers.mine) Store.items.forEach(e => { const end = e.end && e.end > e.start ? e.end : e.start; if (e.start <= b && end >= a) out.push({ k: e.start < a ? a : e.start, end: end > e.start ? (end > b ? b : end) : null, t: 'mine', n: e.title, c: e.color }); });
+    if (S.layers.mine) yItems().forEach(e => { const end = e.end && e.end > e.start ? e.end : e.start; if (e.start <= b && end >= a) out.push({ k: e.start < a ? a : e.start, end: end > e.start ? (end > b ? b : end) : null, t: 'mine', n: e.title, c: e.color }); });
     return out.sort((p, q) => p.k < q.k ? -1 : p.k > q.k ? 1 : 0);
   }
   function monthList(m, x0, y0, mw, mh) {
@@ -1656,10 +1673,10 @@ async function buildPoster(variant = 2, withList = false) {
     const wy = y0 + bandH + 0.6;
     fill(PP.head); doc.rect(x0, wy, mw, wdH, 'F');
     dayOrder().forEach((i, c) => { F(FB, 5.6, (fs ? (i === 4 || i === 5) : i >= 5) ? PP.hol : PP.brand); doc.text(DS3[i].toUpperCase(), x0 + c * cw + cw / 2, wy + 2.55, { align: 'center' }); });
-    const gy = wy + wdH, off = colOf(key(2027, m, 1)), n = dim(2027, m);
+    const gy = wy + wdH, off = colOf(key(Y, m, 1)), n = dim(Y, m);
     for (let d = 1; d <= n; d++) {
       const s = off + d - 1, cx = x0 + (s % 7) * cw, cy = gy + Math.floor(s / 7) * rowH;
-      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
       const fe = fillOf(info), we = isWeekend(k), isH = info.hol.length > 0, isS = S.layers.sch && info.sch, isI = S.layers.isl && info.isl.length;
       const bg = fe ? mix(phex(fe.color), 0.28) : isH ? PP.holSoft : isS ? PP.schSoft : isI ? PP.islSoft : we ? PP.we : null;
       if (bg) { fill(bg); doc.rect(cx, cy, cw, rowH, 'F'); }
@@ -1697,9 +1714,9 @@ async function buildPoster(variant = 2, withList = false) {
     // Hujung minggu panjang
     const offDay = k => isWeekend(k) || holList.some(h => h.d === k);
     const runs = [];
-    for (let k = '2027-01-01'; k <= '2027-12-31';) {
+    for (let k = `${Y}-01-01`; k <= `${Y}-12-31`;) {
       if (!offDay(k)) { k = addDays(k, 1); continue; }
-      let e = k; while (addDays(e, 1) <= '2027-12-31' && offDay(addDays(e, 1))) e = addDays(e, 1);
+      let e = k; while (addDays(e, 1) <= `${Y}-12-31` && offDay(addDays(e, 1))) e = addDays(e, 1);
       const n = Math.round((parse(e) - parse(k)) / 864e5) + 1;
       const raw = holList.filter(h => h.d >= k && h.d <= e).map(h => shortName(h.n).replace(/\s*\(\d\)$/, '').replace(/\*$/, ''));
       const main = raw.filter(nm => !/^Cuti Ganti/.test(nm));
@@ -1775,7 +1792,7 @@ async function buildPoster(variant = 2, withList = false) {
       });
       yr += rowsI * 6.5 + 2.6;
     }
-    const mine = [...Store.items].sort((a, b) => a.start < b.start ? -1 : 1);
+    const mine = [...yItems()].sort((a, b) => a.start < b.start ? -1 : 1);
     if (S.layers.mine && mine.length && yr < bottom - 14) {
       yr = section(xR, yr, 'Acara Saya', PCOL.c1);
       const room = Math.floor((bottom - yr) / 6.5), list = mine.length > room ? mine.slice(0, room - 1) : mine;
@@ -1810,12 +1827,12 @@ async function buildPoster(variant = 2, withList = false) {
     F(FT, ts, PP.white); doc.text(up, x, y + (C.sub ? 6.2 : 8));
     if (C.sub || C.info) { F(FB, 6.6, PP.goldL); doc.text(clip1([C.sub, C.info].filter(Boolean).join(' · '), tW), x, y + 10.3); }
     const rx = X + CW + 0.5;
-    F(FT, 13, PP.gold); doc.text('2027', rx, y + 6.2, { align: 'right' }); const yW = tw('2027');
-    F(FB, 6.4, PP.white); doc.text('1448–1449H', rx - yW - 2, y + 6, { align: 'right' });
+    F(FT, 13, PP.gold); doc.text(String(Y), rx, y + 6.2, { align: 'right' }); const yW = tw(String(Y));
+    F(FB, 6.4, PP.white); doc.text(`${HY_S()}H`, rx - yW - 2, y + 6, { align: 'right' });
     F(FR, 5.8, [214, 228, 221]); doc.text(`${st.toUpperCase()} · HUJUNG MINGGU ${weekendLabel().toUpperCase()} · SEKOLAH KUMP. ${grp}`, rx, y + 10.3, { align: 'right' });
     // petunjuk
     const items = [[PP.holSoft, 'Cuti umum', PP.holLine], [PP.sch, 'Cuti sekolah (jalur kuning)', PP.sch], [PP.islSoft, 'Tarikh Islam', PP.isl], ['#D7DFDB', 'Hujung minggu', '#B5C2BC']];
-    if (S.layers.mine && Store.items.length) items.splice(3, 0, [mix(PCOL.c7, 0.3), 'Acara peribadi', PCOL.c7]);
+    if (S.layers.mine && yItems().length) items.splice(3, 0, [mix(PCOL.c7, 0.3), 'Acara peribadi', PCOL.c7]);
     F(FR, 6.2); let lx = X; const ly = y + h + 3.6;
     items.forEach(([c, t, b]) => { fill(c); draw(b); doc.setLineWidth(0.3); doc.roundedRect(lx, ly - 2.4, 3.6, 2.8, 0.6, 0.6, 'FD'); F(FR, 6.2, PP.ink); doc.text(t, lx + 4.8, ly); lx += 4.8 + tw(t) + 5; });
     F(FR, 5.8, PP.muted); doc.text(`Nombor kecil = tarikh Hijri  ·  Muka surat ${pageNo}/${total}`, X + CW, ly, { align: 'right' });
@@ -1823,7 +1840,7 @@ async function buildPoster(variant = 2, withList = false) {
   }
   function deskFooter() {
     F(FR, 5.2, PP.muted);
-    doc.text('Sumber: Hari Kelepasan Am 2027 (JPM) · Tarikh Penting Islam 2027 (JAKIM) · Kalendar Akademik 2027 (KPM). Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.', W / 2, 291, { align: 'center' });
+    doc.text(`Sumber: Hari Kelepasan Am ${Y} (JPM) · Tarikh Penting Islam ${Y} (JAKIM) · Kalendar Akademik ${Y} (KPM). Aidilfitri, Aidiladha & Deepavali tertakluk kepada perubahan; cuti ganti tertakluk pengumuman rasmi.`, W / 2, 291, { align: 'center' });
   }
   function deskMonth(m, x0, y0, w, h, big) {
     const titleH = big ? 11 : 8.4, dayH = big ? 7 : 5.6, wkW = big ? 15 : 14;
@@ -1843,7 +1860,7 @@ async function buildPoster(variant = 2, withList = false) {
     F(FB, big ? 9.5 : 7.6, PP.brand); doc.text(pad(m), x0 + 3.2 + r0, y0 + titleH / 2 + (big ? 1.6 : 1.3), { align: 'center' });
     const mname = MON[m - 1].toUpperCase();
     F(FT, big ? 17 : 13, PP.white); doc.text(mname, x0 + 3.2 + 2 * r0 + 3, y0 + titleH / 2 + (big ? 2.2 : 1.7)); const mW = tw(mname);
-    F(FB, big ? 9 : 7.4, PP.goldL); doc.text('2027', x0 + 3.2 + 2 * r0 + 3 + mW + 3, y0 + titleH / 2 + (big ? 2 : 1.6));
+    F(FB, big ? 9 : 7.4, PP.goldL); doc.text(String(Y), x0 + 3.2 + 2 * r0 + 3 + mW + 3, y0 + titleH / 2 + (big ? 2 : 1.6));
     F(FB, big ? 9 : 7.6, PP.goldL); doc.text(monthHijri(m).lat, x0 + w - 3, y0 + titleH / 2 + (big ? 1.7 : 1.4), { align: 'right' });
     // baris hari
     const dy = y0 + titleH + 0.7;
@@ -1855,11 +1872,11 @@ async function buildPoster(variant = 2, withList = false) {
       F(FB, big ? 9.6 : 8.2, weCol ? PP.hol : PP.brand); doc.text(DAYS[i].toUpperCase(), x0 + wkW + c * cw + cw / 2, dy + dayH * 0.68, { align: 'center' });
     });
     for (let r = 0; r < 5; r++) { fill(PP.card); doc.rect(x0, gy + r * rowH, wkW, rowH, 'F'); F(FB, big ? 8.6 : 7.6, PP.brand); doc.text(`MINGGU ${r + 1}`, x0 + wkW / 2, gy + r * rowH + rowH / 2 + 1.2, { align: 'center' }); }
-    const off = colOf(key(2027, m, 1)), n = dim(2027, m), used = new Set();
+    const off = colOf(key(Y, m, 1)), n = dim(Y, m), used = new Set();
     for (let d = 1; d <= n; d++) {
       let s = off + d - 1; if (s >= 35) s -= 35; used.add(s);
       const cx = x0 + wkW + (s % 7) * cw, cy = gy + Math.floor(s / 7) * rowH;
-      const k = key(2027, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
+      const k = key(Y, m, d), info = idx[k] || { hol: [], isl: [], sch: null, mine: [] }, hj = hijri(k);
       const fe = fillOf(info), we = isWeekend(k), isH = info.hol.length > 0, isS = S.layers.sch && info.sch, isI = S.layers.isl && info.isl.length;
       const bg = fe ? mix(phex(fe.color), 0.24) : isH ? PP.holSoft : we ? WE : isI ? PP.islSoft : null;
       if (bg) { fill(bg); doc.rect(cx, cy, cw, rowH, 'F'); }
@@ -1953,7 +1970,7 @@ async function toA3(a4bytes) {
   const pages = await out.embedPdf(src, src.getPageIndices());
   const A3 = [841.89, 1190.55];
   pages.forEach(p => { const pg = out.addPage(A3); pg.drawPage(p, { x: 0, y: 0, xScale: A3[0] / p.width, yScale: A3[1] / p.height }); });
-  out.setTitle(cfgTitle()); out.setCreator('Takwim 2027');
+  out.setTitle(cfgTitle()); out.setCreator(`Takwim ${Y}`);
   return new Blob([await out.save()], { type: 'application/pdf' });
 }
 
@@ -1971,10 +1988,10 @@ $('#b-pdf-go').addEventListener('click', async () => {
     if (!window.jspdf) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
     const withList = !!document.getElementById('p-addlist')?.checked;
     const doc = style === 'poster1' ? await buildPoster(1, withList) : style === 'poster' ? await buildPoster(2, withList) : style === 'desk3' ? await buildPoster(4) : style === 'desk1' ? await buildPoster(5) : await buildPoster(3);
-    doc.setProperties({ title: cfgTitle(), creator: 'Takwim 2027' });
+    doc.setProperties({ title: cfgTitle(), creator: `Takwim ${Y}` });
     let blob = doc.output('blob');
     if (size === 'a3') { try { blob = await toA3(doc.output('arraybuffer')); } catch (e) { console.error(e); tmsg('Saiz A3 tidak dapat disediakan, PDF A4 dimuat turun. Ia boleh dicetak pada A3 dengan pilihan "Fit to page".', true); } }
-    const base = cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || 'Takwim-2027';
+    const base = cfgTitle().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || `Takwim-${Y}`;
     const r = await saveFile(`${base}-${S.state}-${({ poster1: 'Poster-Klasik', poster: 'Poster-Moden', list: 'Senarai-Tarikh-Penting', desk3: 'Meja-Kerja-3-Bulan', desk1: 'Meja-Kerja-1-Bulan' }[style] || 'Takwim') + (withList && style.startsWith('poster') ? '-dan-Senarai' : '')}-${size.toUpperCase()}.pdf`, blob, `PDF ${size.toUpperCase()} sedia. Buka fail itu dan cetak pada kertas ${size.toUpperCase()} (skala 100% / Actual size).`);
     if (r === null) tmsg('Muat turun tidak tersedia dalam paparan ini. Buka halaman ini dalam aplikasi Claude atau pelayar dan cuba lagi.', true);
   } catch (e) { console.error(e); tmsg('PDF tidak dapat disediakan. Semak sambungan internet dan cuba lagi.', true); }
@@ -2009,12 +2026,30 @@ function renderGoogle() {
   b.replaceChildren(...kids);
 }
 
-const CFG_TITLES = { umum: 'Takwim 2027', peribadi: 'Takwim Peribadi 2027', keluarga: 'Takwim Keluarga 2027', kelas: 'Takwim Kelas 2027', sekolah: 'Takwim Sekolah 2027', jabatan: 'Takwim Jabatan 2027', organisasi: 'Takwim Organisasi 2027', lain: 'Takwim 2027' };
-const cfgTitle = () => (S.cfg.title || '').trim() || CFG_TITLES[S.cfg.type] || 'Takwim 2027';
+function renderYearBits() {
+  document.querySelectorAll('.yseg button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.y === Y)));
+  $('#hyar').textContent = HY_AR();
+  $('#cfg-title').placeholder = `cth. Takwim Keluarga Syed ${Y}`;
+  const f = $('#foot'); if (f) f.innerHTML = f.innerHTML.replace(/\b20(26|27)\b/g, String(Y));
+}
+function setYear(y) {
+  y = +y; if (!YEARS[y] || y === Y) return;
+  Y = y; DATA = YEARS[y]; CFG_TITLES = cfgTitles(y);
+  const ti = $('#cfg-title'); if (S.cfg.title && isPresetTitle(S.cfg.title.trim())) { S.cfg.title = CFG_TITLES[S.cfg.type]; ti.value = S.cfg.title; }
+  S.sel = refKey(); S.month = +S.sel.slice(5, 7); S.editing = null; S.confirmDel = null;
+  render();
+}
+document.querySelectorAll('.yseg button').forEach(b => b.addEventListener('click', () => setYear(b.dataset.y)));
+
+const CFG_BASE = { umum: 'Takwim', peribadi: 'Takwim Peribadi', keluarga: 'Takwim Keluarga', kelas: 'Takwim Kelas', sekolah: 'Takwim Sekolah', jabatan: 'Takwim Jabatan', organisasi: 'Takwim Organisasi', lain: 'Takwim' };
+const cfgTitles = y => Object.fromEntries(Object.entries(CFG_BASE).map(([k, v]) => [k, `${v} ${y}`]));
+let CFG_TITLES = cfgTitles(Y);
+const isPresetTitle = t => Object.keys(YEARS).some(y => Object.values(cfgTitles(y)).includes(t));
+const cfgTitle = () => ((S.cfg.title || '').trim().replace(/\b20(26|27)\b/, String(Y))) || CFG_TITLES[S.cfg.type] || `Takwim ${Y}`;
 function renderCfgHeader() {
   const C = S.cfg, T = cfgTitle();
   const h = $('#apptitle');
-  const m = T.match(/^(.*?)(\s*2027)(.*)$/);
+  const m = T.match(new RegExp(`^(.*?)(\\s*${Y})(.*)$`));
   h.replaceChildren(...(m ? [m[1], el('b', { text: m[2] }), m[3]] : [T]));
   const brand = h.parentElement;
   brand.querySelector('.blogo')?.remove(); brand.querySelector('.subt')?.remove();
@@ -2035,7 +2070,7 @@ $('#b-edit-title').addEventListener('click', () => { const b = $('#cfgbox'); b.o
   const save = () => { S.cfg.updated = Date.now(); savePrefs(); renderCfgHeader(); if (typeof Store.touchCfg === 'function') Store.touchCfg(); };
   ty.addEventListener('change', () => {
     const old = S.cfg.title.trim();
-    if (!old || Object.values(CFG_TITLES).includes(old)) { S.cfg.title = CFG_TITLES[ty.value]; ti.value = S.cfg.title; }
+    if (!old || isPresetTitle(old)) { S.cfg.title = CFG_TITLES[ty.value]; ti.value = S.cfg.title; }
     S.cfg.type = ty.value; ti.placeholder = CFG_TITLES[ty.value]; save();
   });
   ti.addEventListener('input', () => { S.cfg.title = ti.value; save(); });
@@ -2061,6 +2096,7 @@ function render() {
   const idx = buildIndex();
   document.querySelectorAll('.seg button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === S.view)));
   document.querySelectorAll('button.chip').forEach(b => b.setAttribute('aria-pressed', String(!!S.layers[b.dataset.l])));
+  renderYearBits();
   renderSummary();
   renderCfgHeader();
   $('#view').replaceChildren(S.view === 'today' ? renderToday(idx) : S.view === 'year' ? renderYear(idx) : S.view === 'month' ? renderMonth(idx) : renderList(idx));
@@ -2078,7 +2114,7 @@ render();
 // ---------- aplikasi telefon (PWA) ----------
 let installEvt = null;
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#b-install').hidden = false; });
-window.addEventListener('appinstalled', () => { installEvt = null; $('#b-install').hidden = true; tmsg('Aplikasi Takwim 2027 dipasang. Cari ikonnya di skrin utama.'); });
+window.addEventListener('appinstalled', () => { installEvt = null; $('#b-install').hidden = true; tmsg('Aplikasi Takwim dipasang. Cari ikonnya di skrin utama.'); });
 $('#b-install').addEventListener('click', async () => {
   if (!installEvt) return;
   installEvt.prompt();

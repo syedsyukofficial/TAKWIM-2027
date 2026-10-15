@@ -1,9 +1,10 @@
-# Takwim 2027 Malaysia · 1448–1449H
+# Takwim Malaysia · 2026 & 2027 (1447–1449H)
 
 Takwim interaktif dalam satu fail (`index.html`):
 
-- Cuti umum 2027 untuk 16 negeri dan wilayah, mengikut Jadual Hari Kelepasan Am JPM
-- Cuti sekolah 2027 (KPM Kumpulan A dan B)
+- Butang **2026 | 2027** di bahagian atas untuk tukar tahun
+- Cuti umum 2026 dan 2027 untuk 16 negeri dan wilayah, mengikut Jadual Hari Kelepasan Am JPM
+- Cuti sekolah 2026 dan 2027 (KPM Kumpulan A dan B, termasuk cuti tambahan perayaan KPM)
 - Tarikh Hijri setiap hari, dikira dengan kriteria MABIMS dan sepadan dengan senarai JAKIM
 - Hujung minggu ikut negeri (Kedah, Kelantan dan Terengganu: Jumaat–Sabtu)
 - Acara peribadi dengan kotak berwarna
@@ -49,13 +50,13 @@ Pada tahap ini takwim sudah boleh digunakan. Acara disimpan dalam pelayar setiap
 **Android (Chrome):**
 1. Buka `https://NAMA-PENGGUNA.github.io/takwim-2027/` dalam Chrome.
 2. Tekan butang **⤓ Pasang aplikasi** di bahagian atas laman, atau menu **⋮ → Add to Home screen / Install app**.
-3. Ikon **Takwim 2027** akan muncul di skrin utama. Bila dibuka, ia terus memaparkan **Hari Ini**, tanpa bar alamat.
+3. Ikon **Takwim** akan muncul di skrin utama. Bila dibuka, ia terus memaparkan **Hari Ini**, tanpa bar alamat.
 
 **iPhone (Safari):** tekan butang **Kongsi**, kemudian pilih **Add to Home Screen**.
 
 Selepas dibuka sekali dengan internet, aplikasi boleh dibuka tanpa internet.
 
-**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v16';` kepada `v17`, `v18` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
+**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v17';` kepada `v18`, `v19` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
 
 ---
 
@@ -98,8 +99,12 @@ Langkah ini membolehkan acara disimpan dalam akaun Google setiap pengguna, supay
 
 ## Sumber data
 
-- Jadual Hari Kelepasan Am Persekutuan & Negeri 2027, Bahagian Kabinet, Perlembagaan dan Perhubungan Antara Kerajaan, JPM
-- Tarikh-Tarikh Penting Dalam Islam 2027 / 1448–1449H, JAKIM
-- Kalendar Akademik Tahun 2027, KPM
+- Jadual Hari Kelepasan Am Persekutuan & Negeri 2026 dan 2027, Bahagian Kabinet, Perlembagaan dan Perhubungan Antara Kerajaan, JPM
+- Tarikh-Tarikh Penting Dalam Islam 2026 / 1447–1448H dan 2027 / 1448–1449H, JAKIM
+- Kalendar Akademik Tahun 2026 (Surat Siaran KPM Bil. 3/2025) dan 2027, KPM
 
 Aidilfitri, Aidiladha dan Deepavali tertakluk kepada perubahan. 1 Ramadan, 1 Syawal dan 10 Zulhijjah tertakluk kepada pengisytiharan Penyimpan Mohor Besar Raja-Raja. Cuti ganti tertakluk kepada pengumuman rasmi kerajaan negeri.
+
+
+## Nota cuti ganti 2026
+Cuti ganti 2026 dikira mengikut hujung minggu setiap negeri (jadual JPM tidak menyenaraikannya). Tarikh bertanda * (24 Mac Johor/Melaka, 3 Jun Sabah/Labuan) tertakluk kepada pengumuman rasmi negeri.
