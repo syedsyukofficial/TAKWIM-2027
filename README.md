@@ -56,7 +56,7 @@ Pada tahap ini takwim sudah boleh digunakan. Acara disimpan dalam pelayar setiap
 
 Selepas dibuka sekali dengan internet, aplikasi boleh dibuka tanpa internet.
 
-**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v17';` kepada `v18`, `v19` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
+**Bila mengemas kini `index.html`:** buka `sw.js` dan tukar nombor dalam `const VERSION = 'takwim2027-v18';` kepada `v19`, `v20` dan seterusnya. Dengan cara itu, telefon pengguna akan mengambil versi baharu.
 
 ---
 
